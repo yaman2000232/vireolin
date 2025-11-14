@@ -133,35 +133,208 @@
         sm="6"
         md="4"
       >
-        <v-card class="rounded-lg elevation-3 overflow-hidden">
-          <v-img
-            :src="service.image"
-            height="200px"
-            cover
-          ></v-img>
+     <v-card class="rounded-lg elevation-3 overflow-hidden position-relative">
+  <v-btn
+    icon="mdi-delete"
+    color="red"
+    class="ma-2 position-absolute"
+    style="top: 0; right: 0; z-index: 10;"
+    @click="openConfirmDialog(service.id)"
+  ></v-btn>
+  <v-btn
+    icon="mdi-pencil"
+    color="grey-darken-2"
+    class="ma-2 position-absolute"
+    style="top: 0; right: 50px; z-index: 10;"
+    @click="openEditDialog(service)"
+  ></v-btn>
 
-          <v-card-text class="pa-6 text-center">
-            <h3 class="text-h6 font-weight-bold mb-2 text-grey-darken-4">
-              {{ service.title }}
-            </h3>
-            <p class="text-body-2 text-grey-darken-1 mb-4">
-              {{ service.description }}
-            </p>
+  <v-img
+    :src="service.image"
+    height="200px"
+    cover
+  ></v-img>
 
-            <v-btn
-              color="orange-darken-2"
-              class="text-white font-weight-bold"
-              append-icon="mdi-arrow-right"
-              variant="flat"
-                    @click="openDialog(service)"
-            >
-              Learn More
-            </v-btn>
-          </v-card-text>
-        </v-card>
+  <v-card-text class="pa-6 text-center">
+    <h3 class="text-h6 font-weight-bold mb-2 text-grey-darken-4">
+      {{ service.title }}
+    </h3>
+    <p class="text-body-2 text-grey-darken-1 mb-4">
+      {{ service.description }}
+    </p>
+
+    <v-btn
+      color="orange-darken-2"
+      class="text-white font-weight-bold"
+      append-icon="mdi-arrow-right"
+      variant="flat"
+      @click="openDialog(service)"
+    >
+      Learn More
+    </v-btn>
+  </v-card-text>
+</v-card>
+
       </v-col>
     </v-row>
+
+
+      <!-- Edit Dialog -->
+
+ <v-dialog v-model="confirmDialogEdit" max-width="700">
+  <v-card class="pa-4">
+
+    <!-- Title -->
+    <v-card-title class="d-flex justify-center align-center">
+      <v-icon color="grey-darken-2" size="28" class="me-2">mdi-pencil</v-icon>
+      <span class="text-h5 font-weight-bold">Edit Service</span>
+    </v-card-title>
+
+    <v-card-text>
+      <!-- Image field -->
+      <v-text-field
+        v-model="editService.image"
+        label="Photo URL"
+        prepend-inner-icon="mdi-image"
+        variant="outlined"
+        class="mb-4"
+      />
+
+      <!-- Title field -->
+      <v-text-field
+        v-model="editService.title"
+        label="Title"
+        prepend-inner-icon="mdi-format-title"
+        variant="outlined"
+        class="mb-4"
+      />
+
+      <!-- Description field as textarea -->
+      <v-textarea
+        v-model="editService.description"
+        label="Description"
+        prepend-inner-icon="mdi-text"
+        variant="outlined"
+        auto-grow
+        rows="4"
+        class="mb-2"
+      />
+    </v-card-text>
+
+    <v-divider class="my-4"></v-divider>
+
+    <!-- Actions -->
+    <v-card-actions class="d-flex justify-end">
+      <v-btn
+        variant="outlined"
+        color="grey-darken-1"
+        prepend-icon="mdi-close-circle"
+        @click="cancelEdit"
+        class="px-6"
+      >
+        Cancel
+      </v-btn>
+
+      <v-btn
+        color="primary"
+        prepend-icon="mdi-content-save"
+        @click="saveEdit"
+        :loading="savingEdit"
+        class="px-6"
+      >
+        Save
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
+
+    <!-- Delete Dialog  -->
     
+          <v-dialog v-model="confirmDialog" max-width="600">
+
+      <v-card class="pa-4">
+
+        <v-card-title class="d-flex align-center justify-center">
+
+          <v-icon size="36" color="red" class="me-3">mdi-delete-alert</v-icon>
+
+          <span class="text-h5 font-weight-medium">Confirm Deletion</span>
+
+        </v-card-title>
+
+        <v-card-text class="text-center mt-2">
+
+          <div class="text-body-1 mb-2">
+
+            Are you sure you want to
+
+            <strong style="color: #b71c1c">delete this service?</strong>
+
+          </div>
+
+          <div class="text-body-2 text-medium-emphasis">
+
+            This action cannot be undone. Once deleted, the service will be permanently removed from
+
+            the system.
+
+          </div>
+
+        </v-card-text>
+
+        <v-divider class="my-4"></v-divider>
+
+        <v-card-actions class="justify-center">
+
+          <v-btn variant="outlined" color="grey" @click="cancelDeletion" class="px-6">
+
+            Cancel
+
+          </v-btn>
+
+          <v-btn
+
+            color="red"
+
+            variant="tonal"
+
+            class="px-6"
+
+            @click="confirmDeletion"
+
+            :loading="loading"
+
+          >
+
+            <v-icon start>mdi-delete</v-icon>
+
+            Delete
+
+          </v-btn>
+
+        </v-card-actions>
+
+      </v-card>
+
+    </v-dialog>
+
+      <v-snackbar
+  v-model="snackbar"
+  :timeout="3000"
+  :color="snackbarColor"
+  location="bottom right"
+>
+  <v-icon start>mdi-information</v-icon>
+  {{ snackbarMessage }}
+
+  <template v-slot:actions>
+    <v-btn color="white" variant="text" @click="snackbar = false">
+      Close
+    </v-btn>
+  </template>
+</v-snackbar>
+
+
 
     <!-- Dialog services  -->
     <!-- Dialog -->
@@ -470,6 +643,29 @@ export default {
 
        dialog: false,
       selectedService: null,
+
+       confirmDialog: false,
+
+      confirmDialogEdit: false,
+
+      toDeleteId: null,
+
+         loading: false,
+
+
+          editService: {
+
+        image:'',
+        title:'',
+        description:'',
+
+      },
+          snackbar: false,
+    snackbarMessage: '',
+    snackbarColor: 'success',
+
+      savingEdit: false,
+
       // هنا بنخزن الـ features لكل خدمة حسب العنوان
       features: {
         'Medical Facility Maintenance': [
@@ -513,10 +709,103 @@ export default {
     },
   },
    methods: {
+
+
+          openEditDialog(service) {
+
+      this.editService = {
+
+        ...service,
+
+        
+
+      }
+
+      this.confirmDialogEdit = true
+
+    },
+
+       cancelEdit() {
+
+      this.confirmDialogEdit = false
+
+      this.editService = {
+
+       image:'',
+       title:'',
+       description:''
+
+      }
+
+    },
+
+
+      async saveEdit() {
+  this.savingEdit = true
+
+  const updated = {
+    id: this.editService.id,
+    image: this.editService.image,
+    title: this.editService.title,
+    description: this.editService.description
+  }
+
+  await new Promise(resolve => setTimeout(resolve, 1000)) // محاكاة انتظار API
+  this.servicesStore.updateService(updated)
+
+  this.savingEdit = false
+  this.confirmDialogEdit = false,
+
+
+  this.snackbarMessage = 'Service updated successfully!'
+  this.snackbarColor = 'success'
+  this.snackbar = true
+},
+
+
+
+
+
+
+
     openDialog(service) {
       this.selectedService = service
       this.dialog = true
-    }
+    },
+
+       openConfirmDialog(id) {
+
+      this.toDeleteId = id
+
+      this.confirmDialog = true
+
+    },
+     cancelDeletion() {
+
+      this.toDeleteId = null
+
+      this.confirmDialog = false
+
+    },
+
+     async confirmDeletion() {
+  if (this.toDeleteId == null) return
+
+  this.loading = true
+
+  try {
+    await new Promise(resolve => setTimeout(resolve, 1000)) 
+    this.servicesStore.deleteItem(this.toDeleteId)
+      this.snackbarMessage = 'Service deleted successfully!'
+    this.snackbarColor = 'red'
+    this.snackbar = true
+  } finally {
+    this.loading = false
+    this.confirmDialog = false
+    this.toDeleteId = null
+  }
+}
+
   }
 }
 </script>

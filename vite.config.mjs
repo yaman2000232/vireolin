@@ -10,11 +10,14 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // 👇 هذا أهم تعديل للنشر على GitHub Pages
+  // غيّر اسم المستودع إذا غير "vireolin"
+  base: '/vireolin/',
+
   plugins: [
     Vue({
       template: { transformAssetUrls },
     }),
-    // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
     Vuetify(),
     Components(),
     Fonts({

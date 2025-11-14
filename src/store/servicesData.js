@@ -11,35 +11,41 @@ export const useServicesStore = defineStore('service', {
   state: () => ({
     services: [
   {
+    id:1,
     title: 'Medical Facility Maintenance',
     description: 'Specialized maintenance for hospitals and clinics, ensuring uninterrupted operation of critical medical equipment and infrastructure.',
     image: `${servicesA}`
   },
   {
+    id:2,
     title: 'Printing & Gas Equipment Service',
     description: 'Technical support and maintenance for industrial printers and gas systems, ensuring precision and safety in production environments.',
         image: `${servicesB}`
 
   },
   {
+    id:3,
     title: 'Fuel Station & Energy Systems',
     description: 'Comprehensive service for fuel stations and energy distribution systems, focusing on safety, uptime, and regulatory compliance.',
         image: `${servicesC}`
 
   },
   {
+    id:4,
     title: 'Crude Oil Infrastructure',
     description: 'Maintenance and inspection of crude oil pipelines, storage units, and extraction systems with high safety and operational standards.',
         image: `${servicesD}`
 
   },
   {
+    id:5,
     title: 'Elevator & Lift Systems',
     description: 'Reliable maintenance and emergency support for elevators and vertical transport systems in residential and commercial buildings.',
         image: `${servicesE}`
 
   },
    {
+    id:6,
     title: 'Alarm & Protection Systems',
     description: 'Installation and maintenance of advanced alarm and security systems, ensuring safety and protection for residential, commercial, .',
     image: `${servicesF}`
@@ -48,4 +54,20 @@ export const useServicesStore = defineStore('service', {
 
   
   }),
+  actions:{
+        deleteItem(id) {
+
+      this.services = this.services.filter((service) => service.id !== id)
+
+    },
+        updateService(newUpdatedService) {
+
+  this.services = this.services.map(service =>
+
+    service.id === newUpdatedService.id ? newUpdatedService : service
+
+  )
+
+},
+  }
 })
