@@ -69,5 +69,10 @@ export const useServicesStore = defineStore('service', {
   )
 
 },
+ addService(service){
+
+        this.services.push(service)
+
+    }
   }
 })

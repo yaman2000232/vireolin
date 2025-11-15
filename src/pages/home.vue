@@ -1,182 +1,316 @@
 <template>
-  <v-sheet
-    class="d-flex flex-column justify-center align-center text-center hero-section position-relative"
-    height="90vh"
-    :style="{
-      backgroundImage: `url(${heroImage})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    }"
-  >
-    <!-- overlay -->
-    <div
-      class="position-absolute top-0 left-0 right-0 bottom-0"
-      style="background-color: rgba(0,0,0,0.8);"
-    ></div>
-
-    <div class="position-relative" style="z-index: 1;">
-      <div class="text-h2 font-weight-bold mb-6 text-white">
-        Professional Maintenance & Service Management
-      </div>
-
-      <div class="text-subtitle-1 mb-8 text-grey">
-        We provide complete maintenance and service follow-up with technical precision and organized workflow.
-      </div>
-
-       <div class="d-flex flex-row justify-center">
-    <!-- زر Learn More -->
-    <v-btn
-      variant="outlined"
-      
-      class="mr-4 font-weight-bold elevation-2 transition-fast-in-fast-out hover-orange hover-scale"
-      size="x-large"
-    >
-      Learn More
-    </v-btn>
-
-    <!-- زر Contact -->
-    <v-btn
-    
-  color="orange-darken-2"
-  class="text-white font-weight-bold elevation-6 transition-fast-in-fast-out hover-scale"
-  size="x-large"
+<v-sheet
+  class="d-flex flex-column justify-center align-center text-center hero-section position-relative mb-5"
+  height="90vh"
+  :style="{
+    backgroundImage: `url(${heroImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }"
 >
-  Contact
-</v-btn>
+  <!-- overlay -->
+  <div
+    class="position-absolute top-0 left-0 right-0 bottom-0"
+    style="background-color: rgba(0,0,0,0.8);"
+  ></div>
 
-  </div>
+  <div class="position-relative" style="z-index: 1;">
+    <!-- العنوان الرئيسي -->
+    <div
+      class="text-h2 font-weight-bold mb-6 text-white"
+      style="text-shadow: 2px 2px 6px rgba(239,116,68,0.8);"
+    >
+      Professional Maintenance & Service Management
     </div>
-  </v-sheet>
+
+    <!-- النص الثانوي -->
+    <div class="text-subtitle-1 mb-8 text-grey-lighten-3">
+      We provide complete maintenance and service follow-up with technical precision and organized workflow.
+    </div>
+
+    <!-- الأزرار -->
+    <div class="d-flex flex-row justify-center">
+      <!-- زر Learn More (ثانوي) -->
+      <v-btn
+        variant="outlined"
+        color="orange-darken-2"
+        class="mr-4 font-weight-bold elevation-2 transition-fast-in-fast-out hover-scale"
+        size="x-large"
+      >
+        Learn More
+      </v-btn>
+
+      <!-- زر Contact (أساسي) -->
+      <v-btn
+        color="orange-darken-2"
+        class="text-white font-weight-bold elevation-6 transition-fast-in-fast-out hover-scale"
+        size="x-large"
+      >
+        Contact
+      </v-btn>
+    </div>
+  </div>
+</v-sheet>
+
+<v-container class="d-flex justify-center my-12">
+  <v-sheet
+    height="6"
+    width="320"
+    rounded="lg"
+    elevation="4"
+    style="background: linear-gradient(to right, #FFCC80, #FFB74D, #EF6C00);"
+  ></v-sheet>
+</v-container>
+
+
+
 
 
 <v-container>
-  <v-row class="mt-5"> 
+  <v-row class="mt-5 mb-5"> 
     <!-- Years of Experience -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4  hover-scale">
+      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4">
         <v-icon size="48" color="orange-darken-2">mdi-calendar-star</v-icon>
-        <v-card-text class="text-h5 font-weight-bold">10+</v-card-text>
-        <p class="text-subtitle-1">Years of Experience</p>
+        <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">10+</v-card-text>
+        <p class="text-subtitle-1 text-grey-darken-2">Years of Experience</p>
       </v-card>
     </v-col>
 
     <!-- Customer Satisfaction -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4  hover-scale">
+      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4">
         <v-icon size="48" color="orange-darken-2">mdi-star-circle</v-icon>
-        <v-card-text class="text-h5 font-weight-bold">95%</v-card-text>
-        <p class="text-subtitle-1">Customer Satisfaction</p>
+        <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">95%</v-card-text>
+        <p class="text-subtitle-1 text-grey-darken-2">Customer Satisfaction</p>
       </v-card>
     </v-col>
 
     <!-- Completed Projects -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4  hover-scale">
+      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4">
         <v-icon size="48" color="orange-darken-2">mdi-briefcase-check</v-icon>
-        <v-card-text class="text-h5 font-weight-bold">250+</v-card-text>
-        <p class="text-subtitle-1">Completed Projects</p>
+        <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">250+</v-card-text>
+        <p class="text-subtitle-1 text-grey-darken-2">Completed Projects</p>
       </v-card>
     </v-col>
 
     <!-- Team Members -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4  hover-scale">
+      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4">
         <v-icon size="48" color="orange-darken-2">mdi-account-group</v-icon>
-        <v-card-text class="text-h5 font-weight-bold">20+</v-card-text>
-        <p class="text-subtitle-1">Team Members</p>
+        <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">20+</v-card-text>
+        <p class="text-subtitle-1 text-grey-darken-2">Team Members</p>
       </v-card>
     </v-col>
   </v-row>
 </v-container>
 
+<v-container class="d-flex justify-center my-12">
+  <v-sheet
+    height="6"
+    width="320"
+    rounded="lg"
+    elevation="4"
+    style="background: linear-gradient(to right, #FFCC80, #FFB74D, #EF6C00);"
+  ></v-sheet>
+</v-container>
 
 
-<v-container class="mt-5">
-  <v-row justify="center">
-    <v-col cols="12" md="8">
+
+
+<v-container fluid class="mt-5 mb-8">
+ <v-row justify="center">
+  <v-col cols="12" md="8">
+    <div
+      class="d-flex flex-column justify-center align-center pa-8 text-center bg-grey-lighten-4 rounded-lg"
+    >
+      <!-- العنوان الصغير -->
+      <div class="px-4 py-2 rounded-pill bg-grey-lighten-3 text-orange-darken-2 text-subtitle-2 font-weight-medium mb-4">
+        Our Distinguished Services
+      </div>
+
+      <!-- العنوان الرئيسي -->
+      <div class="text-h2 font-weight-bold text-grey-darken-4 mb-4">
+        Our Services
+      </div>
+
+      <!-- النص الوصفي -->
+      <div class="text-body-1 text-grey-darken-3 mb-6">
+        We deliver professional maintenance and service solutions tailored to residential and commercial needs — 
+        from routine inspections to urgent repairs, with a focus on reliability, efficiency, and long-term care.
+      </div>
+
+      <!-- الخط الزخرفي -->
       <div
-        class="d-flex flex-column justify-center align-center pa-8 text-center"
-        color="grey-lighten-4"
-      >
-        <div class="px-4 py-2 rounded-pill bg-grey-lighten-3 text-orange-darken-2 text-subtitle-2 font-weight-medium mb-4">
-          Our Distinguished Services
-        </div>
+        style="
+          height: 4px;
+          width: 80px;
+          border-radius: 2px;
+          background: linear-gradient(to right, #FFCC80, #EF7444);
+        "
+      ></div>
+    </div>
+  </v-col>
+</v-row>
 
-        <div class="text-h2 font-weight-bold text-grey-darken-4 mb-4">
-          Our Services
-        </div>
 
-        <div class="text-body-1 text-grey-dark mb-6">
-  We deliver professional maintenance and service solutions tailored to residential and commercial needs — from routine inspections to urgent repairs, with a focus on reliability, efficiency, and long-term care.
+       <div class="d-flex justify-center mb-6 mt-6">
+  <v-btn
+    color="orange-darken-2"
+    class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
+    prepend-icon="mdi-plus-box-multiple"
+    variant="flat"
+    @click="AddDialog = true"
+  >
+    Add a Service
+  </v-btn>
 </div>
 
-        <div
-          style="
-            height: 4px;
-            width: 80px;
-            border-radius: 2px;
-            background: linear-gradient(to right, #FFCC80, #EF7444);
-          "
-        ></div>
-      </div>
-    </v-col>
-  </v-row>
+            
+
+            <v-dialog v-model="AddDialog" max-width="600">
+  <v-card class="pa-4">
+
+    <!-- Title -->
+    <v-card-title class="d-flex align-center justify-center">
+      <v-icon color="orange-darken-2" size="28" class="me-2">mdi-plus-box-multiple</v-icon>
+      <span class="text-h5 font-weight-bold">Add New Service</span>
+    </v-card-title>
+
+    <v-card-text>
+      <v-container>
+        <v-row>
+          <!-- Image -->
+          <v-col cols="12">
+            <v-text-field
+              v-model="newService.image"
+              label="Service Image URL"
+              prepend-inner-icon="mdi-image"
+              variant="outlined"
+              class="mb-4"
+            />
+          </v-col>
+
+          <!-- Title -->
+          <v-col cols="12">
+            <v-text-field
+              v-model="newService.title"
+              label="Title"
+              prepend-inner-icon="mdi-format-title"
+              variant="outlined"
+              class="mb-4"
+            />
+          </v-col>
+
+          <!-- Description as textarea -->
+          <v-col cols="12">
+            <v-textarea
+              v-model="newService.description"
+              label="Description"
+              prepend-inner-icon="mdi-text"
+              variant="outlined"
+              auto-grow
+              rows="4"
+              class="mb-2"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card-text>
+
+    <v-divider class="my-4"></v-divider>
+
+    <!-- Actions -->
+    <v-card-actions class="d-flex justify-end">
+      <v-btn
+        variant="outlined"
+        color="grey-darken-1"
+        prepend-icon="mdi-close-circle"
+        @click="AddDialog = false"
+        class="px-6"
+      >
+        Close
+      </v-btn>
+
+      <v-btn
+        color="orange"
+        hover
+        prepend-icon="mdi-content-save"
+        @click="AddServiceHere"
+        :loading="addingService"
+        class="px-6"
+      >
+        Add
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
+
 
   <!-- cards -->
 
-    <v-row>
-      <v-col
-        v-for="(service, index) in  servicesStore.services"
-        :key="index"
-        cols="12"
-        sm="6"
-        md="4"
-      >
-     <v-card class="rounded-lg elevation-3 overflow-hidden position-relative">
-  <v-btn
-    icon="mdi-delete"
-    color="red"
-    class="ma-2 position-absolute"
-    style="top: 0; right: 0; z-index: 10;"
-    @click="openConfirmDialog(service.id)"
-  ></v-btn>
-  <v-btn
-    icon="mdi-pencil"
-    color="grey-darken-2"
-    class="ma-2 position-absolute"
-    style="top: 0; right: 50px; z-index: 10;"
-    @click="openEditDialog(service)"
-  ></v-btn>
+ <v-row>
+  <v-col
+    v-for="(service, index) in servicesStore.services"
+    :key="index"
+    cols="12"
+    sm="6"
+    md="4"
+  >
+    <v-card class="rounded-lg elevation-3 overflow-hidden position-relative hover-scale bg-grey-lighten-5 mt-5">
+      
+      <!-- زر الحذف -->
+      <v-btn
+        icon="mdi-delete"
+        color="red"
+        class="ma-2 position-absolute"
+        style="top: 0; right: 0; z-index: 10;"
+        @click="openConfirmDialog(service.id)"
+      ></v-btn>
 
-  <v-img
-    :src="service.image"
-    height="200px"
-    cover
-  ></v-img>
+      <!-- زر التعديل -->
+      <v-btn
+        icon="mdi-pencil"
+        color="orange-lighten-1"
+        class="ma-2 position-absolute"
+        style="top: 0; right: 50px; z-index: 10;"
+        @click="openEditDialog(service)"
+      ></v-btn>
 
-  <v-card-text class="pa-6 text-center">
-    <h3 class="text-h6 font-weight-bold mb-2 text-grey-darken-4">
-      {{ service.title }}
-    </h3>
-    <p class="text-body-2 text-grey-darken-1 mb-4">
-      {{ service.description }}
-    </p>
+      <!-- صورة الخدمة -->
+      <v-img
+        :src="service.image"
+        height="200px"
+        cover
+      ></v-img>
 
-    <v-btn
-      color="orange-darken-2"
-      class="text-white font-weight-bold"
-      append-icon="mdi-arrow-right"
-      variant="flat"
-      @click="openDialog(service)"
-    >
-      Learn More
-    </v-btn>
-  </v-card-text>
-</v-card>
+      <!-- محتوى البطاقة -->
+      <v-card-text class="pa-6 text-center">
+        <h3 class="text-h6 font-weight-bold mb-2 text-grey-darken-4">
+  {{ service.title }}
+</h3>
 
-      </v-col>
-    </v-row>
+        <p class="text-body-2 text-grey-darken-2 mb-4">
+          {{ service.description }}
+        </p>
+
+        <!-- زر Learn More -->
+        <v-btn
+          color="orange-darken-2"
+          class="text-white font-weight-bold elevation-2"
+          append-icon="mdi-arrow-right"
+          variant="flat"
+          @click="openDialog(service)"
+        >
+          Learn More
+        </v-btn>
+      </v-card-text>
+    </v-card>
+  </v-col>
+</v-row>
+
 
 
       <!-- Edit Dialog -->
@@ -413,12 +547,22 @@
 
 </v-container>
 
+<v-container class="d-flex justify-center my-12">
+  <v-sheet
+    height="6"
+    width="320"
+    rounded="lg"
+    elevation="4"
+    style="background: linear-gradient(to right, #FFCC80, #FFB74D, #EF6C00);"
+  ></v-sheet>
+</v-container>
+
 
 
 <!-- why choose our services -->
 
 
-<div class="mt-3">
+<div class="mt-5">
 <v-container>
    <v-row>
   <v-col cols="12" md="7">
@@ -478,12 +622,23 @@
 </div>
 
 
+<v-container class="d-flex justify-center my-12">
+  <v-sheet
+    height="6"
+    width="320"
+    rounded="lg"
+    elevation="4"
+    style="background: linear-gradient(to right, #FFCC80, #FFB74D, #EF6C00);"
+  ></v-sheet>
+</v-container>
+
+
 
 
 <v-container>
 
 <p class="font-weight-bold text-h3 mt-5 text-black
- text-center mb-5">
+ text-center mb-5 mt-5">
   Project Implementation Stages
 </p>
 
@@ -652,6 +807,14 @@ export default {
 
          loading: false,
 
+         AddDialog:false,
+          addingService: false,
+          newService: {
+            image:'',
+        title: '',
+        description: ''
+      },
+
 
           editService: {
 
@@ -710,6 +873,31 @@ export default {
   },
    methods: {
 
+     async AddServiceHere() {
+  this.addingService = true
+
+  const newServiceObj = {
+    id: Date.now(), // مهم لإعطاء id فريد
+    image: this.newService.image,
+    title: this.newService.title,
+    description: this.newService.description
+  }
+
+  // محاكاة انتظار (لتظهر حالة الـ loading)
+  await new Promise(resolve => setTimeout(resolve, 800))
+
+  this.servicesStore.addService(newServiceObj)
+
+  this.snackbarMessage = 'Service Add successfully!'
+  this.snackbarColor = 'success'
+  this.snackbar = true
+
+  this.newService = { title: '', description: '', image: '' }
+  this.AddDialog = false
+  this.addingService = false
+},
+
+
 
           openEditDialog(service) {
 
@@ -758,7 +946,7 @@ export default {
 
 
   this.snackbarMessage = 'Service updated successfully!'
-  this.snackbarColor = 'success'
+  this.snackbarColor = 'primary'
   this.snackbar = true
 },
 
