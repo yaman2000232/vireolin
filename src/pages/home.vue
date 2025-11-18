@@ -1,6 +1,6 @@
 <template>
 <v-sheet
-  class="d-flex flex-column justify-center align-center text-center hero-section position-relative mb-5"
+  class="d-flex flex-column justify-center align-center text-center hero-section position-relative mb-5 bg-animate"
   height="90vh"
   :style="{
     backgroundImage: `url(${heroImage})`,
@@ -16,42 +16,24 @@
   ></div>
 
   <div class="position-relative" style="z-index: 1;">
-    <!-- العنوان الرئيسي -->
-    <div
-      class="text-h2 font-weight-bold mb-6 text-white"
-      style="text-shadow: 2px 2px 6px rgba(239,116,68,0.8);"
-    >
+    <!-- المحتوى -->
+    <div class="text-h2 font-weight-bold mb-6 text-white" style="text-shadow: 2px 2px 6px rgba(239,116,68,0.8);">
       Professional Maintenance & Service Management
     </div>
-
-    <!-- النص الثانوي -->
     <div class="text-subtitle-1 mb-8 text-grey-lighten-3">
       We provide complete maintenance and service follow-up with technical precision and organized workflow.
     </div>
-
-    <!-- الأزرار -->
     <div class="d-flex flex-row justify-center">
-      <!-- زر Learn More (ثانوي) -->
-      <v-btn
-        variant="outlined"
-        color="orange-darken-2"
-        class="mr-4 font-weight-bold elevation-2 transition-fast-in-fast-out hover-scale"
-        size="x-large"
-      >
+      <v-btn variant="outlined" color="orange-darken-2" class="mr-4 font-weight-bold elevation-2 transition-fast-in-fast-out hover-scale" size="x-large">
         Learn More
       </v-btn>
-
-      <!-- زر Contact (أساسي) -->
-      <v-btn
-        color="orange-darken-2"
-        class="text-white font-weight-bold elevation-6 transition-fast-in-fast-out hover-scale"
-        size="x-large"
-      >
+      <v-btn color="orange-darken-2" class="text-white font-weight-bold elevation-6 transition-fast-in-fast-out hover-scale" size="x-large">
         Contact
       </v-btn>
     </div>
   </div>
 </v-sheet>
+
 
 <v-container class="d-flex justify-center my-12">
   <v-sheet
@@ -1040,6 +1022,21 @@ export default {
 
 .hover-scale:hover {
   transform: scale(1.05); /* يكبر شوي عند الـ hover */
+}
+.bg-animate {
+  animation: floatBackground 6s ease-in-out infinite;
+}
+
+@keyframes floatBackground {
+  0% {
+    background-position: center 0px;
+  }
+  50% {
+    background-position: center -50px; /* تطلع شوي */
+  }
+  100% {
+    background-position: center 0px; /* ترجع */
+  }
 }
 
 </style>
