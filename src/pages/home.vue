@@ -50,10 +50,10 @@
 
 
 <v-container>
-  <v-row class="mt-5 mb-5"> 
+  <v-row class="mt-5 mb-5"  align="stretch"> 
     <!-- Years of Experience -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4">
+      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4 h-100">
         <v-icon size="48" color="orange-darken-2">mdi-calendar-star</v-icon>
         <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">10+</v-card-text>
         <p class="text-subtitle-1 text-grey-darken-2">Years of Experience</p>
@@ -62,7 +62,7 @@
 
     <!-- Customer Satisfaction -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4">
+      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4 h-100">
         <v-icon size="48" color="orange-darken-2">mdi-star-circle</v-icon>
         <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">95%</v-card-text>
         <p class="text-subtitle-1 text-grey-darken-2">Customer Satisfaction</p>
@@ -71,7 +71,7 @@
 
     <!-- Completed Projects -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4">
+      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4 h-100">
         <v-icon size="48" color="orange-darken-2">mdi-briefcase-check</v-icon>
         <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">250+</v-card-text>
         <p class="text-subtitle-1 text-grey-darken-2">Completed Projects</p>
@@ -80,7 +80,7 @@
 
     <!-- Team Members -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4">
+      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4 h-100">
         <v-icon size="48" color="orange-darken-2">mdi-account-group</v-icon>
         <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">20+</v-card-text>
         <p class="text-subtitle-1 text-grey-darken-2">Team Members</p>
@@ -114,9 +114,10 @@
       </div>
 
       <!-- العنوان الرئيسي -->
-      <div class="text-h2 font-weight-bold text-grey-darken-4 mb-4">
-        Our Services
-      </div>
+<div class="text-h2 font-weight-bold text-orange-darken-2 mb-4">
+  Our Services
+</div>
+
 
       <!-- النص الوصفي -->
       <div class="text-body-1 text-grey-darken-3 mb-6">
@@ -233,7 +234,7 @@
 
   <!-- cards -->
 
- <v-row>
+ <v-row align="stretch">
   <v-col
     v-for="(service, index) in servicesStore.services"
     :key="index"
@@ -241,44 +242,48 @@
     sm="6"
     md="4"
   >
-    <v-card class="rounded-lg elevation-3 overflow-hidden position-relative hover-scale bg-grey-lighten-5 mt-5">
+    <v-card class="rounded-lg elevation-3 overflow-hidden hover-scale bg-grey-lighten-5 mt-5 h-100 d-flex flex-column position-relative">
       
-      <!-- زر الحذف -->
-      <v-btn
-        icon="mdi-delete"
-        color="red"
-        class="ma-2 position-absolute"
-        style="top: 0; right: 0; z-index: 10;"
-        @click="openConfirmDialog(service.id)"
-      ></v-btn>
+      <!-- صورة الخدمة مع الأزرار في الزاوية -->
+      <div class="position-relative">
+        <v-img
+          :src="service.image"
+          height="220px"
+          cover
+        ></v-img>
 
-      <!-- زر التعديل -->
-      <v-btn
-        icon="mdi-pencil"
-        color="orange-lighten-1"
-        class="ma-2 position-absolute"
-        style="top: 0; right: 50px; z-index: 10;"
-        @click="openEditDialog(service)"
-      ></v-btn>
+        <!-- زر التعديل -->
+        <v-btn
+          icon="mdi-pencil"
+          color="orange-lighten-1"
+          class="ma-2 position-absolute"
+          style="top: 8px; right: 48px; z-index: 10;"
+          @click="openEditDialog(service)"
+        ></v-btn>
 
-      <!-- صورة الخدمة -->
-      <v-img
-        :src="service.image"
-        height="200px"
-        cover
-      ></v-img>
+        <!-- زر الحذف -->
+        <v-btn
+          icon="mdi-delete"
+          color="red"
+          class="ma-2 position-absolute"
+          style="top: 8px; right: 8px; z-index: 10;"
+          @click="openConfirmDialog(service.id)"
+        ></v-btn>
+      </div>
 
       <!-- محتوى البطاقة -->
-      <v-card-text class="pa-6 text-center">
+      <v-card-text class="pa-6 text-center flex-grow-1">
         <h3 class="text-h6 font-weight-bold mb-2 text-grey-darken-4">
-  {{ service.title }}
-</h3>
+          {{ service.title }}
+        </h3>
 
         <p class="text-body-2 text-grey-darken-2 mb-4">
           {{ service.description }}
         </p>
+      </v-card-text>
 
-        <!-- زر Learn More -->
+      <!-- زر Learn More في الأسفل وبالمنتصف -->
+      <v-card-actions class="justify-center mt-auto pb-4">
         <v-btn
           color="orange-darken-2"
           class="text-white font-weight-bold elevation-2"
@@ -288,11 +293,10 @@
         >
           Learn More
         </v-btn>
-      </v-card-text>
+      </v-card-actions>
     </v-card>
   </v-col>
 </v-row>
-
 
 
       <!-- Edit Dialog -->
@@ -627,6 +631,7 @@
 <v-carousel class="mt-5"
   cycle
   height="500"
+    interval="8000"
   hide-delimiter-background
 >
   <!-- 1️⃣ تكامل وربط الأنظمة -->
@@ -712,29 +717,46 @@
 </v-container>
 
 
-<v-container fluid class="hero d-flex flex-column align-center justify-center text-center">
+<v-container fluid class="hero d-flex flex-column align-center justify-center text-center pa-4 pa-md-12">
 
-   <div class="px-4 py-2 mb-3 rounded-pill bg-grey-lighten-4 text-orange-darken-1 text-subtitle-2 font-weight-medium mb-4 d-inline py-4">
-     Start Your Project Now
-    </div>
-    <h1 class="display-2 text-h1 font-weight-bold text-white mb-4">
-      Ready to Turn Your Vision into <span class="highlight">Reality ?</span>
-    </h1>
-    <p class="subtitle-2 text-h5 text-white mb-6">
-      Contact us now and start your project with <strong>Vireolin Group</strong>
-    </p>
-    <div class="d-flex gap-4">
-      <v-btn  variant="outlined"
-      
-      class="mr-4 font-weight-bold elevation-2 transition-fast-in-fast-out hover-ora hover-scale"
-      size="x-large" rounded="lg">
-        View Our Projects
-      </v-btn>
-      <v-btn color="white" class="text-orange font-weight-bold hover-scale" size="x-large" rounded="lg">
-        → Contact Us Now
-      </v-btn>
-    </div>
-  </v-container>
+  <!-- العنوان الفرعي -->
+  <div class="px-4 py-2 mb-3 rounded-pill bg-grey-lighten-4 text-orange-darken-1 text-subtitle-1 font-weight-medium mb-4 d-inline">
+    Start Your Project Now
+  </div>
+
+  <!-- العنوان الرئيسي -->
+  <h1 class="text-h4 text-md-h2 font-weight-bold text-white mb-4">
+    Ready to Turn Your Vision into <span class="highlight">Reality ?</span>
+  </h1>
+
+  <!-- النص -->
+  <p class="text-body-2 text-md-h5 text-white mb-6">
+    Contact us now and start your project with <strong>Vireolin Group</strong>
+  </p>
+
+  <!-- الأزرار -->
+  <div class="d-flex flex-column flex-sm-row gap-4 justify-center">
+  <v-btn
+    variant="outlined"
+    class="font-weight-bold elevation-2 transition-fast-in-fast-out hover-ora hover-scale mb-4 mb-sm-0"
+    size="large"
+    rounded="lg"
+  >
+    View Our Projects
+  </v-btn>
+
+  <v-btn
+    color="white"
+    class="text-orange font-weight-bold hover-scale"
+    size="large"
+    rounded="lg"
+  >
+    → Contact Us Now
+  </v-btn>
+</div>
+
+</v-container>
+
 
 
 

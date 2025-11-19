@@ -85,30 +85,30 @@
   </div>
 </div>
 
-   <v-row>
+   <v-row align="stretch">
   <v-col md="6" sm="12">
-    <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+    <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
       <p class="font-weight-bold mb-1">Hospital Projects</p>
       <p class="text-body-2">Advanced Operating Rooms</p>
     </div>
   </v-col>
 
   <v-col md="6" sm="12">
-    <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+    <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
       <p class="font-weight-bold mb-1">Clinic Projects</p>
       <p class="text-body-2">Modern Diagnostic Centers</p>
     </div>
   </v-col>
 
   <v-col md="6" sm="12">
-    <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+    <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
       <p class="font-weight-bold mb-1">Residential Projects</p>
       <p class="text-body-2">Smart Health Apartments</p>
     </div>
   </v-col>
 
   <v-col md="6" sm="12">
-    <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+    <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
       <p class="font-weight-bold mb-1">Research Facilities</p>
       <p class="text-body-2">Innovative Labs</p>
     </div>
@@ -190,30 +190,30 @@
     </div>
 
     <!-- Extra Grid -->
-    <v-row>
+    <v-row align="stretch">
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Printing Projects</p>
           <p class="text-body-2">High-Volume Industrial Printers</p>
         </div>
       </v-col>
 
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Gas Systems</p>
           <p class="text-body-2">Safe Distribution Networks</p>
         </div>
       </v-col>
 
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Production Facilities</p>
           <p class="text-body-2">Efficient Workflow Solutions</p>
         </div>
       </v-col>
 
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Safety Audits</p>
           <p class="text-body-2">Compliance & Risk Management</p>
         </div>
@@ -274,15 +274,15 @@
       </div>
     </div>
 
-    <v-row>
+    <v-row align="stretch">
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Fuel Distribution</p>
           <p class="text-body-2">Reliable Supply Networks</p>
         </div>
       </v-col>
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Energy Systems</p>
           <p class="text-body-2">Smart Grid Integration</p>
         </div>
@@ -341,15 +341,15 @@
       </div>
     </div>
 
-    <v-row>
+    <v-row align="stretch">
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Pipeline Projects</p>
           <p class="text-body-2">Advanced Inspection Systems</p>
         </div>
       </v-col>
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Storage Units</p>
           <p class="text-body-2">Safe & Secure Facilities</p>
         </div>
@@ -410,15 +410,15 @@
       </div>
     </div>
 
-    <v-row>
+    <v-row align="stretch">
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Residential Buildings</p>
           <p class="text-body-2">Smart Elevator Systems</p>
         </div>
       </v-col>
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Commercial Towers</p>
           <p class="text-body-2">High-Speed Lifts</p>
         </div>
@@ -491,30 +491,30 @@
     </div>
 
     <!-- Extra Grid -->
-    <v-row>
+    <v-row align="stretch">
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Residential Security</p>
           <p class="text-body-2">Smart Home Alarm Systems</p>
         </div>
       </v-col>
 
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Commercial Protection</p>
           <p class="text-body-2">Integrated Safety Solutions</p>
         </div>
       </v-col>
 
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Industrial Facilities</p>
           <p class="text-body-2">High-Security Monitoring</p>
         </div>
       </v-col>
 
       <v-col md="6" sm="12">
-        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale">
+        <div class="pa-4 mb-4 rounded-lg bg-orange-lighten-4 hover-scale h-100">
           <p class="font-weight-bold mb-1">Emergency Response</p>
           <p class="text-body-2">Rapid Alert Systems</p>
         </div>

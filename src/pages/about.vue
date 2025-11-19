@@ -23,7 +23,7 @@
 
 
 
-        <v-row class="mt-10 bg-grey-lighten-2 pa-8 rounded-lg" >
+        <v-row class="mt-10 bg-grey-lighten-4 pa-8 rounded-lg" >
        <v-col cols="12" md="5">
           <v-chip
           class="mb-4 rounded-pill text-orange-lighten-1 px-6 py-5 text-h6"
@@ -57,10 +57,10 @@
 
 
       <v-col cols="12" md="7" class="d-flex align-center justify-center"   >
-  <v-row >
+  <v-row align="stretch">
     <!-- Card 1 -->
     <v-col cols="12" sm="6">
-      <v-card elevation="2" class="pa-4 text-center">
+      <v-card elevation="2" class="pa-4 text-center h-100 hover-scale" >
         <v-icon size="48" color="orange-darken-2">mdi-calendar-star</v-icon>
         <v-card-text class="text-h5 font-weight-bold">10+</v-card-text>
         <p class="text-subtitle-1">Years of Experience</p>
@@ -69,7 +69,7 @@
 
     <!-- Card 2 -->
     <v-col cols="12" sm="6">
-      <v-card elevation="2" class="pa-4 text-center">
+      <v-card elevation="2" class="pa-4 text-center h-100 hover-scale">
         <v-icon size="48" color="orange-darken-2">mdi-star-circle</v-icon>
         <v-card-text class="text-h5 font-weight-bold">95%</v-card-text>
         <p class="text-subtitle-1">Customer Satisfaction</p>
@@ -78,7 +78,7 @@
 
     <!-- Card 3 -->
     <v-col cols="12" sm="6">
-      <v-card elevation="2" class="pa-4 text-center">
+      <v-card elevation="2" class="pa-4 text-center h-100 hover-scale">
         <v-icon size="48" color="orange-darken-2">mdi-briefcase-check</v-icon>
         <v-card-text class="text-h5 font-weight-bold">250+</v-card-text>
         <p class="text-subtitle-1">Completed Projects</p>
@@ -87,7 +87,7 @@
 
     <!-- Card 4 -->
     <v-col cols="12" sm="6">
-      <v-card elevation="2" class="pa-4 text-center">
+      <v-card elevation="2" class="pa-4 text-center h-100 hover-scale">
         <v-icon size="48" color="orange-darken-2">mdi-account-group</v-icon>
         <v-card-text class="text-h5 font-weight-bold">20+</v-card-text>
         <p class="text-subtitle-1">Team Members</p>
@@ -115,10 +115,10 @@
         </p>
       </div>
 
-     <v-row>
+     <v-row align="stretch">
   <!-- Our Values -->
   <v-col md="3" sm="12">
-    <v-card class="pa-6 text-center fixed-card" elevation="2">
+    <v-card class="pa-6 text-center fixed-card h-100" elevation="2">
       <v-icon size="48" color="orange-darken-2" class="mb-3">mdi-diamond-stone</v-icon>
       <p class="text-h6 font-weight-bold mb-2">Our Values</p>
       <p class="text-body-2 text-orange-darken-4 card-text">
@@ -131,7 +131,7 @@
 
   <!-- Our Vision -->
   <v-col md="3" sm="12">
-    <v-card class="pa-6 text-center fixed-card" elevation="2">
+    <v-card class="pa-6 text-center fixed-card h-100" elevation="2">
       <v-icon size="48" color="orange-darken-2" class="mb-3">mdi-eye</v-icon>
       <p class="text-h6 font-weight-bold mb-2">Our Vision</p>
       <p class="text-body-2 text-orange-darken-4 card-text">
@@ -144,7 +144,7 @@
 
   <!-- Our Mission -->
   <v-col md="3" sm="12">
-    <v-card class="pa-6 text-center fixed-card" elevation="2">
+    <v-card class="pa-6 text-center fixed-card h-100" elevation="2">
       <v-icon size="48" color="orange-darken-2" class="mb-3">mdi-target</v-icon>
       <p class="text-h6 font-weight-bold mb-2">Our Mission</p>
       <p class="text-body-2 text-orange-darken-4 card-text">
@@ -157,7 +157,7 @@
 
   <!-- Real Estate Development -->
   <v-col md="3" sm="12">
-    <v-card class="pa-6 text-center fixed-card" elevation="2">
+    <v-card class="pa-6 text-center fixed-card h-100" elevation="2">
       <v-icon size="48" color="orange-darken-2" class="mb-3">mdi-office-building</v-icon>
       <p class="text-h6 font-weight-bold mb-2">Real Estate Development</p>
       <p class="text-body-2 text-orange-darken-4 card-text">

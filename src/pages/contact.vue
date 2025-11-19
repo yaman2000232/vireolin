@@ -32,10 +32,17 @@
 <v-container class="py-10">
   <v-row>
     <!-- Left side: Contact Form -->
-    <v-col cols="12" md="6">
-      <v-form v-model="valid" class="bg-grey-lighten-5 border-lg pa-8 border-warning rounded-xl">
+   <v-col cols="12" md="6">
+  <v-form
+    v-model="valid"
+    class="bg-grey-lighten-5 border-lg pa-8 border-warning rounded-xl"
+  >
+    <!-- العنوان -->
+    <p class="text-center mb-8 text-h4 font-weight-bold text-orange-darken-2">
+      Send Your Message ...
+    </p>
+
     <!-- Service Select -->
-    <p class="text-center mb-8 text-h3 text-grey-darken-2">Send Your Message ...</p>
     <v-select
       v-model="service"
       label="Select Service"
@@ -44,6 +51,7 @@
       dense
       class="mb-4"
       :rules="[rules.required]"
+      prepend-inner-icon="mdi-briefcase"
     ></v-select>
 
     <!-- Name -->
@@ -54,6 +62,7 @@
       dense
       class="mb-4"
       :rules="[rules.required, rules.minName]"
+      prepend-inner-icon="mdi-account"
     ></v-text-field>
 
     <!-- Phone Number -->
@@ -65,6 +74,7 @@
       class="mb-4"
       type="tel"
       :rules="[rules.required, rules.phone]"
+      prepend-inner-icon="mdi-phone"
     ></v-text-field>
 
     <!-- Email -->
@@ -76,6 +86,7 @@
       class="mb-4"
       type="email"
       :rules="[rules.required, rules.email]"
+      prepend-inner-icon="mdi-email"
     ></v-text-field>
 
     <!-- Message -->
@@ -86,6 +97,7 @@
       rows="5"
       class="mb-4"
       :rules="[rules.required, rules.minMessage]"
+      prepend-inner-icon="mdi-message-text"
     ></v-textarea>
 
     <!-- Send Button -->
@@ -95,12 +107,12 @@
       block
       :disabled="!valid"
       @click="submitForm"
+      prepend-icon="mdi-send"
     >
       Send
     </v-btn>
   </v-form>
-
-    </v-col>
+</v-col>
 
     <!-- Right side: Location & Map -->
    <v-col cols="12" md="6" >
