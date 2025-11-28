@@ -1,5 +1,24 @@
 <template>
-<v-sheet
+
+    <v-skeleton-loader
+      v-if="loadingHome"
+      type="card, article, actions"
+      class="mx-auto"
+      max-width="1000"
+      
+    ></v-skeleton-loader>
+
+    <div v-else>
+
+
+
+
+
+
+
+
+
+      <v-sheet
   class="d-flex flex-column justify-center align-center text-center hero-section position-relative mb-5 bg-animate"
   height="90vh"
   :style="{
@@ -153,7 +172,7 @@
 
             
 
-            <v-dialog v-model="AddDialog" max-width="600">
+           <v-dialog v-model="AddDialog" max-width="600">
   <v-card class="pa-4">
 
     <!-- Title -->
@@ -165,13 +184,15 @@
     <v-card-text>
       <v-container>
         <v-row>
-          <!-- Image -->
+          <!-- Image Upload -->
           <v-col cols="12">
-            <v-text-field
-              v-model="newService.image"
-              label="Service Image URL"
+            <v-file-input
+              v-model="newService.images"
+              label="Upload Service Images"
               prepend-inner-icon="mdi-image"
               variant="outlined"
+              multiple
+              accept="image/*"
               class="mb-4"
             />
           </v-col>
@@ -187,7 +208,7 @@
             />
           </v-col>
 
-          <!-- Description as textarea -->
+          <!-- Description -->
           <v-col cols="12">
             <v-textarea
               v-model="newService.description"
@@ -219,9 +240,8 @@
 
       <v-btn
         color="orange"
-        hover
         prepend-icon="mdi-content-save"
-        @click="AddServiceHere"
+        @click="addService"
         :loading="addingService"
         class="px-6"
       >
@@ -230,9 +250,17 @@
     </v-card-actions>
   </v-card>
 </v-dialog>
+<v-pagination
+  v-if="servicesStore.pagination.total_pages > 1"
+  v-model="servicesStore.pagination.current_page"
+  :length="servicesStore.pagination.total_pages"
+  @update:modelValue="servicesStore.listService($event)"
+  class="mt-6"
+/>
 
 
   <!-- cards -->
+  <v-container>
 
  <v-row align="stretch">
   <v-col
@@ -246,11 +274,13 @@
       
       <!-- صورة الخدمة مع الأزرار في الزاوية -->
       <div class="position-relative">
-        <v-img
-          :src="service.image"
-          height="220px"
-          cover
-        ></v-img>
+      <v-img
+  :src="getServiceImage(service)"
+  height="220px"
+  cover
+></v-img>
+
+
 
         <!-- زر التعديل -->
         <v-btn
@@ -277,6 +307,18 @@
           {{ service.title }}
         </h3>
 
+
+        <v-chip
+    v-if="service.service_bookings && service.service_bookings.length"
+    :color="getStatusColor(service.service_bookings[0].status)"
+    text-color="white"
+    class="mb-3"
+  >
+    {{ service.service_bookings[0].status }}
+  </v-chip>
+
+
+
         <p class="text-body-2 text-grey-darken-2 mb-4">
           {{ service.description }}
         </p>
@@ -284,24 +326,28 @@
 
       <!-- زر Learn More في الأسفل وبالمنتصف -->
       <v-card-actions class="justify-center mt-auto pb-4">
-        <v-btn
-          color="orange-darken-2"
-          class="text-white font-weight-bold elevation-2"
-          append-icon="mdi-arrow-right"
-          variant="flat"
-          @click="openDialog(service)"
-        >
-          Learn More
-        </v-btn>
-      </v-card-actions>
+  <v-btn
+    color="orange-darken-2"
+    class="text-white font-weight-bold elevation-2"
+    append-icon="mdi-arrow-right"
+    variant="flat"
+    @click="openDialog(service.id)"
+  >
+    Learn More
+  </v-btn>
+</v-card-actions>
+
     </v-card>
   </v-col>
 </v-row>
+</v-container>
+ 
 
 
-      <!-- Edit Dialog -->
 
- <v-dialog v-model="confirmDialogEdit" max-width="700">
+
+  <!-- Edit Dialog -->
+<v-dialog v-model="confirmDialogEdit" max-width="700">
   <v-card class="pa-4">
 
     <!-- Title -->
@@ -311,13 +357,44 @@
     </v-card-title>
 
     <v-card-text>
-      <!-- Image field -->
-      <v-text-field
-        v-model="editService.image"
-        label="Photo URL"
-        prepend-inner-icon="mdi-image"
+      <!-- عرض الصور الحالية -->
+      <div class="text-subtitle-1 font-weight-bold mb-2">Current Photos</div>
+      <v-row>
+        <v-col
+          v-for="(img, index) in editService.images"
+          :key="index"
+          cols="6"
+          class="d-flex flex-column align-center"
+        >
+          <!-- صورة مصغرة -->
+          <v-img :src="img.url" max-height="120" max-width="120" class="mb-2" />
+
+          <!-- اسم الصورة أو المسار -->
+          <div class="text-caption mb-2">
+            {{ img.original_name || img.image_path }}
+          </div>
+
+          <!-- زر الحذف -->
+          <v-btn
+            color="red"
+            size="small"
+            variant="outlined"
+            @click="markPhotoForDeletion(img)"
+          >
+            Delete
+          </v-btn>
+        </v-col>
+      </v-row>
+
+      <!-- رفع صور جديدة -->
+      <v-file-input
+        v-model="editService.new_photos"
+        label="Upload New Photos"
+        prepend-inner-icon="mdi-image-plus"
         variant="outlined"
-        class="mb-4"
+        multiple
+        accept="image/*"
+        class="mt-4 mb-4"
       />
 
       <!-- Title field -->
@@ -329,7 +406,7 @@
         class="mb-4"
       />
 
-      <!-- Description field as textarea -->
+      <!-- Description field -->
       <v-textarea
         v-model="editService.description"
         label="Description"
@@ -368,75 +445,47 @@
   </v-card>
 </v-dialog>
 
-    <!-- Delete Dialog  -->
-    
-          <v-dialog v-model="confirmDialog" max-width="600">
 
-      <v-card class="pa-4">
 
-        <v-card-title class="d-flex align-center justify-center">
 
-          <v-icon size="36" color="red" class="me-3">mdi-delete-alert</v-icon>
 
-          <span class="text-h5 font-weight-medium">Confirm Deletion</span>
+ <!-- Delete Dialog -->
+<v-dialog v-model="confirmDialog" max-width="600">
+  <v-card class="pa-4">
+    <v-card-title class="d-flex align-center justify-center">
+      <v-icon size="36" color="red" class="me-3">mdi-delete-alert</v-icon>
+      <span class="text-h5 font-weight-medium">Confirm Deletion</span>
+    </v-card-title>
 
-        </v-card-title>
+    <v-card-text class="text-center mt-2">
+      <div class="text-body-1 mb-2">
+        Are you sure you want to
+        <strong style="color: #b71c1c">delete this service?</strong>
+      </div>
+      <div class="text-body-2 text-medium-emphasis">
+        This action cannot be undone. Once deleted, the service will be permanently removed from the system.
+      </div>
+    </v-card-text>
 
-        <v-card-text class="text-center mt-2">
+    <v-divider class="my-4"></v-divider>
 
-          <div class="text-body-1 mb-2">
-
-            Are you sure you want to
-
-            <strong style="color: #b71c1c">delete this service?</strong>
-
-          </div>
-
-          <div class="text-body-2 text-medium-emphasis">
-
-            This action cannot be undone. Once deleted, the service will be permanently removed from
-
-            the system.
-
-          </div>
-
-        </v-card-text>
-
-        <v-divider class="my-4"></v-divider>
-
-        <v-card-actions class="justify-center">
-
-          <v-btn variant="outlined" color="grey" @click="cancelDeletion" class="px-6">
-
-            Cancel
-
-          </v-btn>
-
-          <v-btn
-
-            color="red"
-
-            variant="tonal"
-
-            class="px-6"
-
-            @click="confirmDeletion"
-
-            :loading="loading"
-
-          >
-
-            <v-icon start>mdi-delete</v-icon>
-
-            Delete
-
-          </v-btn>
-
-        </v-card-actions>
-
-      </v-card>
-
-    </v-dialog>
+    <v-card-actions class="justify-center">
+      <v-btn variant="outlined" color="grey" @click="cancelDeletion" class="px-6">
+        Cancel
+      </v-btn>
+      <v-btn
+        color="red"
+        variant="tonal"
+        class="px-6"
+        @click="confirmDeletion"
+        :loading="loading"
+      >
+        <v-icon start>mdi-delete</v-icon>
+        Delete
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
 
       <v-snackbar
   v-model="snackbar"
@@ -456,17 +505,12 @@
 
 
 
-    <!-- Dialog services  -->
-    <!-- Dialog -->
+    <!--Learn More Dialog -->
 <v-dialog v-model="dialog" max-width="900px" persistent>
   <v-card class="pa-6">
     <!-- Title bar with Close icon -->
     <v-card-title class="d-flex justify-end pa-0 mb-2">
-      <v-btn
-        icon
-        color="grey-darken-1"
-        @click="dialog = false"
-      >
+      <v-btn icon color="grey-darken-1" @click="dialog = false">
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </v-card-title>
@@ -475,8 +519,8 @@
       <!-- Image -->
       <v-col cols="12" md="6">
         <v-img
-          v-if="selectedService"
-          :src="selectedService.image"
+          v-if="selectedService?.images?.length"
+          :src="selectedService.images[0].url"
           height="300"
           cover
         ></v-img>
@@ -491,18 +535,18 @@
           {{ selectedService?.description }}
         </p>
 
-        <!-- Features -->
-        <div class="mb-6 pa-4 rounded-lg bg-grey-lighten-4">
+        <!-- Bookings -->
+        <div v-if="selectedService?.service_bookings?.length" class="mb-6 pa-4 rounded-lg bg-grey-lighten-4">
           <h3 class="text-subtitle-1 font-weight-bold text-orange-darken-2 mb-4">
-            Our Features
+            Bookings
           </h3>
           <div
-            v-for="(feature, i) in features[selectedService?.title]"
-            :key="i"
+            v-for="booking in selectedService.service_bookings"
+            :key="booking.id"
             class="d-flex align-center mb-2"
           >
-            <v-icon color="green-darken-2" class="mr-2">mdi-check-circle</v-icon>
-            <span>{{ feature }}</span>
+            <v-icon color="blue-darken-2" class="mr-2">mdi-calendar-check</v-icon>
+            <span>{{ booking.message }} - <strong>{{ booking.status }}</strong></span>
           </div>
         </div>
       </v-col>
@@ -528,7 +572,6 @@
     </v-card-actions>
   </v-card>
 </v-dialog>
-
 
 
 </v-container>
@@ -758,6 +801,9 @@
 </v-container>
 
 
+    </div>
+
+
 
 
 
@@ -789,6 +835,10 @@ import servicesN from '@/assets/images/servicesN.jpg'
 export default {
   data() {
     return {
+       
+
+
+       loadingHome: true,
       heroImage,
 
            servicesG,
@@ -813,20 +863,21 @@ export default {
 
          AddDialog:false,
           addingService: false,
-          newService: {
-            image:'',
-        title: '',
-        description: ''
-      },
+           newService: {
+      title: '',
+      description: '',
+      images: [] 
+    },
 
 
-          editService: {
-
-        image:'',
-        title:'',
-        description:'',
-
-      },
+           editService: {
+      id: null,
+      title: '',
+      description: '',
+      images: [],           // الصور الحالية
+      new_photos: [],       // الصور الجديدة
+      deleted_photos: []    // الصور اللي المستخدم اختار حذفها
+    },
           snackbar: false,
     snackbarMessage: '',
     snackbarColor: 'success',
@@ -875,130 +926,185 @@ export default {
       return useServicesStore()
     },
   },
-   methods: {
+ methods: {
+  getStatusColor(status) {
+    if (status === "confirmed") return "green"
+    if (status === "pending") return "orange"
+    if (status === "cancelled") return "red"
+    return "grey"
+  },
 
-     async AddServiceHere() {
-  this.addingService = true
+  getServiceImage(service) {
+    if (service.images && service.images.length > 0) {
+      return service.images[0].url
+    }
+    return servicesG
+  },
 
-  const newServiceObj = {
-    id: Date.now(), // مهم لإعطاء id فريد
-    image: this.newService.image,
-    title: this.newService.title,
-    description: this.newService.description
+  async addService() {
+    this.addingService = true
+    try {
+      const newServiceObj = {
+        title: this.newService.title,
+        description: this.newService.description,
+        images: this.newService.images
+      }
+
+      await this.servicesStore.createServiceFromApi(newServiceObj)
+
+      this.snackbarMessage = 'Service added successfully!'
+      this.snackbarColor = 'success'
+      this.snackbar = true
+
+      this.newService = { title: '', description: '', images: [] }
+      this.AddDialog = false
+    } catch (error) {
+      this.snackbarMessage = 'Failed to add service'
+      this.snackbarColor = 'error'
+      this.snackbar = true
+      console.error(error)
+    } finally {
+      this.addingService = false
+    }
+  },
+
+ openEditDialog(service) {
+  this.editService = {
+    id: service.id,
+    title: service.title,
+    description: service.description,
+    images: [...service.images], // عرض الصور الحالية
+    new_photos: [],
+    deleted_photos: []
   }
-
-  // محاكاة انتظار (لتظهر حالة الـ loading)
-  await new Promise(resolve => setTimeout(resolve, 800))
-
-  this.servicesStore.addService(newServiceObj)
-
-  this.snackbarMessage = 'Service Add successfully!'
-  this.snackbarColor = 'success'
-  this.snackbar = true
-
-  this.newService = { title: '', description: '', image: '' }
-  this.AddDialog = false
-  this.addingService = false
+  this.confirmDialogEdit = true
 },
 
 
 
-          openEditDialog(service) {
-
-      this.editService = {
-
-        ...service,
-
-        
-
-      }
-
-      this.confirmDialogEdit = true
-
-    },
-
-       cancelEdit() {
-
-      this.confirmDialogEdit = false
-
-      this.editService = {
-
-       image:'',
-       title:'',
-       description:''
-
-      }
-
-    },
+ cancelEdit() {
+  this.confirmDialogEdit = false
+  this.editService = {
+    id: null,
+    title: '',
+    description: '',
+    images: [],
+    new_photos: [],
+    deleted_photos: []
+  }
+},
 
 
-      async saveEdit() {
+ markPhotoForDeletion(img) {
+  if (img.id) {
+    this.editService.deleted_photos.push(img.id)
+    console.log("❌ Marked photo for deletion (id):", img.id)
+  } else if (img.image_path) {
+    this.editService.deleted_photos.push(img.image_path)
+    console.log("❌ Marked photo for deletion (path):", img.image_path)
+  }
+  this.editService.images = this.editService.images.filter(i => i !== img)
+},
+
+
+  async saveEdit() {
   this.savingEdit = true
-
-  const updated = {
-    id: this.editService.id,
-    image: this.editService.image,
-    title: this.editService.title,
-    description: this.editService.description
-  }
-
-  await new Promise(resolve => setTimeout(resolve, 1000)) // محاكاة انتظار API
-  this.servicesStore.updateService(updated)
-
-  this.savingEdit = false
-  this.confirmDialogEdit = false,
-
-
-  this.snackbarMessage = 'Service updated successfully!'
-  this.snackbarColor = 'primary'
-  this.snackbar = true
-},
-
-
-
-
-
-
-
-    openDialog(service) {
-      this.selectedService = service
-      this.dialog = true
-    },
-
-       openConfirmDialog(id) {
-
-      this.toDeleteId = id
-
-      this.confirmDialog = true
-
-    },
-     cancelDeletion() {
-
-      this.toDeleteId = null
-
-      this.confirmDialog = false
-
-    },
-
-     async confirmDeletion() {
-  if (this.toDeleteId == null) return
-
-  this.loading = true
-
+  console.log("🚀 Saving edit with data:", this.editService)
   try {
-    await new Promise(resolve => setTimeout(resolve, 1000)) 
-    this.servicesStore.deleteItem(this.toDeleteId)
-      this.snackbarMessage = 'Service deleted successfully!'
-    this.snackbarColor = 'red'
+    const updated = await this.servicesStore.updateServiceFromApi(
+      this.editService.id,
+      {
+        title: this.editService.title,
+        description: this.editService.description,
+        new_photos: this.editService.new_photos,
+        deleted_photos: this.editService.deleted_photos
+      }
+    )
+    console.log("✅ Service updated:", updated)
+    this.snackbarMessage = 'Service updated successfully!'
+    this.snackbarColor = 'primary'
+    this.snackbar = true
+    this.confirmDialogEdit = false
+  } catch (error) {
+    console.error("❌ Failed to update service:", error)
+    this.snackbarMessage = 'Failed to update service!'
+    this.snackbarColor = 'error'
     this.snackbar = true
   } finally {
-    this.loading = false
-    this.confirmDialog = false
+    this.savingEdit = false
+  }
+},
+
+   async openDialog(id) {
+    this.dialog = true
+    try {
+      let token = localStorage.getItem('accessToken')
+      if (!token) throw new Error('No access token found')
+      token = token.replace(/^'+|'+$/g, '').trim()
+
+      const res = await fetch(`http://127.0.0.1:8000/api/serviceTypes/${id}`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      if (!res.ok) throw new Error('Failed to fetch service details')
+      const data = await res.json()
+
+      // الاستجابة عندك عبارة عن مصفوفة داخل مصفوفة
+      this.selectedService = data.data[0][0]
+    } catch (err) {
+      console.error('Error fetching service details:', err)
+    }
+  },
+
+  openConfirmDialog(id) {
+    this.toDeleteId = id
+    this.confirmDialog = true
+  },
+ cancelDeletion() {
     this.toDeleteId = null
+    this.confirmDialog = false
+  },
+
+   async confirmDeletion() {
+    if (this.toDeleteId == null) return
+    this.loading = true
+    console.log("🚀 Confirming deletion for serviceId:", this.toDeleteId)
+
+    try {
+      const deletedResponse = await this.servicesStore.deleteItem(this.toDeleteId)
+      console.log("✅ Deleted response:", deletedResponse)
+
+      this.snackbarMessage = 'Service deleted successfully!'
+      this.snackbarColor = 'red'
+      this.snackbar = true
+    } catch (error) {
+      console.error("❌ Failed to delete service:", error)
+      this.snackbarMessage = 'Failed to delete service!'
+      this.snackbarColor = 'error'
+      this.snackbar = true
+    } finally {
+      this.loading = false
+      this.confirmDialog = false
+      this.toDeleteId = null
+      console.log("🏁 Finished confirmDeletion")
+    }
+  }
+},
+
+async mounted() {
+  this.loadingHome = true
+  try {
+    await this.servicesStore.listService(1) // مرّر رقم الصفحة الأولى
+  } catch (err) {
+    console.error(err)
+  } finally {
+    this.loadingHome = false
   }
 }
 
-  }
 }
 </script>
 

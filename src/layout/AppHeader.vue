@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app flat color="white" elevation="1" class="position-relative">
+  <v-app-bar app flat color="white" elevation="1" class="position-relative position-sticky">
 
     <!-- الاسم يسار -->
     <v-toolbar-title class="font-weight-bold text-black">
