@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia'
+import { useAuthStore } from "@/store/auth";
+
 // import servicesA from '@/assets/images/servicesA.jpg'
 // import servicesB from '@/assets/images/servicesB.jpg'
 // import servicesC from '@/assets/images/servicesC.jpg'
@@ -25,39 +27,53 @@ export const useServicesStore = defineStore('service', {
 
   actions:{
 
-    async listService(page = 1) {
+   async listService(page = 1) {
   this.loading = true
   this.error = false
+
   try {
-    let token = localStorage.getItem('accessToken')
-    if (!token) throw new Error('No access token found')
+    // 1) جلب بيانات المستخدم من الـ AuthStore (اختياري للتأكد من الدور)
+    const authStore = useAuthStore()
+    
+ console.log("USER ROLE IS:", authStore.role ?? "Not loaded")
 
-    token = token.replace(/^'+|'+$/g, '').trim()
+    // 2) جلب التوكن من localStorage
+    let token = localStorage.getItem("accessToken")
+    if (!token) {
+      throw new Error("No access token found")
+    }
 
+    // تنظيف التوكن من أي علامات اقتباس أو مسافات
+    token = token.replace(/^['"]+|['"]+$/g, "").trim()
+
+    // 3) إرسال الطلب
     const res = await fetch(`http://127.0.0.1:8000/api/serviceTypes?page=${page}`, {
-      headers: { 
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json"
       }
     })
 
-    if (!res.ok) throw new Error('Failed to fetch services')
+    // 4) التحقق من الاستجابة
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}))
+      throw new Error(errData?.message || `Failed to fetch services (status ${res.status})`)
+    }
 
     const data = await res.json()
-    console.log(data)
+    console.log("API Response:", data)
 
-    // حفظ الخدمات
-    this.services = data.data || []
-
-    // حفظ بيانات الـ pagination
+    // 5) حفظ الخدمات والـ pagination
+    this.services = Array.isArray(data.data) ? data.data : []
     this.pagination = data.pagination || {}
 
-    console.log('Services loaded:', this.services)
-   console.log('Page:', page, 'Services:', this.services)
-    console.log('Pagination:', this.pagination)
+    console.log("Services loaded:", this.services)
+    console.log("Page:", page, "Services:", this.services)
+    console.log("Pagination:", this.pagination)
 
   } catch (err) {
-    console.error('Error loading services:', err)
+    console.error("Error loading services:", err.message)
     this.error = true
   } finally {
     this.loading = false

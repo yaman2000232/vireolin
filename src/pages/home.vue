@@ -18,7 +18,7 @@
 
 
 
-      <v-sheet
+     <v-sheet
   class="d-flex flex-column justify-center align-center text-center hero-section position-relative mb-5 bg-animate"
   height="90vh"
   :style="{
@@ -28,31 +28,54 @@
     backgroundRepeat: 'no-repeat'
   }"
 >
-  <!-- overlay -->
   <div
     class="position-absolute top-0 left-0 right-0 bottom-0"
-    style="background-color: rgba(0,0,0,0.8);"
+    style="background-color: rgba(0,0,0,0.7);"
   ></div>
 
   <div class="position-relative" style="z-index: 1;">
-    <!-- المحتوى -->
-    <div class="text-h2 font-weight-bold mb-6 text-white" style="text-shadow: 2px 2px 6px rgba(239,116,68,0.8);">
-      Professional Maintenance & Service Management
-    </div>
-    <div class="text-subtitle-1 mb-8 text-grey-lighten-3">
+<div 
+  class="text-h2 font-weight-bold mb-6 text-primary"
+  data-aos="fade-up"
+  data-aos-duration="1000"
+  data-aos-delay="200"
+>
+  Professional Maintenance & Service Management
+</div>
+
+
+    <div class="text-subtitle-1 mb-8 text-grey-lighten-2"
+     data-aos="fade-up"
+  data-aos-duration="1000"
+  data-aos-delay="600">
       We provide complete maintenance and service follow-up with technical precision and organized workflow.
     </div>
-    <div class="d-flex flex-row justify-center">
-      <v-btn variant="outlined" color="orange-darken-2" class="mr-4 font-weight-bold elevation-2 transition-fast-in-fast-out hover-scale" size="x-large">
+
+    <div class="d-flex flex-row justify-center
+    " data-aos="fade-up"
+  data-aos-duration="1000"
+  data-aos-delay="800">
+      <v-btn
+        variant="outlined"
+        color="primary"
+        class="mr-4 font-weight-bold elevation-2 transition-fast-in-fast-out hover-scale"
+        size="x-large"
+        to="/about"
+      >
         Learn More
       </v-btn>
-      <v-btn color="orange-darken-2" class="text-white font-weight-bold elevation-6 transition-fast-in-fast-out hover-scale" size="x-large">
+
+      <v-btn
+        color="primary"
+        class="text-white font-weight-bold elevation-6 transition-fast-in-fast-out hover-scale"
+        size="x-large"
+        to="contact"
+      >
         Contact
       </v-btn>
     </div>
   </div>
 </v-sheet>
-
 
 <v-container class="d-flex justify-center my-12">
   <v-sheet
@@ -60,7 +83,7 @@
     width="320"
     rounded="lg"
     elevation="4"
-    style="background: linear-gradient(to right, #FFCC80, #FFB74D, #EF6C00);"
+    color="primary"
   ></v-sheet>
 </v-container>
 
@@ -69,44 +92,56 @@
 
 
 <v-container>
-  <v-row class="mt-5 mb-5"  align="stretch"> 
+  <v-row class="mt-5 mb-5" align="stretch" 
+  > 
     <!-- Years of Experience -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4 h-100">
-        <v-icon size="48" color="orange-darken-2">mdi-calendar-star</v-icon>
-        <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">10+</v-card-text>
-        <p class="text-subtitle-1 text-grey-darken-2">Years of Experience</p>
+      <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  data-aos="fade-right"
+  data-aos-duration="500"
+  data-aos-delay="200" color="surface"
+      >
+        <v-icon size="48" color="primary">mdi-calendar-star</v-icon>
+        <v-card-text class="text-h5 font-weight-bold text-primary">10+</v-card-text>
+        <p class="text-subtitle-1 text-secondary">Years of Experience</p>
       </v-card>
     </v-col>
 
     <!-- Customer Satisfaction -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4 h-100">
-        <v-icon size="48" color="orange-darken-2">mdi-star-circle</v-icon>
-        <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">95%</v-card-text>
-        <p class="text-subtitle-1 text-grey-darken-2">Customer Satisfaction</p>
+      <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  data-aos="fade-right"
+  data-aos-duration="500"
+  data-aos-delay="300" color="surface">
+        <v-icon size="48" color="primary">mdi-star-circle</v-icon>
+        <v-card-text class="text-h5 font-weight-bold text-primary">95%</v-card-text>
+        <p class="text-subtitle-1 text-secondary">Customer Satisfaction</p>
       </v-card>
     </v-col>
 
     <!-- Completed Projects -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4 h-100">
-        <v-icon size="48" color="orange-darken-2">mdi-briefcase-check</v-icon>
-        <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">250+</v-card-text>
-        <p class="text-subtitle-1 text-grey-darken-2">Completed Projects</p>
+      <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  data-aos="fade-right"
+  data-aos-duration="500"
+  data-aos-delay="400" color="surface">
+        <v-icon size="48" color="primary">mdi-briefcase-check</v-icon>
+        <v-card-text class="text-h5 font-weight-bold text-primary">250+</v-card-text>
+        <p class="text-subtitle-1 text-secondary">Completed Projects</p>
       </v-card>
     </v-col>
 
     <!-- Team Members -->
     <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale bg-grey-lighten-4 h-100">
-        <v-icon size="48" color="orange-darken-2">mdi-account-group</v-icon>
-        <v-card-text class="text-h5 font-weight-bold text-grey-darken-4">20+</v-card-text>
-        <p class="text-subtitle-1 text-grey-darken-2">Team Members</p>
+      <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  data-aos="fade-right"
+  data-aos-duration="500"
+  data-aos-delay="500" color="surface">
+        <v-icon size="48" color="primary">mdi-account-group</v-icon>
+        <v-card-text class="text-h5 font-weight-bold text-primary">20+</v-card-text>
+        <p class="text-subtitle-1 text-secondary">Team Members</p>
       </v-card>
     </v-col>
   </v-row>
 </v-container>
+
+ 
 
 <v-container class="d-flex justify-center my-12">
   <v-sheet
@@ -114,7 +149,7 @@
     width="320"
     rounded="lg"
     elevation="4"
-    style="background: linear-gradient(to right, #FFCC80, #FFB74D, #EF6C00);"
+    color="primary"
   ></v-sheet>
 </v-container>
 
@@ -122,35 +157,30 @@
 
 
 <v-container fluid class="mt-5 mb-8">
- <v-row justify="center">
+<v-row justify="center"  data-aos="fade-up-right"
+  data-aos-duration="500"
+  data-aos-delay="200">
   <v-col cols="12" md="8">
-    <div
-      class="d-flex flex-column justify-center align-center pa-8 text-center bg-grey-lighten-4 rounded-lg"
-    >
-      <!-- العنوان الصغير -->
-      <div class="px-4 py-2 rounded-pill bg-grey-lighten-3 text-orange-darken-2 text-subtitle-2 font-weight-medium mb-4">
+    <div class="d-flex flex-column justify-center align-center pa-8 text-center rounded-lg bg-surface ">
+      <div class="px-4 py-2 rounded-pill bg-surface text-primary text-subtitle-2 font-weight-medium mb-4 bg-surface elevation-2">
         Our Distinguished Services
       </div>
 
-      <!-- العنوان الرئيسي -->
-<div class="text-h2 font-weight-bold text-orange-darken-2 mb-4">
-  Our Services
-</div>
+      <div class="text-h2 font-weight-bold text-primary mb-4">
+        Our Services
+      </div>
 
-
-      <!-- النص الوصفي -->
-      <div class="text-body-1 text-grey-darken-3 mb-6">
+      <div class="text-body-1 text-secondary mb-6">
         We deliver professional maintenance and service solutions tailored to residential and commercial needs — 
         from routine inspections to urgent repairs, with a focus on reliability, efficiency, and long-term care.
       </div>
 
-      <!-- الخط الزخرفي -->
       <div
         style="
           height: 4px;
           width: 80px;
           border-radius: 2px;
-          background: linear-gradient(to right, #FFCC80, #EF7444);
+          background: linear-gradient(to right, var(--v-theme-warning), var(--v-theme-primary));
         "
       ></div>
     </div>
@@ -158,16 +188,57 @@
 </v-row>
 
 
-       <div class="d-flex justify-center mb-6 mt-6">
-  <v-btn
-    color="orange-darken-2"
-    class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
-    prepend-icon="mdi-plus-box-multiple"
-    variant="flat"
-    @click="AddDialog = true"
-  >
-    Add a Service
-  </v-btn>
+         <div class="d-flex justify-center mb-6 mt-6" v-if="authStore.role === 'customer'">
+        
+ <v-btn
+  color="primary"
+  class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
+   data-aos="fade-up-left"
+  data-aos-duration="500"
+  data-aos-delay="300"
+  prepend-icon="mdi-plus-box-multiple"
+  variant="flat"
+  to="/myrequest"
+  
+>
+  View My Request
+</v-btn>
+
+</div>
+
+
+
+       <div class="d-flex justify-center mb-6 mt-6 ga-6" v-if="authStore.role === 'admin'">
+        
+<!-- زر إضافة خدمة -->
+<v-btn
+  color="primary"
+  class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
+  data-aos="fade-up-left"
+  data-aos-duration="500"
+  data-aos-delay="300"
+  prepend-icon="mdi-plus-box-multiple"
+  variant="flat"
+  @click="AddDialog = true"
+>
+  Add a Service
+</v-btn>
+
+<!-- زر الذهاب إلى الطلبات -->
+<v-btn
+  color="primary"
+  class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
+  data-aos="fade-up-left"
+  data-aos-duration="500"
+  data-aos-delay="500"
+  prepend-icon="mdi-file-document-multiple"
+  variant="flat"
+  to="/ourrequest"
+>
+  Go to Requests
+</v-btn>
+
+
 </div>
 
             
@@ -262,7 +333,10 @@
   <!-- cards -->
   <v-container>
 
- <v-row align="stretch">
+<v-row align="stretch"
+ data-aos="slide-right"
+  data-aos-duration="1500"
+  data-aos-delay="200">
   <v-col
     v-for="(service, index) in servicesStore.services"
     :key="index"
@@ -270,80 +344,180 @@
     sm="6"
     md="4"
   >
-    <v-card class="rounded-lg elevation-3 overflow-hidden hover-scale bg-grey-lighten-5 mt-5 h-100 d-flex flex-column position-relative">
-      
-      <!-- صورة الخدمة مع الأزرار في الزاوية -->
+    <v-card
+      class="rounded-lg elevation-3 overflow-hidden hover-scale mt-5 h-100 d-flex flex-column position-relative"
+      color="surface"
+    >
       <div class="position-relative">
-      <v-img
-  :src="getServiceImage(service)"
-  height="220px"
-  cover
-></v-img>
+        <v-img
+          :src="getServiceImage(service)"
+          height="220px"
+          cover
+        ></v-img>
 
-
-
-        <!-- زر التعديل -->
         <v-btn
+        v-if="authStore.role === 'admin'"
           icon="mdi-pencil"
-          color="orange-lighten-1"
+          color="primary"
           class="ma-2 position-absolute"
-          style="top: 8px; right: 48px; z-index: 10;"
+          style="top: 8px; right: 52px; z-index: 10;"
           @click="openEditDialog(service)"
         ></v-btn>
 
-        <!-- زر الحذف -->
+       
+
         <v-btn
+        v-if="authStore.role === 'admin'"
           icon="mdi-delete"
-          color="red"
+          color="error"
           class="ma-2 position-absolute"
           style="top: 8px; right: 8px; z-index: 10;"
           @click="openConfirmDialog(service.id)"
         ></v-btn>
       </div>
 
-      <!-- محتوى البطاقة -->
       <v-card-text class="pa-6 text-center flex-grow-1">
-        <h3 class="text-h6 font-weight-bold mb-2 text-grey-darken-4">
+        <h3 class="text-h6 font-weight-bold mb-2 text-primary">
           {{ service.title }}
         </h3>
 
-
-        <v-chip
-    v-if="service.service_bookings && service.service_bookings.length"
-    :color="getStatusColor(service.service_bookings[0].status)"
-    text-color="white"
-    class="mb-3"
-  >
-    {{ service.service_bookings[0].status }}
-  </v-chip>
-
+      <v-chip
+  v-if="authStore.role === 'admin' && service.service_bookings?.length"
+  :color="getStatusColor(service.service_bookings[0].status)"
+  text-color="white"
+  class="mb-3"
+>
+  {{ service.service_bookings[0].status }}
+</v-chip>
 
 
-        <p class="text-body-2 text-grey-darken-2 mb-4">
+        <p class="text-body-2 text-secondary mb-4">
           {{ service.description }}
         </p>
       </v-card-text>
 
-      <!-- زر Learn More في الأسفل وبالمنتصف -->
       <v-card-actions class="justify-center mt-auto pb-4">
-  <v-btn
-    color="orange-darken-2"
-    class="text-white font-weight-bold elevation-2"
-    append-icon="mdi-arrow-right"
-    variant="flat"
-    @click="openDialog(service.id)"
-  >
-    Learn More
-  </v-btn>
-</v-card-actions>
-
+        <v-btn
+          color="primary"
+          class="text-white font-weight-bold elevation-2"
+          append-icon="mdi-arrow-right"
+          variant="flat"
+          @click="openDialog(service.id)"
+        >
+          Learn More
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </v-col>
 </v-row>
+
 </v-container>
  
 
+ <!-- service request  -->
 
+  <v-dialog v-model="showDetailsDialog" max-width="700">
+  <v-card elevation="6" rounded="lg">
+    
+    <!-- عنوان الديالوج -->
+    <v-card-title class="text-h6 font-weight-bold text-primary d-flex align-center">
+      <v-icon color="primary" class="mr-2">mdi-file-document-outline</v-icon>
+      Booking Details
+    </v-card-title>
+
+    <v-divider></v-divider>
+
+    <v-card-text class="pa-6">
+
+      <!-- تحميل -->
+      <div v-if="ourRequestStore.loading" class="text-center py-6">
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
+        <p class="mt-2">Loading booking details...</p>
+      </div>
+
+      <!-- خطأ -->
+      <v-alert
+        v-else-if="ourRequestStore.error"
+        type="error"
+        variant="tonal"
+        class="mb-4"
+      >
+        {{ ourRequestStore.error }}
+      </v-alert>
+
+      <!-- بدون بيانات -->
+      <div v-else-if="!ourRequestStore.selectedBooking" class="text-center py-6 text-grey">
+        <v-icon size="40" color="grey">mdi-information-outline</v-icon>
+        <p>No booking details available.</p>
+      </div>
+
+      <!-- المحتوى -->
+      <div v-else>
+        <!-- 🟦 قسم معلومات الحجز -->
+        <h3 class="text-subtitle-1 font-weight-bold text-primary mb-2">
+          Booking Information
+        </h3>
+        <v-sheet class="pa-4 mb-6 rounded-lg" color="grey-lighten-4">
+          <v-row>
+            <v-col cols="6">
+              <p><strong>ID:</strong> {{ ourRequestStore.selectedBooking.id }}</p>
+              <p><strong>Service ID:</strong> {{ ourRequestStore.selectedBooking.service_id }}</p>
+            </v-col>
+            <v-col cols="6">
+              <p><strong>User ID:</strong> {{ ourRequestStore.selectedBooking.user_id }}</p>
+              <p>
+                <strong>Status:</strong>
+                <v-chip
+                  :color="getStatusColor(ourRequestStore.selectedBooking.status)"
+                  text-color="white"
+                  size="small"
+                  class="ml-2"
+                >
+                  {{ ourRequestStore.selectedBooking.status }}
+                </v-chip>
+              </p>
+            </v-col>
+            <v-col cols="12">
+              <p><strong>Message:</strong> {{ ourRequestStore.selectedBooking.message }}</p>
+            </v-col>
+          </v-row>
+        </v-sheet>
+
+        <!-- 🟦 قسم معلومات الخدمة -->
+        <h3 class="text-subtitle-1 font-weight-bold text-primary mb-2">
+          Service Information
+        </h3>
+        <v-sheet class="pa-4 mb-6 rounded-lg" color="grey-lighten-4">
+          <p><strong>Service Title:</strong> {{ ourRequestStore.selectedBooking.service_type.title }}</p>
+          <p><strong>Description:</strong> {{ ourRequestStore.selectedBooking.service_type.description }}</p>
+        </v-sheet>
+
+        <!-- 🟦 قسم معلومات المستخدم -->
+        <h3 class="text-subtitle-1 font-weight-bold text-primary mb-2">
+          User Information
+        </h3>
+        <v-sheet class="pa-4 rounded-lg" color="grey-lighten-4">
+          <p><strong>Name:</strong> {{ ourRequestStore.selectedBooking.user.name }}</p>
+          <p><strong>Email:</strong> {{ ourRequestStore.selectedBooking.user.email }}</p>
+          <p><strong>Phone:</strong> {{ ourRequestStore.selectedBooking.user.phone_number }}</p>
+          <p><strong>Email Verified At:</strong> {{ ourRequestStore.selectedBooking.user.email_verified_at }}</p>
+        </v-sheet>
+      </div>
+
+    </v-card-text>
+
+    <v-divider></v-divider>
+
+    <v-card-actions class="pa-4">
+      <v-spacer></v-spacer>
+      <v-btn color="primary" variant="flat" @click="showDetailsDialog = false">
+        <v-icon left>mdi-close</v-icon>
+        Close
+      </v-btn>
+    </v-card-actions>
+
+  </v-card>
+</v-dialog>
 
 
   <!-- Edit Dialog -->
@@ -536,7 +710,7 @@
         </p>
 
         <!-- Bookings -->
-        <div v-if="selectedService?.service_bookings?.length" class="mb-6 pa-4 rounded-lg bg-grey-lighten-4">
+        <div v-if="authStore.role === 'admin' && selectedService?.service_bookings?.length" class="mb-6 pa-4 rounded-lg bg-grey-lighten-4">
           <h3 class="text-subtitle-1 font-weight-bold text-orange-darken-2 mb-4">
             Bookings
           </h3>
@@ -592,62 +766,63 @@
 
 
 <div class="mt-5">
-<v-container>
-   <v-row>
-  <v-col cols="12" md="7">
-    <div class="px-4 py-2 mb-3 rounded-pill bg-grey-lighten-4 text-orange-darken-1 text-subtitle-2 font-weight-medium mb-4 d-inline py-4">
-      Complate Group
-    </div>
+  <v-container>
+    <v-row>
+      <v-col cols="12" md="7"  data-aos="fade-right" data-aos-duration="700">
+        <div
+          class="px-4 py-2 mb-3 rounded-pill bg-surface text-primary text-subtitle-2 font-weight-medium mb-4 d-inline py-4"
+        >
+          Complate Group
+        </div>
 
-    <p class="font-weight-bold text-h3 mt-5 text-orange"> 
-      Vireolin's Diverse Services
-    </p>
+        <p class="font-weight-bold text-h3 mt-5 text-primary"> 
+          Vireolin's Diverse Services
+        </p>
 
-    <p class="mt-4 text-body-1 text-grey-darken-4">
-      Our services cover the entire journey — from the very first step of planning and design, through installation and maintenance, all the way to final delivery and long-term support. We provide end-to-end solutions that ensure quality, reliability, and efficiency at every stage.
-    </p>
+        <p class="mt-4 text-body-1 text-secondary">
+          Our services cover the entire journey — from the very first step of planning and design, through installation and maintenance, all the way to final delivery and long-term support. We provide end-to-end solutions that ensure quality, reliability, and efficiency at every stage.
+        </p>
 
-    <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg">
-      <v-avatar size="40" class="ms-2" color="orange-darken-2">
-        <v-icon size="20" color="white">mdi-check-circle</v-icon>
-      </v-avatar>
-      <div class="d-flex flex-column align-center justify-center">
-        <p class="text-h5">World-Class Quality</p>
-        <p class="text-orange-lighten-1">International standards in execution.</p>
-      </div>
-    </v-card>
+        <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg" color="surface">
+          <v-avatar size="40" class="ms-2" color="primary">
+            <v-icon size="20" color="white">mdi-check-circle</v-icon>
+          </v-avatar>
+          <div class="d-flex flex-column align-center justify-center">
+            <p class="text-h5">World-Class Quality</p>
+            <p class="text-secondary">International standards in execution.</p>
+          </div>
+        </v-card>
 
-    <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg">
-      <v-avatar size="40" class="ms-2" color="orange-darken-2">
-        <v-icon size="20" color="white">mdi-check-circle</v-icon>
-      </v-avatar>
-      <div class="d-flex flex-column align-center justify-center">
-        <p class="text-h5">Comprehensive Warranty</p>
-        <p class="text-orange-lighten-1">Warranty on all products and services.</p>
-      </div>
-    </v-card>
+        <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg" color="surface">
+          <v-avatar size="40" class="ms-2" color="primary">
+            <v-icon size="20" color="white">mdi-check-circle</v-icon>
+          </v-avatar>
+          <div class="d-flex flex-column align-center justify-center">
+            <p class="text-h5">Comprehensive Warranty</p>
+            <p class="text-secondary">Warranty on all products and services.</p>
+          </div>
+        </v-card>
 
-    <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg">
-      <v-avatar size="40" class="ms-2" color="orange-darken-2">
-        <v-icon size="20" color="white">mdi-check-circle</v-icon>
-      </v-avatar>
-      <div class="d-flex flex-column align-center justify-center">
-        <p class="text-h5">Continuous Innovation</p>
-        <p class="text-orange-lighten-1">Latest technologies and solutions.</p>
-      </div>
-    </v-card>
-  </v-col>
+        <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg" color="surface">
+          <v-avatar size="40" class="ms-2" color="primary">
+            <v-icon size="20" color="white">mdi-check-circle</v-icon>
+          </v-avatar>
+          <div class="d-flex flex-column align-center justify-center">
+            <p class="text-h5">Continuous Innovation</p>
+            <p class="text-secondary">Latest technologies and solutions.</p>
+          </div>
+        </v-card>
+      </v-col>
 
-  <v-col cols="12" md="5" class="d-flex align-center justify-center">
-    <v-img
-      :src="servicesG"
-      max-width="100%"
-      contain
-    ></v-img>
-  </v-col>
-</v-row>
-
-</v-container>
+      <v-col cols="12" md="5" class="d-flex align-center justify-center "  data-aos="fade-left"  data-aos-delay="200" data-aos-duration="700">
+        <v-img
+          :src="servicesG"
+          max-width="100%"
+          contain
+        ></v-img>
+      </v-col>
+    </v-row>
+  </v-container>
 </div>
 
 
@@ -664,116 +839,106 @@
 
 
 
-<v-container>
+<v-container   >
+  <p class="font-weight-bold text-h3 mt-5 text-primary text-center mb-5 mt-5" data-aos="fade-up"  data-aos-delay="200">
+    Project Implementation Stages
+  </p>
 
-<p class="font-weight-bold text-h3 mt-5 text-black
- text-center mb-5 mt-5">
-  Project Implementation Stages
-</p>
-
-<v-carousel class="mt-5"
-  cycle
-  height="500"
+  <v-carousel
+    class="mt-5"
+    data-aos="zoom-in"  data-aos-delay="400" data-aos-duration="1000"
+    cycle
+    height="500"
     interval="8000"
-  hide-delimiter-background
->
-  <!-- 1️⃣ تكامل وربط الأنظمة -->
-  <v-carousel-item>
+    hide-delimiter-background
+  >
+    <v-carousel-item>
       <v-img :src="servicesH" height="300"></v-img>
-    <div class="d-flex flex-column align-center justify-center text-center">
-      <h2 class="text-h5 font-weight-bold mt-4 text-orange">System Integration</h2>
-      <p class="text-body-1 text-grey-darken-3">
-        Seamless integration of diverse systems to ensure unified performance and optimized workflows.
-      </p>
-    </div>
-  </v-carousel-item>
+      <div class="d-flex flex-column align-center justify-center text-center">
+        <h2 class="text-h5 font-weight-bold mt-4 text-primary">System Integration</h2>
+        <p class="text-body-1 text-secondary">
+          Seamless integration of diverse systems to ensure unified performance and optimized workflows.
+        </p>
+      </div>
+    </v-carousel-item>
 
-  <!-- 2️⃣ التحليل الفني والمسح الميداني -->
-  <v-carousel-item>
+    <v-carousel-item>
       <v-img :src="servicesI" height="300"></v-img>
-    <div class="d-flex flex-column align-center justify-center text-center">
-      <h2 class="text-h5 font-weight-bold mt-4 text-orange">Technical Analysis & Field Survey</h2>
-      <p class="text-body-1 text-grey-darken-3">
-        Accurate field surveys and technical assessments to build a strong foundation for project success.
-      </p>
-    </div>
-  </v-carousel-item>
+      <div class="d-flex flex-column align-center justify-center text-center">
+        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Technical Analysis & Field Survey</h2>
+        <p class="text-body-1 text-secondary">
+          Accurate field surveys and technical assessments to build a strong foundation for project success.
+        </p>
+      </div>
+    </v-carousel-item>
 
-  <!-- 3️⃣ التصميم والتخطيط التنفيذي CAD -->
-  <v-carousel-item>
+    <v-carousel-item>
       <v-img :src="servicesJ" height="300"></v-img>
-    <div class="d-flex flex-column align-center justify-center text-center">
-      <h2 class="text-h5 font-weight-bold mt-4 text-orange">CAD Design & Planning</h2>
-      <p class="text-body-1 text-grey-darken-3">
-        Detailed CAD-based designs and execution plans that transform concepts into precise realities.
-      </p>
-    </div>
-  </v-carousel-item>
+      <div class="d-flex flex-column align-center justify-center text-center">
+        <h2 class="text-h5 font-weight-bold mt-4 text-primary">CAD Design & Planning</h2>
+        <p class="text-body-1 text-secondary">
+          Detailed CAD-based designs and execution plans that transform concepts into precise realities.
+        </p>
+      </div>
+    </v-carousel-item>
 
-  <!-- 4️⃣ الإدارة والإشراف -->
-  <v-carousel-item>
+    <v-carousel-item>
       <v-img :src="servicesK" height="300"></v-img>
-    <div class="d-flex flex-column align-center justify-center text-center">
-      <h2 class="text-h5 font-weight-bold mt-4 text-orange">Management & Supervision</h2>
-      <p class="text-body-1 text-grey-darken-3">
-        Professional project management and supervision ensuring efficiency, safety, and timely delivery.
-      </p>
-    </div>
-  </v-carousel-item>
+      <div class="d-flex flex-column align-center justify-center text-center">
+        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Management & Supervision</h2>
+        <p class="text-body-1 text-secondary">
+          Professional project management and supervision ensuring efficiency, safety, and timely delivery.
+        </p>
+      </div>
+    </v-carousel-item>
 
-  <!-- 5️⃣ التشغيل والقبول الفني -->
-  <v-carousel-item>
+    <v-carousel-item>
       <v-img :src="servicesL" height="300"></v-img>
-    <div class="d-flex flex-column align-center justify-center text-center">
-      <h2 class="text-h5 font-weight-bold mt-4 text-orange">Operation & Technical Acceptance</h2>
-      <p class="text-body-1 text-grey-darken-3">
-        Smooth commissioning and technical acceptance processes guaranteeing reliable system performance.
-      </p>
-    </div>
-  </v-carousel-item>
+      <div class="d-flex flex-column align-center justify-center text-center">
+        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Operation & Technical Acceptance</h2>
+        <p class="text-body-1 text-secondary">
+          Smooth commissioning and technical acceptance processes guaranteeing reliable system performance.
+        </p>
+      </div>
+    </v-carousel-item>
 
-  <!-- 6️⃣ الصيانة الدورية والفحص -->
-  <v-carousel-item>
+    <v-carousel-item>
       <v-img :src="servicesM" height="300"></v-img>
-    <div class="d-flex flex-column align-center justify-center text-center">
-      <h2 class="text-h5 font-weight-bold mt-4 text-orange">Periodic Maintenance & Inspection</h2>
-      <p class="text-body-1 text-grey-darken-3">
-        Regular maintenance and inspections to extend system lifespan and prevent unexpected failures.
-      </p>
-    </div>
-  </v-carousel-item>
+      <div class="d-flex flex-column align-center justify-center text-center">
+        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Periodic Maintenance & Inspection</h2>
+        <p class="text-body-1 text-secondary">
+          Regular maintenance and inspections to extend system lifespan and prevent unexpected failures.
+        </p>
+      </div>
+    </v-carousel-item>
 
-  <!-- 7️⃣ التدريب والتأهيل -->
-  <v-carousel-item>
+    <v-carousel-item>
       <v-img :src="servicesN" height="300"></v-img>
-    <div class="d-flex flex-column align-center justify-center text-center">
-      <h2 class="text-h5 font-weight-bold mt-4 text-orange">Training & Qualification</h2>
-      <p class="text-body-1 text-grey-darken-3">
-        Comprehensive training programs to empower teams with the skills needed for sustainable success.
-      </p>
-    </div>
-  </v-carousel-item>
-</v-carousel>
-
-
-
+      <div class="d-flex flex-column align-center justify-center text-center">
+        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Training & Qualification</h2>
+        <p class="text-body-1 text-secondary">
+          Comprehensive training programs to empower teams with the skills needed for sustainable success.
+        </p>
+      </div>
+    </v-carousel-item>
+  </v-carousel>
 </v-container>
 
 
-<v-container fluid class="hero d-flex flex-column align-center justify-center text-center pa-4 pa-md-12">
+<v-container fluid class="hero bg-warning d-flex flex-column align-center justify-center text-center pa-4 pa-md-12"  data-aos="fade-up"   data-aos-duration="1000">
 
   <!-- العنوان الفرعي -->
-  <div class="px-4 py-2 mb-3 rounded-pill bg-grey-lighten-4 text-orange-darken-1 text-subtitle-1 font-weight-medium mb-4 d-inline">
+  <div class="px-4 py-2 mb-3 rounded-pill bg-surface text-primary text-subtitle-1 font-weight-medium mb-4 d-inline">
     Start Your Project Now
   </div>
 
   <!-- العنوان الرئيسي -->
-  <h1 class="text-h4 text-md-h2 font-weight-bold text-white mb-4">
+  <h1 class="text-h4 text-md-h2 font-weight-bold text-text mb-4">
     Ready to Turn Your Vision into <span class="highlight">Reality ?</span>
   </h1>
 
   <!-- النص -->
-  <p class="text-body-2 text-md-h5 text-white mb-6">
+  <p class="text-body-2 text-md-h5 text-text mb-6">
     Contact us now and start your project with <strong>Vireolin Group</strong>
   </p>
 
@@ -781,18 +946,20 @@
   <div class="d-flex flex-column flex-sm-row gap-4 justify-center">
   <v-btn
     variant="outlined"
-    class="font-weight-bold elevation-2 transition-fast-in-fast-out hover-ora hover-scale mb-4 mb-sm-0"
+    class="text-text font-weight-bold elevation-2 transition-fast-in-fast-out hover-ora hover-scale mb-4 mb-sm-0"
     size="large"
     rounded="lg"
+    to="/services"
   >
     View Our Projects
   </v-btn>
 
   <v-btn
     color="white"
-    class="text-orange font-weight-bold hover-scale"
+    class="text-primary font-weight-bold hover-scale"
     size="large"
     rounded="lg"
+    to="/contact"
   >
     → Contact Us Now
   </v-btn>
@@ -820,7 +987,11 @@
 
 <script>
 import { useServicesStore } from '@/store/servicesData'
+import { useAuthStore } from '@/store/auth'
+import { useOurRequestStore } from '@/store/ourRequest'
+
 import heroImage from '@/assets/images/ser-4.avif'
+
 
 import servicesG from '@/assets/images/servicesG.jpg'
 import servicesH from '@/assets/images/servicesH.jpg'
@@ -884,6 +1055,8 @@ export default {
 
       savingEdit: false,
 
+      showDetailsDialog: false,
+
       // هنا بنخزن الـ features لكل خدمة حسب العنوان
       features: {
         'Medical Facility Maintenance': [
@@ -925,8 +1098,21 @@ export default {
     servicesStore() {
       return useServicesStore()
     },
+    authStore() {
+      return useAuthStore()
+    },
+     ourRequestStore() {
+      return useOurRequestStore()
+    },
   },
  methods: {
+
+   async openDetailsDialog(id) {
+      await this.ourRequestStore.fetchBookingDetails(id);
+
+      this.showDetailsDialog = true;
+    },
+
   getStatusColor(status) {
     if (status === "confirmed") return "green"
     if (status === "pending") return "orange"
@@ -1097,13 +1283,17 @@ export default {
 async mounted() {
   this.loadingHome = true
   try {
-    await this.servicesStore.listService(1) // مرّر رقم الصفحة الأولى
+    await this.servicesStore.listService(1)
   } catch (err) {
     console.error(err)
   } finally {
     this.loadingHome = false
   }
-}
+
+  
+},
+
+
 
 }
 </script>
@@ -1111,7 +1301,7 @@ async mounted() {
 <style>
 .hero {
  min-height: 100vh;
-  background: linear-gradient(135deg, #ff9800, #ffb74d); 
+  
   padding: 80px 20px;
   
 }
@@ -1139,7 +1329,7 @@ async mounted() {
   border-color: white; /* الحدود بيضاء */
 }
 .hover-ora:hover{
- background-color:rgb(255, 166, 0)
+ background-color:rgba(122, 115, 11, 0.679)
 
 }
 

@@ -6,7 +6,9 @@ import Services from '../pages/services.vue'
 import Contact from '../pages/contact.vue'
 import Register from '../pages/register.vue'
 import Login from '../pages/login.vue'
-import badge from '@/pages/badge.vue'
+import OurRequest from '@/pages/OurRequest.vue'
+import MyRequest from '@/pages/MyRequest.vue'
+import OurMessages from '@/pages/OurMessages.vue'
 
 const routes = [
   // {
@@ -16,14 +18,28 @@ const routes = [
   {
     path: '/register',
     component: Register,
+      meta: { hideLayout: true },
   },
   {
-    path: '/badge',
-    component: badge,
+    path: '/myrequest',
+    component: MyRequest,
+    meta: { hideLayout: true },
+    
+  },
+  {
+    path: '/ourrequest',
+    component: OurRequest,
+     
+  },
+  {
+    path: '/ourmessages',
+    component: OurMessages,
+     
   },
   {
     path: '/login',
     component: Login,
+     meta: { hideLayout: true },
   },
   {
     path: '/',

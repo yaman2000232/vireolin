@@ -35,22 +35,24 @@
               />
 
               <v-text-field
-                v-model="password"
-                label="Password"
-                prepend-inner-icon="mdi-lock"
-                type="password"
-                :rules="[rules.required, rules.minPass]"
-                required
-              />
+    v-model="password"
+    :type="showPassword ? 'text' : 'password'"
+    label="Password"
+    prepend-inner-icon="mdi-lock"
+    :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+    @click:append-inner="showPassword = !showPassword"
+    required
+  />
 
-              <v-text-field
-                v-model="password_confirmation"
-                label="Confirm Password"
-                prepend-inner-icon="mdi-lock-check"
-                type="password"
-                :rules="[rules.required, matchPassword]"
-                required
-              />
+             <v-text-field
+    v-model="password_confirmation"
+    :type="showPassword1 ? 'text' : 'password'"
+    label="Password"
+    prepend-inner-icon="mdi-lock"
+    :append-inner-icon="showPassword1 ? 'mdi-eye-off' : 'mdi-eye'"
+    @click:append-inner="showPassword1 = !showPassword1"
+    required
+  />
 
               <v-btn
                 type="submit"
@@ -97,6 +99,8 @@ export default {
   name: "RegisterView",
   data() {
     return {
+      showPassword:'',
+      showPassword1:'',
       name: "",
       email: "",
       phone_number: "",

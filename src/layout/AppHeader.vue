@@ -1,15 +1,29 @@
 <template>
-  <v-app-bar app flat color="white" elevation="1" class="position-relative position-sticky">
-
+  <v-app-bar
+    app
+    flat
+    color="surface"
+    elevation="1"
+    class="position-relative position-sticky pa-5"
+  >
     <!-- الاسم يسار -->
-    <v-toolbar-title class="font-weight-bold text-black">
-      Vireolin
-    </v-toolbar-title>
+    <v-toolbar-title class="d-flex align-center">
+  <v-img
+  
+    :src="vireolin"
+    alt="Vireolin Logo"
+    
+    width="130px"
+    class="mr-2 bg-surface"
+    cover
+  />
+
+</v-toolbar-title>
+
+
 
     <!-- الروابط في المنتصف (فقط md+) -->
-    <div 
-      class="d-none d-md-flex justify-center align-center links-center"
-    >
+    <div class="d-none d-md-flex justify-center align-center links-center">
       <v-btn variant="plain" :ripple="false" to="/" text>
         <span class="nav-link">Home</span>
       </v-btn>
@@ -24,9 +38,48 @@
       </v-btn>
     </div>
 
+    <!-- زر تبديل الوضع -->
+    <v-btn
+      icon
+      @click="$vuetify.theme.global.name = 
+        $vuetify.theme.global.name === 'light' ? 'dark' : 'light'"
+      class="mx-2"
+    >
+      <v-icon class="theme-icon">
+        {{ $vuetify.theme.global.name === 'light'
+          ? 'mdi-moon-waning-crescent'
+          : 'mdi-white-balance-sunny' }}
+      </v-icon>
+    </v-btn>
+ <div class="d-flex justify-center mb-6 mt-6" v-if="authStore.role === 'customer'">
+    <v-btn
+  color="primary"
+  variant="text"
+  size="small"
+  class="font-weight-bold text-capitalize"
+  to="/myrequest"
+>
+  <v-icon start size="18">mdi-format-list-bulleted</v-icon>
+  My Requests
+</v-btn>
+</div>
+ <div class="d-flex justify-center mb-6 mt-6" v-if="authStore.role === 'admin'">
+    <v-btn
+  color="primary"
+  variant="text"
+  size="small"
+  class="font-weight-bold text-capitalize"
+  to="/ourrequest"
+>
+  <v-icon start size="18">mdi-format-list-bulleted</v-icon>
+  Manage Requests
+</v-btn>
+</div>
+
+
     <!-- زر Login يمين (فقط md+) -->
     <v-btn
-      color="orange-darken-2"
+      color="primary"
       class="text-white font-weight-bold d-none d-md-flex"
       prepend-icon="mdi-login"
       to="/login"
@@ -35,13 +88,8 @@
     </v-btn>
 
     <!-- القائمة للموبايل -->
-    <v-menu 
-      v-model="menu"
-      offset-y
-      transition="slide-y-transition"
-    >
+    <v-menu v-model="menu" offset-y transition="slide-y-transition">
       <template v-slot:activator="{ props }">
-        <!-- هنا الحل الحقيقي -->
         <v-btn icon v-bind="props" class="d-md-none">
           <v-icon>mdi-menu</v-icon>
         </v-btn>
@@ -58,17 +106,26 @@
         </v-list-item>
       </v-list>
     </v-menu>
-
   </v-app-bar>
 </template>
 
 <script>
+  import vireolin from '@/assets/images/Vireolin.png'
+import { useAuthStore } from '@/store/auth'
+
+
 export default {
   name: 'AppHeader',
   data() {
     return {
-      menu: false
+      menu: false,
+      vireolin
     }
+  },
+  computed:{
+    authStore() {
+      return useAuthStore()
+    },
   }
 }
 </script>
@@ -82,8 +139,9 @@ export default {
 
 .nav-link {
   position: relative;
-  color: rgb(0, 0, 0);
+  color: var(--v-theme-text); /* بدل rgb(0,0,0) */
   text-transform: none;
+  font-size: 16px;
 }
 
 .nav-link::after {
@@ -93,7 +151,7 @@ export default {
   bottom: -2px;
   width: 0%;
   height: 2px;
-  background-color: orange;
+  background-color: var(--v-theme-primary); /* بدل orange */
   transition: width 0.3s ease;
 }
 

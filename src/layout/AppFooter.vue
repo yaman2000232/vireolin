@@ -53,8 +53,5 @@
 </template>
 
 <style scoped>
-.footer.orange-gradient {
-  background: linear-gradient(135deg, #e9a632, #ddbc8b);
-  color: white;
-}
+
 </style>

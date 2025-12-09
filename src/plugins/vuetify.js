@@ -1,7 +1,7 @@
 /**
  * plugins/vuetify.js
  *
- * Framework documentation: https://vuetifyjs.com`
+ * Framework documentation: https://vuetifyjs.com
  */
 
 // Styles
@@ -10,10 +10,46 @@ import 'vuetify/styles'
 
 // Composables
 import { createVuetify } from 'vuetify'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 
-// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: { mdi },
+  },
   theme: {
-    defaultTheme: 'system',
+    defaultTheme: 'light', // الوضع الافتراضي
+    themes: {
+      light: {
+        dark: false,
+        colors: {
+          background: '#FFFFFF',      // خلفية عامة
+          surface: '#F5F5F5',         // خلفية البطاقات
+          primary: '#E3A72F',         // برتقالي (orange-darken-2)
+          secondary: '#9E9E9E',       // رمادي
+          error: '#E53935',           // أحمر
+          info: '#2196F3',            // أزرق
+          success: '#4CAF50',         // أخضر
+          warning: '#f5d474ff',         // أصفر
+          text: '#212121',            // أسود للنصوص
+        },
+      },
+      dark: {
+        dark: true,
+        colors: {
+          background: '#121212',      // خلفية عامة داكنة
+          surface: '#1E1E1E',         // خلفية البطاقات داكنة
+          primary: '#E3A72F',         // نفس البرتقالي accent
+          secondary: '#BDBDBD',       // رمادي فاتح
+          error: '#EF5350',           // أحمر فاتح
+          info: '#64B5F6',            // أزرق فاتح
+          success: '#81C784',         // أخضر فاتح
+          warning: '#c59f20ff',         // أصفر فاتح
+          text: '#FFFFFF',            // أبيض للنصوص
+        },
+      },
+    },
   },
 })
+

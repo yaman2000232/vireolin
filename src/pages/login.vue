@@ -1,43 +1,86 @@
 <template>
-  <v-container class="fill-height login-container" fluid>
-    <v-row align="center" justify="center">
-      <v-col cols="12" sm="8" md="4">
-        <v-card elevation="10" class="pa-4">
-          <v-card-title class="text-h5 text-center">Sign In</v-card-title>
+  <v-container fluid class="login-container fill-height">
+    <v-row class="h-100" align="center" justify="center">
+      <!-- الكرت -->
+      <v-col cols="12" sm="10" md="6" lg="4">
+        <v-card elevation="10" class="pa-6 rounded-lg login-card">
+          <!-- العنوان -->
+          <v-card-title class="text-h5 text-center font-weight-bold text-primary">
+            <v-icon start color="primary" class="me-2">mdi-login</v-icon>
+            Sign In
+          </v-card-title>
+
+          <v-divider class="my-4"></v-divider>
+
+          <!-- النموذج -->
           <v-card-text>
             <v-form @submit.prevent="handleLogin" ref="loginForm">
-
               <v-text-field
                 v-model="email"
                 label="Email"
                 prepend-inner-icon="mdi-email"
                 type="email"
                 required
+                outlined
+                density="comfortable"
+                class="mb-4"
               />
 
               <v-text-field
                 v-model="password"
+                :type="showPassword ? 'text' : 'password'"
                 label="Password"
                 prepend-inner-icon="mdi-lock"
-                type="password"
+                :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+                @click:append-inner="showPassword = !showPassword"
                 required
+                outlined
+                density="comfortable"
               />
 
-              <v-btn type="submit" color="primary" block class="mt-4" :loading="loading" :disabled="loading">
+              <v-btn
+                type="submit"
+                color="primary"
+                block
+                class="mt-6"
+                :loading="loading"
+                :disabled="loading"
+                size="large"
+              >
                 Login
               </v-btn>
 
+              <!-- Forgot Password -->
+              <div class="text-center mt-3">
+                <v-btn variant="text" color="secondary" to="/forgot-password">
+                  <v-icon start size="18">mdi-lock-reset</v-icon>
+                  Forgot Password?
+                </v-btn>
+              </div>
+
+              <!-- Register -->
+              <div class="text-center mt-4">
+                <v-btn variant="text" to="/register">
+                  If you are not registered yet, please:
+                  <b class="text-primary">Register</b>
+                </v-btn>
+              </div>
             </v-form>
           </v-card-text>
         </v-card>
 
-        <v-snackbar v-model="snackbar.show" :color="snackbar.color" timeout="4000" top>
+        <!-- Snackbar -->
+        <v-snackbar
+          v-model="snackbar.show"
+          :color="snackbar.color"
+          timeout="4000"
+          location="top"
+        >
           {{ snackbar.message }}
           <template #action="{ attrs }">
             <v-btn text v-bind="attrs" @click="snackbar.show = false">Close</v-btn>
           </template>
         </v-snackbar>
-
       </v-col>
     </v-row>
   </v-container>
@@ -47,6 +90,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/store/auth'
+const showPassword = ref(false)
 
 const email = ref('')
 const password = ref('')

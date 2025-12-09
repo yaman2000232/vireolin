@@ -10,22 +10,25 @@
     <v-container fluid class="mt-5">
       <!-- Section Header -->
       <v-row justify="center">
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="6"
+          data-aos="fade-up"
+  data-aos-duration="1000"
+  data-aos-delay="200">
           <div
             class="d-flex flex-column justify-center align-center pa-8 text-center"
             color="grey-lighten-4"
           >
             <div
-              class="px-4 py-2 rounded-pill bg-grey-lighten-3 text-orange-darken-2 text-subtitle-2 font-weight-medium mb-4"
+              class="px-4 py-2 rounded-pill bg-surface text-primary text-subtitle-2 font-weight-medium mb-4"
             >
               Our Distinguished Services
             </div>
 
-            <div class="text-h2 font-weight-bold text-grey-darken-4 mb-4">
+            <div class="text-h2 font-weight-bold text-primary mb-4">
               Our Services
             </div>
 
-            <div class="text-body-1 text-grey-dark mb-6">
+            <div class="text-body-1 text-secondary mb-6">
               We deliver professional maintenance and service solutions tailored
               to residential and commercial needs — from routine inspections to
               urgent repairs, with a focus on reliability, efficiency, and
@@ -52,7 +55,10 @@
           class="mb-9"
         >
           <!-- صورة الخدمة -->
-          <v-col cols="12" md="6" class="d-flex align-center">
+          <v-col cols="12" md="6" class="d-flex align-center" 
+            data-aos="fade-right"
+  data-aos-duration="1000"
+  data-aos-delay="300">
             <v-img
               class="hover-scale"
               :src="service.images[0]?.url"
@@ -63,8 +69,10 @@
           </v-col>
 
           <!-- تفاصيل الخدمة -->
-          <v-col cols="12" md="6">
-            <h2 class="text-h4 text-orange font-weight-bold mb-4">
+          <v-col cols="12" md="6"   data-aos="fade-left"
+  data-aos-duration="1000"
+  data-aos-delay="300">
+            <h2 class="text-h4 text-primary font-weight-bold mb-4">
               {{ service.title }}
             </h2>
 
@@ -73,8 +81,8 @@
             </p>
 
             <!-- مثال على تفاصيل إضافية -->
-            <div class="mb-6 pa-4 rounded-lg bg-grey-lighten-4">
-              <h3 class="text-subtitle-1 font-weight-bold text-orange-darken-2 mb-4">
+            <div class="mb-6 pa-4 rounded-lg bg-surface">
+              <h3 class="text-subtitle-1 font-weight-bold text-primary mb-4">
                 Our Features
               </h3>
               <div class="d-flex align-center mb-2">
@@ -103,11 +111,14 @@
       </v-container>
 
       <!-- Training Section -->
-      <v-container fluid class="py-10 bg-grey-lighten-4">
+      <v-container fluid class="py-10 ">
         <v-row justify="center">
-          <v-col cols="12" md="8" class="text-center">
+          <v-col cols="12" md="8" class="text-center" 
+           data-aos="zoom-out"
+            data-aos-duration="1000"
+            data-aos-delay="200">
             <!-- Title -->
-            <h2 class="text-h4 text-orange-darken-3 font-weight-bold mb-6">
+            <h2 class="text-h4 text-primary font-weight-bold mb-6">
               Our Office Provides High-Quality Training & Qualification
             </h2>
 
