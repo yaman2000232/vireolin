@@ -844,14 +844,19 @@
     Project Implementation Stages
   </p>
 
-  <v-carousel
-    class="mt-5"
-    data-aos="zoom-in"  data-aos-delay="400" data-aos-duration="1000"
-    cycle
-    height="500"
-    interval="8000"
-    hide-delimiter-background
-  >
+<v-carousel
+  class="mt-5"
+  data-aos="zoom-in"
+  data-aos-delay="400"
+  data-aos-duration="1000"
+  cycle
+  height="500"
+  interval="8000"
+  hide-delimiter-background
+  transition="slide-x-transition"
+  :transition-duration="2000" 
+>
+
     <v-carousel-item>
       <v-img :src="servicesH" height="300"></v-img>
       <div class="d-flex flex-column align-center justify-center text-center">
@@ -925,7 +930,7 @@
 </v-container>
 
 
-<v-container fluid class="hero bg-warning d-flex flex-column align-center justify-center text-center pa-4 pa-md-12"  data-aos="fade-up"   data-aos-duration="1000">
+<v-container fluid class="hero bg-pink d-flex flex-column align-center justify-center text-center pa-4 pa-md-12"  data-aos="fade-up"   data-aos-duration="1000">
 
   <!-- العنوان الفرعي -->
   <div class="px-4 py-2 mb-3 rounded-pill bg-surface text-primary text-subtitle-1 font-weight-medium mb-4 d-inline">
@@ -934,7 +939,7 @@
 
   <!-- العنوان الرئيسي -->
   <h1 class="text-h4 text-md-h2 font-weight-bold text-text mb-4">
-    Ready to Turn Your Vision into <span class="highlight">Reality ?</span>
+    Ready to Turn Your Vision into <span class="text-primary">Reality ?</span>
   </h1>
 
   <!-- النص -->

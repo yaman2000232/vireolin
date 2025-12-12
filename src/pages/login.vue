@@ -1,10 +1,11 @@
 <template>
-  <v-container fluid class="login-container fill-height">
-    <v-row class="h-100" align="center" justify="center">
-      <!-- الكرت -->
+  <v-container fluid class="login-wrapper d-flex align-center justify-center">
+    <v-row class="w-100" justify="center">
       <v-col cols="12" sm="10" md="6" lg="4">
-        <v-card elevation="10" class="pa-6 rounded-lg login-card">
-          <!-- العنوان -->
+
+        <v-card elevation="12" class="pa-6 pa-sm-8  rounded-xl login-card">
+
+          <!-- Title -->
           <v-card-title class="text-h5 text-center font-weight-bold text-primary">
             <v-icon start color="primary" class="me-2">mdi-login</v-icon>
             Sign In
@@ -12,17 +13,17 @@
 
           <v-divider class="my-4"></v-divider>
 
-          <!-- النموذج -->
+          <!-- Form -->
           <v-card-text>
             <v-form @submit.prevent="handleLogin" ref="loginForm">
+              
               <v-text-field
                 v-model="email"
                 label="Email"
                 prepend-inner-icon="mdi-email"
                 type="email"
                 required
-                outlined
-                density="comfortable"
+                variant="outlined"
                 class="mb-4"
               />
 
@@ -34,8 +35,7 @@
                 :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
                 @click:append-inner="showPassword = !showPassword"
                 required
-                outlined
-                density="comfortable"
+                variant="outlined"
               />
 
               <v-btn
@@ -50,8 +50,16 @@
                 Login
               </v-btn>
 
-              <!-- Forgot Password -->
+              <!-- Change Password -->
               <div class="text-center mt-3">
+                <v-btn variant="text" color="secondary" to="/change-password">
+                  <v-icon start size="18">mdi-key-change</v-icon>
+                  Change Password
+                </v-btn>
+              </div>
+
+              <!-- Forgot Password -->
+              <div class="text-center mt-2">
                 <v-btn variant="text" color="secondary" to="/forgot-password">
                   <v-icon start size="18">mdi-lock-reset</v-icon>
                   Forgot Password?
@@ -61,12 +69,14 @@
               <!-- Register -->
               <div class="text-center mt-4">
                 <v-btn variant="text" to="/register">
-                  If you are not registered yet, please:
-                  <b class="text-primary">Register</b>
+                  Not registered?
+                  <b class="text-primary ms-1">Register</b>
                 </v-btn>
               </div>
+
             </v-form>
           </v-card-text>
+
         </v-card>
 
         <!-- Snackbar -->
@@ -81,10 +91,12 @@
             <v-btn text v-bind="attrs" @click="snackbar.show = false">Close</v-btn>
           </template>
         </v-snackbar>
+
       </v-col>
     </v-row>
   </v-container>
 </template>
+
 
 <script setup>
 import { ref } from 'vue'
@@ -138,4 +150,29 @@ const handleLogin = async () => {
 .fill-height {
   min-height: 100vh;
 }
+/* .login-card {
+  max-width: 420px;
+  margin: auto;
+  
+} */
+ .login-wrapper {
+  min-height: 100vh;
+  
+}
+
+.login-card {
+  
+  border-radius: 16px !important;
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    padding: 20px !important;
+  }
+
+  .v-card-title {
+    font-size: 20px !important;
+  }
+}
+
 </style>

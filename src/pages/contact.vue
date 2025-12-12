@@ -308,7 +308,8 @@ data() {
       phone: v => (/^[0-9]+$/.test(v) && v.length >= 8) || 'Phone must be at least 8 digits',
       email: v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       minMessage: v => (v && v.length >= 5) || 'Message must be at least 5 characters'
-    }
+    },
+     deviceFingerprint: "",
   }
 },
 
@@ -334,6 +335,7 @@ methods: {
   const formData = new FormData()
   formData.append("service_id", this.service_id)
   formData.append("message", this.message || "")
+  formData.append("device_fingerprint", this.deviceFingerprint)
 
   this.loading = true
 
@@ -411,16 +413,39 @@ resetForm() {
   this.email = ""
   this.message = ""
   this.valid = false
-}
+},
+
+async getDeviceFingerprint() {
+    const data = [
+      navigator.userAgent,
+      navigator.language,
+      screen.width,
+      screen.height,
+      screen.colorDepth,
+      Intl.DateTimeFormat().resolvedOptions().timeZone
+    ];
+    const msg = data.join('|');
+    const msgUint8 = new TextEncoder().encode(msg);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  },
+
 
 },
 
   async mounted() {
+
+     const fp = await this.getDeviceFingerprint();
+  this.deviceFingerprint = fp;
+
+
   try {
     await this.servicesStore.listService(1)
   } catch (err) {
     console.error(err)
   }
+  
 }
 
 }

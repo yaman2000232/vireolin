@@ -37,7 +37,7 @@ components:{
   --v-theme-text: #212121;
 }
 
-html, body, .v-application, .v-card, .v-app-bar, .v-footer {
+html, body, .v-application, .v-card, .v-app-bar, .v-footer  {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 

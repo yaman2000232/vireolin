@@ -1,9 +1,20 @@
 <template>
-  <v-container class="fill-height register-container" fluid>
-    <v-row align="center" justify="center">
-      <v-col cols="12" sm="8" md="4">
-        <v-card elevation="10" class="pa-4">
-          <v-card-title class="text-h5 text-center">Create Account</v-card-title>
+  <v-container class="register-wrapper d-flex align-center justify-center" fluid>
+    <v-row justify="center" class="w-100">
+      <v-col cols="12" sm="10" md="6" lg="4">
+
+        <v-card elevation="12" class="pa-6 pa-sm-8 rounded-xl register-card">
+
+          <!-- Title + Go to Update Profile -->
+          <v-card-title class="d-flex justify-space-between align-center">
+            <span class="text-h5 font-weight-bold">Create Account</span>
+
+            <v-btn icon @click="$router.push('/update-profile')">
+              <v-icon color="primary">mdi-account-edit</v-icon>
+            </v-btn>
+          </v-card-title>
+
+          <v-divider class="my-4"></v-divider>
 
           <v-card-text>
             <v-form ref="form" v-model="isValid" @submit.prevent="handleRegister">
@@ -13,6 +24,8 @@
                 label="Organization Name"
                 prepend-inner-icon="mdi-account"
                 :rules="[rules.required]"
+                variant="outlined"
+                class="mb-3"
                 required
               />
 
@@ -22,6 +35,8 @@
                 prepend-inner-icon="mdi-email"
                 type="email"
                 :rules="[rules.required, rules.email]"
+                variant="outlined"
+                class="mb-3"
                 required
               />
 
@@ -31,35 +46,42 @@
                 prepend-inner-icon="mdi-phone"
                 type="tel"
                 :rules="[rules.required]"
+                variant="outlined"
+                class="mb-3"
                 required
               />
 
               <v-text-field
-    v-model="password"
-    :type="showPassword ? 'text' : 'password'"
-    label="Password"
-    prepend-inner-icon="mdi-lock"
-    :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-    @click:append-inner="showPassword = !showPassword"
-    required
-  />
+                v-model="password"
+                :type="showPassword ? 'text' : 'password'"
+                label="Password"
+                prepend-inner-icon="mdi-lock"
+                :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+                @click:append-inner="showPassword = !showPassword"
+                variant="outlined"
+                class="mb-3"
+                required
+              />
 
-             <v-text-field
-    v-model="password_confirmation"
-    :type="showPassword1 ? 'text' : 'password'"
-    label="Password"
-    prepend-inner-icon="mdi-lock"
-    :append-inner-icon="showPassword1 ? 'mdi-eye-off' : 'mdi-eye'"
-    @click:append-inner="showPassword1 = !showPassword1"
-    required
-  />
+              <v-text-field
+                v-model="password_confirmation"
+                :type="showPassword1 ? 'text' : 'password'"
+                label="Confirm Password"
+                prepend-inner-icon="mdi-lock"
+                :append-inner-icon="showPassword1 ? 'mdi-eye-off' : 'mdi-eye'"
+                @click:append-inner="showPassword1 = !showPassword1"
+                variant="outlined"
+                class="mb-4"
+                required
+              />
 
               <v-btn
                 type="submit"
-                color="primary"
                 block
-                class="mt-4"
+                color="primary"
+                class="mt-2"
                 :disabled="loading"
+                size="large"
               >
                 <v-progress-circular
                   v-if="loading"
@@ -73,24 +95,27 @@
 
               <div class="text-center mt-4">
                 <v-btn variant="text" @click="goToLogin">
-                  Already have an account? Login
+                  Already have an account? <b class="text-primary ms-1">Login</b>
                 </v-btn>
               </div>
 
             </v-form>
-
-            <v-snackbar v-model="snackbar.show" :color="snackbar.color" top right timeout="4000">
-              {{ snackbar.text }}
-              <template #actions>
-                <v-btn text @click="snackbar.show = false">Close</v-btn>
-              </template>
-            </v-snackbar>
           </v-card-text>
+
+          <v-snackbar v-model="snackbar.show" :color="snackbar.color" timeout="4000" location="top">
+            {{ snackbar.text }}
+            <template #actions>
+              <v-btn text @click="snackbar.show = false">Close</v-btn>
+            </template>
+          </v-snackbar>
+
         </v-card>
+
       </v-col>
     </v-row>
   </v-container>
 </template>
+
 
 <script>
 import { useAuthStore } from "@/store/auth";
@@ -144,12 +169,25 @@ export default {
           this.phone_number
         );
 
-        this.snackbar = { show: true, text: "Account Created Successfully!", color: "success" };
+        // ✅ عرض رسالة تفيد بأنه تم إرسال رابط التحقق
+        this.snackbar = { 
+          show: true, 
+          text: "A verification link has been sent to your email. Please check your inbox.", 
+          color: "success" 
+        };
+
         this.loading = false;
 
-        this.$router.push("/login");
+        // ❌ لا توجه المستخدم للـ Login بعد التسجيل
+        // ✔️ يمكن توجيهه لصفحة CheckEmail
+        this.$router.push("/check-email"); // ← صفحة إعلامية
+
       } catch (error) {
-        this.snackbar = { show: true, text: error.message || "Registration failed", color: "error" };
+        this.snackbar = { 
+          show: true, 
+          text: error.message || "Registration failed", 
+          color: "error" 
+        };
         this.loading = false;
       }
     },
@@ -165,4 +203,22 @@ export default {
 .fill-height {
   min-height: 100vh;
 }
+.register-wrapper {
+  min-height: 100vh;
+}
+
+.register-card {
+  border-radius: 16px !important;
+}
+
+@media (max-width: 600px) {
+  .register-card {
+    padding: 20px !important;
+  }
+
+  .v-card-title {
+    font-size: 20px !important;
+  }
+}
+
 </style>

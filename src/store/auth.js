@@ -4,6 +4,10 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: localStorage.getItem('accessToken') || null,
     role: localStorage.getItem('role') || null,
+      loading: false,
+    error: null,
+    message: null,
+     user: null,  
   }),
 
   actions: {
@@ -68,6 +72,220 @@ export const useAuthStore = defineStore('auth', {
         throw new Error(data.message || 'Register failed')
       }
     },
+
+     async resetPassword({ token, email, password, password_confirmation }) {
+      this.loading = true;
+      this.error = null;
+      this.message = null;
+
+      try {
+        const res = await fetch("http://127.0.0.1:8000/api/reset-password", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token,
+            email,
+            password,
+            password_confirmation,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (data.status === "success") {
+          this.message = data.message || "Password Reset Successfully";
+        } else {
+          this.error = data.message || "Something went wrong";
+        }
+      } catch (err) {
+        this.error = "Server error, please try again later";
+      } finally {
+        this.loading = false;
+      }
+    },
+
+
+
+      async forgotPassword(email) {
+      this.loading = true;
+      this.error = null;
+      this.message = null;
+
+      try {
+        const res = await fetch("http://127.0.0.1:8000/api/forgot-password", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }), // 🔑 إرسال البريد كـ JSON
+        });
+
+        const data = await res.json();
+
+        if (data.status === "success") {
+          this.message = data.message || "Reset link sent successfully";
+        } else {
+          this.error = data.message || "Something went wrong";
+        }
+      } catch (err) {
+        this.error = "Server error, please try again later";
+      } finally {
+        this.loading = false;
+      }
+    },
+
+ async updateProfile({ name, email, phone_number, password, password_confirmation }) {
+  this.loading = true;
+  this.error = null;
+  this.message = null;
+
+  try {
+    const payload = { name, email };
+
+    // إذا المستخدم غيّر رقم الهاتف
+    if (phone_number) {
+      payload.phone_number = phone_number;
+    }
+
+    // إذا المستخدم غيّر كلمة المرور
+    if (password) {
+      payload.password = password;
+      payload.password_confirmation = password_confirmation;
+    }
+
+    const res = await fetch("http://127.0.0.1:8000/api/update-profile", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.token}`,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (data.status === "success") {
+      this.message = data.message || "Profile updated successfully";
+
+      // تحديث بيانات المستخدم في الـ store
+      const updatedUser = data?.data?.[0]?.[0];
+      if (updatedUser) {
+        this.user = updatedUser;
+      }
+    } else {
+      this.error = data.message || "Update failed";
+    }
+  } catch (err) {
+    this.error = "Server error, please try again later";
+  } finally {
+    this.loading = false;
+  }
+},
+
+
+async changePassword({ old_password, new_password, new_password_confirmation }) {
+  this.loading = true;
+  this.error = null;
+  this.message = null;
+
+  try {
+    const payload = {
+      old_password,
+      new_password,
+      new_password_confirmation,
+    };
+
+    const res = await fetch("http://127.0.0.1:8000/api/change-password", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.token}`, // التوكن الحالي للمستخدم
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (data.status === "success") {
+      this.message = data.message || "Password updated successfully";
+
+      // تحديث بيانات المستخدم في الـ store إذا رجعت من السيرفر
+      const updatedUser = data?.data?.[0];
+      if (updatedUser) {
+        this.user = updatedUser;
+      }
+    } else {
+      this.error = data.message || "Password update failed";
+    }
+  } catch (err) {
+    this.error = "Server error, please try again later";
+  } finally {
+    this.loading = false;
+  }
+},
+
+
+   // -------------------------------
+// 1️⃣ Verify Email
+// -------------------------------
+async verifyEmail(userId, token, expires, signature) {
+  try {
+   const response = await fetch(`http://127.0.0.1:8000/api/email/verify/${userId}/${token}?expires=${expires}&signature=${signature}`, {
+  method: 'GET',
+});
+
+    // نحاول تحويل الرد إلى JSON
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      // إذا لم يكن JSON، نضعه في message
+      const text = await response.text();
+      data = { message: text };
+    }
+
+    return data; // { message: "Email verified successfully." } أو رسالة خطأ
+  } catch (error) {
+    console.error('Error verifying email:', error);
+    throw error;
+  }
+},
+
+// -------------------------------
+// 2️⃣ Resend Verification Email
+// -------------------------------
+async resendVerificationEmail() {
+  try {
+    const response = await fetch('http://127.0.0.1:8000/api/email/verification-notification', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.token}`, // token من state
+      },
+    });
+
+    // التعامل مع احتمال أن السيرفر يرجع نص بدل JSON
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      const text = await response.text();
+      data = { message: text };
+    }
+
+    return data; // رسالة النجاح أو الفشل
+  } catch (error) {
+    console.error('Error resending verification email:', error);
+    throw error;
+  }
+},
+
 
     logout() {
       console.log('Logging out...')

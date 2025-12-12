@@ -24,10 +24,11 @@ export default createVuetify({
       light: {
         dark: false,
         colors: {
+          pink:'#eee3aaff',
           background: '#FFFFFF',      // خلفية عامة
           surface: '#F5F5F5',         // خلفية البطاقات
           primary: '#E3A72F',         // برتقالي (orange-darken-2)
-          secondary: '#9E9E9E',       // رمادي
+          secondary: '#545252ff',       // رمادي
           error: '#E53935',           // أحمر
           info: '#2196F3',            // أزرق
           success: '#4CAF50',         // أخضر
@@ -38,6 +39,7 @@ export default createVuetify({
       dark: {
         dark: true,
         colors: {
+           pink:'#675a1bff',
           background: '#121212',      // خلفية عامة داكنة
           surface: '#1E1E1E',         // خلفية البطاقات داكنة
           primary: '#E3A72F',         // نفس البرتقالي accent

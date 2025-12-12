@@ -6,23 +6,18 @@
     elevation="1"
     class="position-relative position-sticky pa-5"
   >
-    <!-- الاسم يسار -->
+    <!-- Logo -->
     <v-toolbar-title class="d-flex align-center">
-  <v-img
-  
-    :src="vireolin"
-    alt="Vireolin Logo"
-    
-    width="130px"
-    class="mr-2 bg-surface"
-    cover
-  />
+      <v-img
+        :src="vireolin"
+        alt="Vireolin Logo"
+        width="130px"
+        class="mr-2 bg-surface"
+        cover
+      />
+    </v-toolbar-title>
 
-</v-toolbar-title>
-
-
-
-    <!-- الروابط في المنتصف (فقط md+) -->
+    <!-- Desktop Links (md+) -->
     <div class="d-none d-md-flex justify-center align-center links-center">
       <v-btn variant="plain" :ripple="false" to="/" text>
         <span class="nav-link">Home</span>
@@ -38,7 +33,7 @@
       </v-btn>
     </div>
 
-    <!-- زر تبديل الوضع -->
+    <!-- Theme switch -->
     <v-btn
       icon
       @click="$vuetify.theme.global.name = 
@@ -51,33 +46,35 @@
           : 'mdi-white-balance-sunny' }}
       </v-icon>
     </v-btn>
- <div class="d-flex justify-center mb-6 mt-6" v-if="authStore.role === 'customer'">
-    <v-btn
-  color="primary"
-  variant="text"
-  size="small"
-  class="font-weight-bold text-capitalize"
-  to="/myrequest"
->
-  <v-icon start size="18">mdi-format-list-bulleted</v-icon>
-  My Requests
-</v-btn>
-</div>
- <div class="d-flex justify-center mb-6 mt-6" v-if="authStore.role === 'admin'">
-    <v-btn
-  color="primary"
-  variant="text"
-  size="small"
-  class="font-weight-bold text-capitalize"
-  to="/ourrequest"
->
-  <v-icon start size="18">mdi-format-list-bulleted</v-icon>
-  Manage Requests
-</v-btn>
-</div>
 
+    <!-- My Requests / Manage Requests (Desktop Only) -->
+    <div class="d-none d-md-flex" v-if="authStore.role === 'customer'">
+      <v-btn
+        color="primary"
+        variant="text"
+        size="small"
+        class="font-weight-bold text-capitalize"
+        to="/myrequest"
+      >
+        <v-icon start size="18">mdi-format-list-bulleted</v-icon>
+        My Requests
+      </v-btn>
+    </div>
 
-    <!-- زر Login يمين (فقط md+) -->
+    <div class="d-none d-md-flex" v-if="authStore.role === 'admin'">
+      <v-btn
+        color="primary"
+        variant="text"
+        size="small"
+        class="font-weight-bold text-capitalize"
+        to="/ourrequest"
+      >
+        <v-icon start size="18">mdi-format-list-bulleted</v-icon>
+        Manage Requests
+      </v-btn>
+    </div>
+
+    <!-- Login Button (Desktop) -->
     <v-btn
       color="primary"
       class="text-white font-weight-bold d-none d-md-flex"
@@ -87,9 +84,9 @@
       Login
     </v-btn>
 
-    <!-- القائمة للموبايل -->
+    <!-- Mobile Menu -->
     <v-menu v-model="menu" offset-y transition="slide-y-transition">
-      <template v-slot:activator="{ props }">
+      <template #activator="{ props }">
         <v-btn icon v-bind="props" class="d-md-none">
           <v-icon>mdi-menu</v-icon>
         </v-btn>
@@ -101,6 +98,22 @@
         <v-list-item to="/contact" @click="menu = false">Contact</v-list-item>
         <v-list-item to="/about" @click="menu = false">About Us</v-list-item>
 
+        <!-- ⭐️ ROLE-BASED MOBILE ITEMS ⭐️ -->
+        <template v-if="authStore.role === 'customer'">
+          <v-list-item to="/myrequest" @click="menu = false">
+            <v-icon start>mdi-format-list-bulleted</v-icon>
+            My Requests
+          </v-list-item>
+        </template>
+
+        <template v-if="authStore.role === 'admin'">
+          <v-list-item to="/ourrequest" @click="menu = false">
+            <v-icon start>mdi-format-list-bulleted</v-icon>
+            Manage Requests
+          </v-list-item>
+        </template>
+
+        <!-- Login Mobile -->
         <v-list-item to="/login" @click="menu = false">
           <v-icon start>mdi-login</v-icon> Login
         </v-list-item>
@@ -139,7 +152,7 @@ export default {
 
 .nav-link {
   position: relative;
-  color: var(--v-theme-text); /* بدل rgb(0,0,0) */
+  color: var(--v-theme-text); 
   text-transform: none;
   font-size: 16px;
 }
@@ -151,7 +164,7 @@ export default {
   bottom: -2px;
   width: 0%;
   height: 2px;
-  background-color: var(--v-theme-primary); /* بدل orange */
+  background-color: var(--v-theme-primary); 
   transition: width 0.3s ease;
 }
 

@@ -9,6 +9,12 @@ import Login from '../pages/login.vue'
 import OurRequest from '@/pages/OurRequest.vue'
 import MyRequest from '@/pages/MyRequest.vue'
 import OurMessages from '@/pages/OurMessages.vue'
+import Verified from '@/pages/Verified.vue'
+import CheckEmail from '@/pages/CheckEmail.vue'
+import ForgotPassword from '@/pages/ForgotPassword.vue'
+import ResetPassword from '@/pages/ResetPassword.vue'
+import UpdatedProfile from '@/pages/UpdatedProfile.vue'
+import ChangePassword from '@/pages/ChangePassword.vue'
 
 const routes = [
   // {
@@ -20,6 +26,44 @@ const routes = [
     component: Register,
       meta: { hideLayout: true },
   },
+
+  {
+ path: '/check-email',
+  component: CheckEmail,
+      meta: { hideLayout: true },
+
+},
+  {
+ path: '/change-password',
+  component: ChangePassword,
+      meta: { hideLayout: true },
+
+},
+  {
+ path: '/update-profile',
+  component: UpdatedProfile,
+      meta: { hideLayout: true },
+
+},
+  {
+ path: '/verify-email/:user_id/:token',
+  component: Verified,
+      meta: { hideLayout: true },
+
+},
+ {
+    path: '/forgot-password',
+    component: ForgotPassword,
+    meta: { hideLayout: true },
+    
+  },
+ {
+    path: '/reset-password',
+    component: ResetPassword,
+    meta: { hideLayout: true },
+    
+  },
+
   {
     path: '/myrequest',
     component: MyRequest,
