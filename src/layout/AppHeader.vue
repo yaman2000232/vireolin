@@ -1,10 +1,10 @@
 <template>
   <v-app-bar
-    app
     flat
-    color="surface"
     elevation="1"
-    class="position-relative position-sticky pa-5"
+    style="position: fixed; top: 0; left: 0; right: 0; z-index: 10;"
+    :class="{ 'bg-transparent': isScrolled }"
+    class="pa-5"
   >
     <!-- Logo -->
     <v-toolbar-title class="d-flex align-center">
@@ -12,12 +12,12 @@
         :src="vireolin"
         alt="Vireolin Logo"
         width="130px"
-        class="mr-2 bg-surface"
+        class="mr-2 "
         cover
       />
     </v-toolbar-title>
 
-    <!-- Desktop Links (md+) -->
+    <!-- Desktop Links -->
     <div class="d-none d-md-flex justify-center align-center links-center">
       <v-btn variant="plain" :ripple="false" to="/" text>
         <span class="nav-link">Home</span>
@@ -47,7 +47,7 @@
       </v-icon>
     </v-btn>
 
-    <!-- My Requests / Manage Requests (Desktop Only) -->
+    <!-- Role-based buttons -->
     <div class="d-none d-md-flex" v-if="authStore.role === 'customer'">
       <v-btn
         color="primary"
@@ -74,7 +74,7 @@
       </v-btn>
     </div>
 
-    <!-- Login Button (Desktop) -->
+    <!-- Login Button -->
     <v-btn
       color="primary"
       class="text-white font-weight-bold d-none d-md-flex"
@@ -87,7 +87,7 @@
     <!-- Mobile Menu -->
     <v-menu v-model="menu" offset-y transition="slide-y-transition">
       <template #activator="{ props }">
-        <v-btn icon v-bind="props" class="d-md-none">
+        <v-btn icon v-bind="props" class="d-md-none overflow-hidden">
           <v-icon>mdi-menu</v-icon>
         </v-btn>
       </template>
@@ -98,7 +98,6 @@
         <v-list-item to="/contact" @click="menu = false">Contact</v-list-item>
         <v-list-item to="/about" @click="menu = false">About Us</v-list-item>
 
-        <!-- ⭐️ ROLE-BASED MOBILE ITEMS ⭐️ -->
         <template v-if="authStore.role === 'customer'">
           <v-list-item to="/myrequest" @click="menu = false">
             <v-icon start>mdi-format-list-bulleted</v-icon>
@@ -113,7 +112,6 @@
           </v-list-item>
         </template>
 
-        <!-- Login Mobile -->
         <v-list-item to="/login" @click="menu = false">
           <v-icon start>mdi-login</v-icon> Login
         </v-list-item>
@@ -123,27 +121,51 @@
 </template>
 
 <script>
-  import vireolin from '@/assets/images/Vireolin.png'
+import vireolin from '@/assets/images/Vireolin.png'
 import { useAuthStore } from '@/store/auth'
-
 
 export default {
   name: 'AppHeader',
   data() {
     return {
       menu: false,
+      isScrolled: false,
       vireolin
     }
   },
-  computed:{
+  computed: {
     authStore() {
       return useAuthStore()
-    },
+    }
+  },
+  methods: {
+    handleScroll() {
+      this.isScrolled = window.scrollY > 0
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll, { passive: true })
+    this.handleScroll()
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
 
 <style>
+.bg-transparent {
+  background-color: transparent !important;
+  transition: background-color 0.3s ease;
+}
+
+/* لو بدك تأثير زجاجي بدل شفافية كاملة */
+.bg-transparent {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(6px);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
 .links-center {
   position: absolute;
   left: 50%;
@@ -152,7 +174,7 @@ export default {
 
 .nav-link {
   position: relative;
-  color: var(--v-theme-text); 
+  color: var(--v-theme-text);
   text-transform: none;
   font-size: 16px;
 }
@@ -164,11 +186,20 @@ export default {
   bottom: -2px;
   width: 0%;
   height: 2px;
-  background-color: var(--v-theme-primary); 
+  background-color: var(--v-theme-primary);
   transition: width 0.3s ease;
 }
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* مهم: padding للمحتوى حتى ما يختفي تحت الـ AppBar */
+.v-main {
+  padding-top: 72px; /* عدّل حسب ارتفاع الـ AppBar */
 }
 </style>

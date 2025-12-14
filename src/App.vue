@@ -1,5 +1,5 @@
-<template>
-  <v-app>
+<template >
+  <v-app class="overflow-hidden">
     <AppHeader  v-if="!$route.meta?.hideLayout" />
     <v-main>
       <router-view />
@@ -39,6 +39,9 @@ components:{
 
 html, body, .v-application, .v-card, .v-app-bar, .v-footer  {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.overflow-hidden{
+  overflow: hidden;
 }
 
 

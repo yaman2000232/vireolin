@@ -7,10 +7,10 @@
         <v-col cols="12" md="4">
           <h3 class="text-h5 font-weight-bold mb-4 text-primary"><b>Our Locations</b> </h3>
          
-          <p class="text-secondary"><v-icon left>mdi-map-marker</v-icon> Germany - Hampurg: Al Noud Companies</p>
+          <p class="text-secondary"><v-icon left>mdi-map-marker</v-icon> Germany - Hampurg: Vierlander Damm71,20539</p>
           <p class="text-secondary"><v-icon left>mdi-phone</v-icon> 009718838615</p>
-          <p class="text-secondary"><v-icon left>mdi-map-marker</v-icon> Syria - Damascus-Sahnaya</p>
-          <p class="text-secondary"><v-icon left>mdi-phone</v-icon> +963936172948</p>
+          <p class="text-secondary"><v-icon left>mdi-map-marker</v-icon> Syria - Damascus</p>
+          <p class="text-secondary"><v-icon left>mdi-phone</v-icon> +963934767535</p>
         </v-col>
 
         <!-- Services -->
@@ -27,11 +27,23 @@
           <h3 class="text-h5 font-weight-bold mb-4 text-primary">About Us</h3>
           <p class="text-secondary">Luxury, Quality, and Sustainability</p>
           <div class="d-flex mt-4">
-            <v-icon class="mr-3 text-warning">mdi-email</v-icon>
-            <v-icon class="mr-3 text-warning">mdi-message</v-icon>
-            <v-icon class="mr-3 text-warning">mdi-youtube</v-icon>
-            <v-icon class="mr-3 text-warning">mdi-instagram</v-icon>
-            <v-icon class="text-warning">mdi-facebook</v-icon>
+           <a href="mailto:info@vireolin.de">
+  <v-icon class="mr-3 text-warning">mdi-email</v-icon>
+</a>
+
+
+         <a href="https://www.youtube.com" target="_blank">
+  <v-icon class="mr-3 text-warning">mdi-youtube</v-icon>
+</a>
+
+          <a href="https://www.instagram.com/vireolin?igsh=MWY2NGp4NTJnNmo3bw==" target="_blank">
+  <v-icon class="mr-3 text-warning">mdi-instagram</v-icon>
+</a>
+
+            <a href="https://www.facebook.com/vireolin" target="_blank">
+  <v-icon class="text-warning">mdi-facebook</v-icon>
+</a>
+
           </div>
         </v-col>
       </v-row>
@@ -40,7 +52,11 @@
 
       <v-row justify="space-between">
         <v-col cols="12" md="6">
-          <p class="text-primary"><v-icon left>mdi-web</v-icon> www.Vireolin.ae</p>
+         <a href="https://www.vireolin.de" target="_blank" class="text-primary">
+  <v-icon left>mdi-web</v-icon>
+  www.Vireolin.de
+</a>
+
         </v-col>
         <v-col cols="12" md="6" class="text-right">
           <p class="text-primary">.© Vireolin Maintenance & Development Services. All rights reserved 2025.
