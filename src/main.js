@@ -25,11 +25,11 @@ import router from './router'
 // Pinia
 import { createPinia } from 'pinia'
 
-// Vuetify (ملف الألوان اللي عملته)
 import vuetify from './plugins/vuetify'
 
-import { echo } from "./plugins/echo";
+import echo from "./plugins/echo";
 
+// import {echo} from "./bootstrap";
 
 
 
@@ -43,6 +43,9 @@ app.use(router)
 
 // استخدم Vuetify (الألوان والـ theme)
 app.use(vuetify)
+
+// app.config.globalProperties.$echo = echo;
+app.config.globalProperties.$echo = echo;           
 
 // شغل التطبيق
 app.mount('#app')

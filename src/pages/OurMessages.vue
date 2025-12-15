@@ -232,7 +232,7 @@
 
 <script>
 import { useContactStore } from '@/store/contact'
-import { echo } from "../plugins/echo";
+// import { echo } from "../plugins/echo";
 
 
 export default {
@@ -356,17 +356,27 @@ export default {
   }
   },
 
- async mounted() {
-  await this.contactStore.fetchContactMessages(1, this.currentFilters)
-   echo.private("admin-notification")
+mounted() {
+  // استدعاء الرسائل أول ما تفتح الصفحة
+  this.contactStore.fetchContactMessages(1, this.currentFilters);
+
+  this.$echo.private("admin-notification")
     .listen(".recieve-message-event", (event) => {
-       console.log("تم إنشاء رسالة:", event.data);
-      location.reload();
-    })
-  },
-  beforeUnmount() {
-  echo.leave("admin-notification");
+      console.log("تم إنشاء رسالة:", event.data);
+
+      // تحديث البيانات بدون Refresh
+      this.contactStore.fetchContactMessages(1, this.currentFilters);
+
+      this.snackbarMessage = "وصلت رسالة جديدة!";
+      this.snackbarColor = "info";
+      this.showSnackbar = true;
+    });
+},
+
+beforeUnmount() {
+  this.$echo.leave("private-admin-notification");
 }
+
 
 }
 </script>

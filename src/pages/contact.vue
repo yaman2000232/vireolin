@@ -57,7 +57,7 @@
   <v-select
     v-model="service_id"
     label="Select Service"
-    :items="servicesStore.services"
+   :items="servicesStore.services"
     item-title="title"   
     item-value="id"    
     outlined
@@ -65,6 +65,7 @@
     class="mb-4"
     :rules="[rules.required]"
     prepend-inner-icon="mdi-briefcase"
+    
   ></v-select>
  
 
@@ -435,7 +436,7 @@ async getDeviceFingerprint() {
 },
 
   async mounted() {
-
+      console.log("Services:", this.servicesStore.services)
      const fp = await this.getDeviceFingerprint();
   this.deviceFingerprint = fp;
 

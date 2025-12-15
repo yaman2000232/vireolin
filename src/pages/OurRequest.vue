@@ -19,7 +19,7 @@
     
 
     <!-- الجدول -->
-    <v-card v-else>
+    <v-card v-else class="mt-5">
 
    
 
@@ -427,7 +427,7 @@
 
 <script>
 import { useOurRequestStore } from '@/store/ourRequest'
-import { echo } from "../plugins/echo";
+
 
 
 export default {
@@ -471,6 +471,8 @@ export default {
       { title: 'confirmed', value: 'confirmed' },
       { title: 'cancelled', value: 'cancelled' },
     ],
+    selectedStatus: '',
+
 
 
     }
@@ -512,10 +514,10 @@ export default {
           return "grey"
       }
     },
-     goToPage(page) {
-    this.ourRequestStore.filters.page = page
-    this.ourRequestStore.fetchBookings()
-  },
+  //    goToPage(page) {
+  //   this.ourRequestStore.filters.page = page
+  //   this.ourRequestStore.fetchBookings()
+  // },
 
     // أزرار الأكشن (مؤقتاً console.log)
      openConfirmDialog(item) {
@@ -593,19 +595,31 @@ export default {
   mounted() {
     // استدعاء البيانات أول ما تفتح الصفحة
     this.ourRequestStore.fetchBookings()
-     echo.private("admin-notification")
+
+       this.$echo.private("admin-notification")
     .listen(".create-booking-event", (event) => {
       console.log("تم إنشاء حجز:", event.data);
-      location.reload();
+      // تحديث البيانات بدون Refresh
+      this.ourRequestStore.fetchBookings();
+      this.snackbarMessage = "وصل طلب جديد!";
+      this.snackbarColor = "info";
+      this.showSnackbar = true;
     })
     .listen(".cancel-booking-event", (event) => {
       console.log("تم إلغاء حجز:", event.data);
-      location.reload();
+      // تحديث البيانات بدون Refresh
+      this.ourRequestStore.fetchBookings();
+      this.snackbarMessage = "تم إلغاء طلب!";
+      this.snackbarColor = "error";
+      this.showSnackbar = true;
     });
+    
   },
-  beforeUnmount() {
-  echo.leave("admin-notification");
-}
+
+   beforeUnmount() {
+    this.$echo.leave("private-admin-notification");
+  }
+ 
 }
 </script>
 

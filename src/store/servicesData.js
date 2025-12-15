@@ -62,16 +62,18 @@ export const useServicesStore = defineStore('service', {
     }
 
     const data = await res.json()
-    console.log("API Response:", data)
+console.log("API Response:", data)
 
-    // 5) حفظ الخدمات والـ pagination
-    this.services = Array.isArray(data.data) ? data.data : []
-    this.pagination = data.pagination || {}
+// الـ API بيرجع data = [ { current_page, data: [الخدمات] } ]
+const payload = Array.isArray(data.data) ? data.data[0] : null
 
-    console.log("Services loaded:", this.services)
-    console.log("Page:", page, "Services:", this.services)
-    console.log("Pagination:", this.pagination)
-
+this.services = payload ? payload.data : []
+this.pagination = {
+  current_page: payload?.current_page || 1,
+  last_page: payload?.last_page || 1,
+  per_page: payload?.per_page || 10,
+  total: payload?.total || 0,
+}
   } catch (err) {
     console.error("Error loading services:", err.message)
     this.error = true

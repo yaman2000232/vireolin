@@ -64,6 +64,7 @@ export const useContactStore = defineStore('contact', {
 
   try {
     const token = localStorage.getItem('accessToken')
+    console.log("Token:", token)
 
     // بناء الـ query string من الصفحة + الفلاتر
     const params = new URLSearchParams({
@@ -93,7 +94,6 @@ this.pagination.total = payload.total
   this.pagination.perPage = payload.per_page  
 
 
-      // ✅ نطبع كل رسالة في الـ console (للتأكد)
       this.messages.forEach(item => {
         console.log('ID:', item.id)
         console.log('User Name:', item.user_name)
