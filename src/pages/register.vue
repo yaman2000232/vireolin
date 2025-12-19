@@ -19,62 +19,67 @@
           <v-card-text>
             <v-form ref="form" v-model="isValid" @submit.prevent="handleRegister">
 
-              <v-text-field
-                v-model="name"
-                label="Organization Name"
-                prepend-inner-icon="mdi-account"
-                :rules="[rules.required]"
-                variant="outlined"
-                class="mb-3"
-                required
-              />
 
-              <v-text-field
-                v-model="email"
-                label="Email"
-                prepend-inner-icon="mdi-email"
-                type="email"
-                :rules="[rules.required, rules.email]"
-                variant="outlined"
-                class="mb-3"
-                required
-              />
+  <v-text-field
+    v-model="name"
+    label="Organization Name"
+    prepend-inner-icon="mdi-account"
+    :rules="[rules.required]"
+    variant="outlined"
+    class="mb-3"
+    required
+    :error-messages="fieldErrors?.name"
+  />
 
-              <v-text-field
-                v-model="phone_number"
-                label="Phone Number"
-                prepend-inner-icon="mdi-phone"
-                type="tel"
-                :rules="[rules.required]"
-                variant="outlined"
-                class="mb-3"
-                required
-              />
+  <v-text-field
+    v-model="email"
+    label="Email"
+    prepend-inner-icon="mdi-email"
+    type="email"
+    :rules="[rules.required, rules.email]"
+    variant="outlined"
+    class="mb-3"
+    required
+    :error-messages="fieldErrors?.email"
+  />
 
-              <v-text-field
-                v-model="password"
-                :type="showPassword ? 'text' : 'password'"
-                label="Password"
-                prepend-inner-icon="mdi-lock"
-                :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-                @click:append-inner="showPassword = !showPassword"
-                variant="outlined"
-                class="mb-3"
-                required
-              />
+  <v-text-field
+    v-model="phone_number"
+    label="Phone Number"
+    prepend-inner-icon="mdi-phone"
+    type="tel"
+    :rules="[rules.required]"
+    variant="outlined"
+    class="mb-3"
+    required
+    :error-messages="fieldErrors?.phone_number"
+  />
 
-              <v-text-field
-                v-model="password_confirmation"
-                :type="showPassword1 ? 'text' : 'password'"
-                label="Confirm Password"
-                prepend-inner-icon="mdi-lock"
-                :append-inner-icon="showPassword1 ? 'mdi-eye-off' : 'mdi-eye'"
-                @click:append-inner="showPassword1 = !showPassword1"
-                variant="outlined"
-                class="mb-4"
-                required
-              />
+  <v-text-field
+    v-model="password"
+    :type="showPassword ? 'text' : 'password'"
+    label="Password"
+    prepend-inner-icon="mdi-lock"
+    :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+    @click:append-inner="showPassword = !showPassword"
+    variant="outlined"
+    class="mb-3"
+    required
+    :error-messages="fieldErrors?.password"
+  />
 
+  <v-text-field
+    v-model="password_confirmation"
+    :type="showPassword1 ? 'text' : 'password'"
+    label="Confirm Password"
+    prepend-inner-icon="mdi-lock"
+    :append-inner-icon="showPassword1 ? 'mdi-eye-off' : 'mdi-eye'"
+    @click:append-inner="showPassword1 = !showPassword1"
+    variant="outlined"
+    class="mb-4"
+    required
+    :error-messages="fieldErrors?.password_confirmation"
+  />
               <v-btn
                 type="submit"
                 block
@@ -124,9 +129,9 @@ export default {
   name: "RegisterView",
   data() {
     return {
+      name: "",
       showPassword:'',
       showPassword1:'',
-      name: "",
       email: "",
       phone_number: "",
       password: "",
@@ -140,6 +145,7 @@ export default {
         text: "",
         color: "success",
       },
+        fieldErrors: {},
 
       rules: {
         required: (v) => !!v || "This field is required",
@@ -161,7 +167,7 @@ export default {
       const authStore = useAuthStore();
 
       try {
-        await authStore.register(
+        const data = await authStore.register(
           this.name,
           this.email,
           this.password,
@@ -169,25 +175,31 @@ export default {
           this.phone_number
         );
 
-        // ✅ عرض رسالة تفيد بأنه تم إرسال رابط التحقق
-        this.snackbar = { 
-          show: true, 
-          text: "A verification link has been sent to your email. Please check your inbox.", 
-          color: "success" 
-        };
-
-        this.loading = false;
-
-        // ❌ لا توجه المستخدم للـ Login بعد التسجيل
-        // ✔️ يمكن توجيهه لصفحة CheckEmail
-        this.$router.push("/check-email"); // ← صفحة إعلامية
-
+        if (data.status === "success") {
+          // ✅ نجاح التسجيل
+          this.snackbar = {
+            show: true,
+            text: data.message,
+            color: "success",
+          };
+          this.$router.push("/check-email");
+        } else if (data.status === "failed" && data.errors) {
+          // 👇 عرض الأخطاء على الحقول
+          this.fieldErrors = data.errors;
+        } else {
+          this.snackbar = {
+            show: true,
+            text: data.message || "Registration failed",
+            color: "error",
+          };
+        }
       } catch (error) {
-        this.snackbar = { 
-          show: true, 
-          text: error.message || "Registration failed", 
-          color: "error" 
+        this.snackbar = {
+          show: true,
+          text: error.message || "Unexpected error",
+          color: "error",
         };
+      } finally {
         this.loading = false;
       }
     },

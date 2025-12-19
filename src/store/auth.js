@@ -42,37 +42,46 @@ export const useAuthStore = defineStore('auth', {
 },
 
 
-    async register(name, email, password, password_confirmation, phone_number) {
-      console.log('Attempting register with data:', name, email, password, phone_number)
+     async register(name, email, password, password_confirmation, phone_number) {
+      console.log("Attempting register with data:", name, email, password, phone_number);
 
-      const res = await fetch('https://api.vireolin.de/api/register', {
-        method: 'POST',
-        headers: { 
-          'Accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-          name,
-          email,
-          password,
-          password_confirmation,
-          phone_number
-        })
-      })
+      try {
+        const res = await fetch("https://api.vireolin.de/api/register", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            name,
+            email,
+            password,
+            password_confirmation,
+            phone_number,
+          }),
+        });
 
-      const data = await res.json()
-      console.log('Register API response received:', data)
+        const data = await res.json();
+        console.log("Register API response received:", data);
 
-      if (data.status === 'success' && data.data.token) {
-        this.token = data.data.token
-        localStorage.setItem('accessToken', this.token)
-        console.log('Registration successful. Token:', this.token)
-        return true
-      } else {
-        throw new Error(data.message || 'Register failed')
+        // ✅ نجاح التسجيل
+        if (res.ok && data.status === "success" && data.data?.token) {
+          this.token = data.data.token;
+          localStorage.setItem("accessToken", this.token);
+          console.log("Registration successful. Token:", this.token);
+        }
+
+        // 👇 رجع الـ response كامل (سواء نجاح أو فشل)
+        return data;
+
+      } catch (error) {
+        console.error("Unexpected error during register:", error);
+        return {
+          status: "failed",
+          message: error.message || "Unexpected error",
+        };
       }
     },
-
      async resetPassword({ token, email, password, password_confirmation }) {
       this.loading = true;
       this.error = null;

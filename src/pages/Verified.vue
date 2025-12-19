@@ -20,7 +20,21 @@
           elevation="2"
           class="my-4"
         >
-          {{ message }}
+          <div class="text-h6 font-weight-medium mb-2">
+            🎉 {{ message }}
+          </div>
+          <div class="text-body-2 mb-3">
+            Your account has been successfully verified. You can now log in to continue.
+          </div>
+
+          <!-- زر Login يظهر عند النجاح -->
+          <v-btn
+            color="primary"
+            class="mt-2"
+            @click="$router.push('/login')"
+          >
+            Go to Login
+          </v-btn>
         </v-alert>
 
         <!-- Error state -->
@@ -30,7 +44,12 @@
           elevation="2"
           class="my-4"
         >
-          <div>{{ message }}</div>
+          <div class="text-h6 font-weight-medium mb-2">
+            ❌ {{ message }}
+          </div>
+          <div class="text-body-2 mb-3">
+            Please try again or request a new verification link.
+          </div>
 
           <!-- Resend verification button below the message -->
           <v-btn
@@ -96,10 +115,6 @@ export default {
         this.snackbarMessage = this.message;
         this.snackbarColor = "success";
         this.snackbar = true;
-
-        setTimeout(() => {
-          this.$router.push('/login'); // بعد نجاح التحقق، يسمح بالدخول
-        }, 2000);
 
       } catch (error) {
         this.success = false;
