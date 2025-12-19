@@ -24,7 +24,7 @@ export const useContactStore = defineStore('contact', {
       this.errorMessage = ''
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/contact-messages', {
+        const response = await fetch('https://api.vireolin.de/api/contact-messages', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -73,7 +73,7 @@ export const useContactStore = defineStore('contact', {
       ...filters
     }).toString()
 
-    const response = await fetch(`http://127.0.0.1:8000/api/contact-messages?${params}`, {
+    const response = await fetch(`https://api.vireolin.de/api/contact-messages?${params}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -125,7 +125,7 @@ this.pagination.total = payload.total
 
   try {
     const token = localStorage.getItem('accessToken')
-    const response = await fetch(`http://127.0.0.1:8000/api/contact-messages/${id}`, {
+    const response = await fetch(`https://api.vireolin.de/api/contact-messages/${id}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -155,7 +155,7 @@ this.pagination.total = payload.total
   this.errorMessage = null
 
   try {
-    const url = `http://127.0.0.1:8000/api/contact-messages/${id}`
+    const url = `https://api.vireolin.de/api/contact-messages/${id}`
 
     const response = await fetch(url, {
       method: 'DELETE',

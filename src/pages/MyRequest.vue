@@ -3,7 +3,7 @@
 
 
   <v-container v-if="authStore.role === 'customer'">
-<div class="d-flex justify-center mb-5 ga-5">
+<div class="d-flex justify-center mb-5 ga-5 mt-5">
     <v-chip
   color="primary"
   size="x-large"

@@ -47,7 +47,7 @@ export const useServicesStore = defineStore('service', {
     token = token.replace(/^['"]+|['"]+$/g, "").trim()
 
     // 3) إرسال الطلب
-    const res = await fetch(`http://127.0.0.1:8000/api/serviceTypes?page=${page}`, {
+    const res = await fetch(`https://api.vireolin.de/api/serviceTypes?page=${page}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -70,10 +70,14 @@ const payload = Array.isArray(data.data) ? data.data[0] : null
 this.services = payload ? payload.data : []
 this.pagination = {
   current_page: payload?.current_page || 1,
-  last_page: payload?.last_page || 1,
   per_page: payload?.per_page || 10,
   total: payload?.total || 0,
+  total_pages: payload?.last_page || 1,   // 🔑 استخدم last_page هنا
+  next_page_url: payload?.next_page_url || null,
+  prev_page_url: payload?.prev_page_url || null
 }
+console.log("Pagination:", this.pagination)
+
   } catch (err) {
     console.error("Error loading services:", err.message)
     this.error = true
@@ -95,7 +99,7 @@ async createServiceFromApi(newService) {
     if (!token) throw new Error('No access token found.')
 
     // رابط الـ API الخاص بإنشاء خدمة جديدة
-    const url = 'http://127.0.0.1:8000/api/serviceTypes'
+    const url = 'https://api.vireolin.de/api/serviceTypes'
 
     // نبني كائن FormData لإرسال البيانات كـ multipart/form-data
     const formData = new FormData()
@@ -200,7 +204,7 @@ async updateServiceFromApi(serviceId, updatedData) {
     const token = localStorage.getItem('accessToken')
     if (!token) throw new Error('No access token found.')
 
-    const url = `http://127.0.0.1:8000/api/serviceTypes/${serviceId}`
+    const url = `https://api.vireolin.de/api/serviceTypes/${serviceId}`
     console.log("🌐 API URL:", url)
 
     const formData = new FormData()
@@ -346,7 +350,7 @@ async deleteItem(id) {
     const token = localStorage.getItem('accessToken')
     if (!token) throw new Error('No access token found.')
 
-    const url = `http://127.0.0.1:8000/api/serviceTypes/${id}`
+    const url = `https://api.vireolin.de/api/serviceTypes/${id}`
     console.log("🌐 API URL:", url)
 
     const res = await fetch(url, {

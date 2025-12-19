@@ -14,7 +14,7 @@ export const useAuthStore = defineStore('auth', {
     async login(email, password) {
   console.log('Attempting login with credentials:', email, password)
 
-  const res = await fetch('http://127.0.0.1:8000/api/login', {
+  const res = await fetch('https://api.vireolin.de/api/login', {
     method: 'POST',
     headers: { 
       'Accept': 'application/json',
@@ -45,7 +45,7 @@ export const useAuthStore = defineStore('auth', {
     async register(name, email, password, password_confirmation, phone_number) {
       console.log('Attempting register with data:', name, email, password, phone_number)
 
-      const res = await fetch('http://127.0.0.1:8000/api/register', {
+      const res = await fetch('https://api.vireolin.de/api/register', {
         method: 'POST',
         headers: { 
           'Accept': 'application/json',
@@ -79,7 +79,7 @@ export const useAuthStore = defineStore('auth', {
       this.message = null;
 
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/reset-password", {
+        const res = await fetch("https://api.vireolin.de/api/reset-password", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -115,7 +115,7 @@ export const useAuthStore = defineStore('auth', {
       this.message = null;
 
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/forgot-password", {
+        const res = await fetch("https://api.vireolin.de/api/forgot-password", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -157,7 +157,7 @@ export const useAuthStore = defineStore('auth', {
       payload.password_confirmation = password_confirmation;
     }
 
-    const res = await fetch("http://127.0.0.1:8000/api/update-profile", {
+    const res = await fetch("https://api.vireolin.de/api/update-profile", {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -200,7 +200,7 @@ async changePassword({ old_password, new_password, new_password_confirmation }) 
       new_password_confirmation,
     };
 
-    const res = await fetch("http://127.0.0.1:8000/api/change-password", {
+    const res = await fetch("https://api.vireolin.de/api/change-password", {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -236,7 +236,7 @@ async changePassword({ old_password, new_password, new_password_confirmation }) 
 // -------------------------------
 async verifyEmail(userId, token, expires, signature) {
   try {
-   const response = await fetch(`http://127.0.0.1:8000/api/email/verify/${userId}/${token}?expires=${expires}&signature=${signature}`, {
+   const response = await fetch(`https://api.vireolin.de/api/email/verify/${userId}/${token}?expires=${expires}&signature=${signature}`, {
   method: 'GET',
 });
 
@@ -262,7 +262,7 @@ async verifyEmail(userId, token, expires, signature) {
 // -------------------------------
 async resendVerificationEmail() {
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/email/verification-notification', {
+    const response = await fetch('https://api.vireolin.de/api/email/verification-notification', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

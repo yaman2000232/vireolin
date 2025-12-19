@@ -102,12 +102,14 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/store/auth'
+import {  onMounted } from "vue"
 const showPassword = ref(false)
 
 const email = ref('')
 const password = ref('')
 const loading = ref(false)
-
+     
+const deviceFingerprint = ref('') // Placeholder for device fingerprint logic
 const snackbar = ref({
   show: false,
   message: '',
@@ -116,6 +118,22 @@ const snackbar = ref({
 
 const router = useRouter()
 const auth = useAuthStore()
+
+async function getDeviceFingerprint() {
+  const data = [
+    navigator.userAgent,
+    navigator.language,
+    screen.width,
+    screen.height,
+    screen.colorDepth,
+    Intl.DateTimeFormat().resolvedOptions().timeZone
+  ]
+  const msg = data.join('|')
+  const msgUint8 = new TextEncoder().encode(msg)
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+}
 
 const handleLogin = async () => {
   loading.value = true
@@ -144,6 +162,11 @@ const handleLogin = async () => {
     loading.value = false
   }
 }
+onMounted(async () => {
+  deviceFingerprint.value = await getDeviceFingerprint()
+  console.log("Fingerprint (Composition API):", deviceFingerprint.value)
+})
+
 </script>
 
 <style>

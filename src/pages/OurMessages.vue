@@ -7,7 +7,7 @@
     label="Filter messages"
     variant="outlined"
     density="comfortable"
-    class="flex-grow-1"
+    class="flex-grow-1 mt-10"
     :disabled="contactStore.loading"
     :footer-props="{
     'items-per-page-options': [10, 25, 50]

@@ -416,29 +416,27 @@ resetForm() {
   this.valid = false
 },
 
-async getDeviceFingerprint() {
-    const data = [
-      navigator.userAgent,
-      navigator.language,
-      screen.width,
-      screen.height,
-      screen.colorDepth,
-      Intl.DateTimeFormat().resolvedOptions().timeZone
-    ];
-    const msg = data.join('|');
-    const msgUint8 = new TextEncoder().encode(msg);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  },
-
-
+ async getDeviceFingerprint() {
+      const data = [
+        navigator.userAgent,
+        navigator.language,
+        screen.width,
+        screen.height,
+        screen.colorDepth,
+        Intl.DateTimeFormat().resolvedOptions().timeZone
+      ]
+      const msg = data.join('|')
+      const msgUint8 = new TextEncoder().encode(msg)
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8)
+      const hashArray = Array.from(new Uint8Array(hashBuffer))
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+    },
 },
 
   async mounted() {
       console.log("Services:", this.servicesStore.services)
-     const fp = await this.getDeviceFingerprint();
-  this.deviceFingerprint = fp;
+     this.deviceFingerprint = await this.getDeviceFingerprint()
+    console.log("Fingerprint (Options API):", this.deviceFingerprint)
 
 
   try {

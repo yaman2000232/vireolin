@@ -321,8 +321,11 @@
     </v-card-actions>
   </v-card>
 </v-dialog>
+<div>{{ servicesStore.pagination.total_pages }}</div>
+
 <v-pagination
-  v-if="servicesStore.pagination.total_pages > 1"
+ v-if="servicesStore.pagination.total_pages > 1"
+
   v-model="servicesStore.pagination.current_page"
   :length="servicesStore.pagination.total_pages"
   @update:modelValue="servicesStore.listService($event)"
@@ -381,14 +384,7 @@
           {{ service.title }}
         </h3>
 
-      <v-chip
-  v-if="authStore.role === 'admin' && service.service_bookings?.length"
-  :color="getStatusColor(service.service_bookings[0].status)"
-  text-color="white"
-  class="mb-3"
->
-  {{ service.service_bookings[0].status }}
-</v-chip>
+     
 
 
         <p class="text-body-2 text-secondary mb-4">
@@ -702,7 +698,7 @@
 
       <!-- Content -->
       <v-col cols="12" md="6">
-        <h2 class="text-h5 text-orange font-weight-bold mb-4">
+        <h2 class="text-h5 text-primary font-weight-bold mb-4">
           {{ selectedService?.title }}
         </h2>
         <p class="text-body-1 text-grey-darken mb-6 font-italic">
@@ -710,8 +706,8 @@
         </p>
 
         <!-- Bookings -->
-        <div v-if="authStore.role === 'admin' && selectedService?.service_bookings?.length" class="mb-6 pa-4 rounded-lg bg-grey-lighten-4">
-          <h3 class="text-subtitle-1 font-weight-bold text-orange-darken-2 mb-4">
+        <div v-if="authStore.role === 'admin' && selectedService?.service_bookings?.length" class="mb-6 pa-4 rounded-lg bg-surface">
+          <h3 class="text-subtitle-1 font-weight-bold text-primary mb-4">
             Bookings
           </h3>
           <div
@@ -720,7 +716,10 @@
             class="d-flex align-center mb-2"
           >
             <v-icon color="blue-darken-2" class="mr-2">mdi-calendar-check</v-icon>
-            <span>{{ booking.message }} - <strong>{{ booking.status }}</strong></span>
+            <span>{{ booking.message }} -<strong :style="{ color: getStatusColor(booking.status) }">
+  {{ booking.status }}
+</strong>
+</span>
           </div>
         </div>
       </v-col>
@@ -729,7 +728,7 @@
     <!-- Actions -->
     <v-card-actions class="d-flex justify-end mt-4">
       <v-btn
-        color="orange-darken-2"
+        color="primary"
         class="text-white font-weight-bold mr-2"
         @click="$router.push('/contact')"
       >

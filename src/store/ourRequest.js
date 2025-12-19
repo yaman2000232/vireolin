@@ -34,7 +34,7 @@ export const useOurRequestStore = defineStore('ourRequest', {
     // بناء الـ query string من الصفحة + الفلاتر (نفس أسلوب messages)
     const params = new URLSearchParams({ page, ...filters }).toString()
 
-    const response = await fetch(`http://127.0.0.1:8000/api/serviceBookings?${params}`, {
+    const response = await fetch(`https://api.vireolin.de/api/serviceBookings?${params}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -70,7 +70,7 @@ this.pagination.total = payload.total
     this.selectedBooking = null
 
     try {
-      const url = `http://127.0.0.1:8000/api/serviceBookings/${id}`
+      const url = `https://api.vireolin.de/api/serviceBookings/${id}`
 
       const response = await fetch(url, {
         method: 'GET',
@@ -105,7 +105,7 @@ async updateBookingStatus(id, newStatus) {
   const prevStatus = prev ? prev.status : null
 
   try {
-    const url = `http://127.0.0.1:8000/api/serviceBookings/${id}`
+    const url = `https://api.vireolin.de/api/serviceBookings/${id}`
 
     // نبني الـ body بصيغة urlencoded: status=confirmed أو status=cancelled
     const body = new URLSearchParams({ status: newStatus })
@@ -152,7 +152,7 @@ async fetchMyBookings() {
   this.error = null
 
   try {
-    const url = 'http://127.0.0.1:8000/api/my-bookings'
+    const url = 'https://api.vireolin.de/api/my-bookings'
 
     const response = await fetch(url, {
       method: 'GET',
@@ -194,7 +194,7 @@ async cancelBookingCustomer(id) {
   this.error = null
 
   try {
-    const url = `http://127.0.0.1:8000/api/serviceBookings/${id}/cancel`
+    const url = `https://api.vireolin.de/api/serviceBookings/${id}/cancel`
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -237,7 +237,7 @@ console.log('First element:', data.data[0])
   this.error = null
 
   try {
-    const url = `http://127.0.0.1:8000/api/serviceBookings/${id}`
+    const url = `https://api.vireolin.de/api/serviceBookings/${id}`
 
     const response = await fetch(url, {
       method: 'DELETE',

@@ -4,7 +4,7 @@
     elevation="1"
     style="position: fixed; top: 0; left: 0; right: 0; z-index: 10;"
     :class="{ 'bg-transparent': isScrolled }"
-    class="pa-5"
+    class="pa-5 "
   >
     <!-- Logo -->
     <v-toolbar-title class="d-flex align-center">
