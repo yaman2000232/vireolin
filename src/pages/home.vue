@@ -1234,7 +1234,7 @@ export default {
       if (!token) throw new Error('No access token found')
       token = token.replace(/^'+|'+$/g, '').trim()
 
-      const res = await fetch(`http://127.0.0.1:8000/api/serviceTypes/${id}`, {
+      const res = await fetch(`http://api.vireolin.de/api/serviceTypes/${id}`, {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${token}`

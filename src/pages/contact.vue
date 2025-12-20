@@ -345,7 +345,7 @@ methods: {
     const token = localStorage.getItem("accessToken")
 
     // 4) إرسال الطلب
-    const res = await fetch("http://127.0.0.1:8000/api/serviceBookings", {
+    const res = await fetch("https://api.vireolin.de/api/serviceBookings", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
