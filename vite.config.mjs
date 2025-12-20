@@ -12,7 +12,7 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
   // 👇 هذا أهم تعديل للنشر على GitHub Pages
   // غيّر اسم المستودع إذا غير "vireolin"
-  base: '/vireolin/',
+  base: '/',
 
   plugins: [
     Vue({

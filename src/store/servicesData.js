@@ -32,21 +32,15 @@ export const useServicesStore = defineStore('service', {
   this.error = false
 
   try {
-    // 1) جلب بيانات المستخدم من الـ AuthStore (اختياري للتأكد من الدور)
     const authStore = useAuthStore()
-    
- console.log("USER ROLE IS:", authStore.role ?? "Not loaded")
+    console.log("USER ROLE IS:", authStore.role ?? "Not loaded")
 
-    // 2) جلب التوكن من localStorage
     let token = localStorage.getItem("accessToken")
     if (!token) {
       throw new Error("No access token found")
     }
-
-    // تنظيف التوكن من أي علامات اقتباس أو مسافات
     token = token.replace(/^['"]+|['"]+$/g, "").trim()
 
-    // 3) إرسال الطلب
     const res = await fetch(`https://api.vireolin.de/api/serviceTypes?page=${page}`, {
       method: "GET",
       headers: {
@@ -55,28 +49,29 @@ export const useServicesStore = defineStore('service', {
       }
     })
 
-    // 4) التحقق من الاستجابة
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}))
       throw new Error(errData?.message || `Failed to fetch services (status ${res.status})`)
     }
 
     const data = await res.json()
-console.log("API Response:", data)
+    console.log("API Response:", data)
 
-// الـ API بيرجع data = [ { current_page, data: [الخدمات] } ]
-const payload = Array.isArray(data.data) ? data.data[0] : null
+    // ✅ الخدمات مباشرة من data.data
+    this.services = Array.isArray(data.data) ? data.data : []
 
-this.services = payload ? payload.data : []
-this.pagination = {
-  current_page: payload?.current_page || 1,
-  per_page: payload?.per_page || 10,
-  total: payload?.total || 0,
-  total_pages: payload?.last_page || 1,   // 🔑 استخدم last_page هنا
-  next_page_url: payload?.next_page_url || null,
-  prev_page_url: payload?.prev_page_url || null
-}
-console.log("Pagination:", this.pagination)
+    // ✅ معلومات التصفح من data.pagination
+    this.pagination = {
+      total: data.pagination?.total || 0,
+      count: data.pagination?.count || 0,
+      per_page: data.pagination?.per_page || 10,
+      current_page: data.pagination?.current_page || 1,
+      total_pages: data.pagination?.total_pages || 1,
+      next_page_url: data.pagination?.next_page_url || null,
+      prev_page_url: data.pagination?.prev_page_url || null
+    }
+
+    console.log("Pagination:", this.pagination)
 
   } catch (err) {
     console.error("Error loading services:", err.message)
@@ -89,92 +84,75 @@ console.log("Pagination:", this.pagination)
 
 // دالة لإرسال خدمة جديدة للـ API
 async createServiceFromApi(newService) {
-  // نحدد حالة التحميل والخطأ
   this.loading = true
   this.error = false
 
   try {
-    // نجلب التوكن من التخزين المحلي (لازم يكون موجود لتوثيق الطلب)
     const token = localStorage.getItem('accessToken')
     if (!token) throw new Error('No access token found.')
 
-    // رابط الـ API الخاص بإنشاء خدمة جديدة
     const url = 'https://api.vireolin.de/api/serviceTypes'
 
-    // نبني كائن FormData لإرسال البيانات كـ multipart/form-data
     const formData = new FormData()
-    if (newService.title) formData.append('title', newService.title)          // العنوان
-    if (newService.description) formData.append('description', newService.description) // الوصف
+    if (newService.title) formData.append('title', newService.title)
+    if (newService.description) formData.append('description', newService.description)
 
-    // إذا في صورة واحدة فقط
     if (newService.image) {
       formData.append('images[]', newService.image)
     }
 
-    // إذا في عدة صور (من v-file-input)
     if (Array.isArray(newService.images)) {
       newService.images.forEach(file => {
-        if (file) formData.append('images[]', file) // نضيف كل صورة بنفس المفتاح
+        if (file) formData.append('images[]', file)
       })
     }
 
-    // نرسل الطلب للـ API
     const res = await fetch(url, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`, // التوثيق
-        Accept: 'application/json'        // نوع الاستجابة المتوقعة
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json'
       },
-      body: formData                      // البيانات المرسلة
+      body: formData
     })
 
-    // إذا الرد مش ناجح نرمي خطأ
     if (!res.ok) {
       const txt = await res.text()
       throw new Error(`Create failed: ${res.status} ${txt}`)
     }
 
-    // نقرأ الرد كـ JSON
     const created = await res.json()
-
-    // نطبّع الرد حتى يكون بنفس شكل الـ GET
     const normalized = this.normalizeCreatedService(created, newService.description)
 
-    // نضيف الخدمة الجديدة للـ store
     this.addService(normalized)
-
-    // نرجع الخدمة الموحّدة
     return normalized
   } catch (error) {
-    // إذا صار خطأ نعرضه ونحدد حالة الخطأ
     console.error('❌ Failed to create service:', error)
     this.error = true
     throw error
   } finally {
-    // نوقف حالة التحميل
     this.loading = false
   }
 },
 
 // دالة لتطبيع الرد القادم من الـ API
 normalizeCreatedService(createdResponse, fallbackDescription = '') {
-  // السيرفر بيرجع الخدمة الجديدة مباشرة داخل data
-  const service = createdResponse?.data || {}
+  const service = createdResponse?.data?.service || {}
+  const photos = createdResponse?.data?.photo_info || []
 
   return {
     id: service.id,
     title: service.title,
     description: service.description ?? fallbackDescription,
-    created_at: service.created_at,
-    updated_at: service.updated_at,
-    images: (service.images || []).map(img => ({
-      id: img.id,
+    images: photos.map((img, idx) => ({
+      id: idx + 1, // ما في id بالـ photo_info، منعمل index
       url: img.url,
-      image_path: img.image_path,
-      service_id: img.service_id
+      image_path: img.path,
+      original_name: img.original_name
     }))
   }
 },
+
 
 
 // دالة لإضافة خدمة جديدة للـ store

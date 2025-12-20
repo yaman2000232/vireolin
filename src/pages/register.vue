@@ -9,9 +9,7 @@
           <v-card-title class="d-flex justify-space-between align-center">
             <span class="text-h5 font-weight-bold">Create Account</span>
 
-            <v-btn icon @click="$router.push('/update-profile')">
-              <v-icon color="primary">mdi-account-edit</v-icon>
-            </v-btn>
+           
           </v-card-title>
 
           <v-divider class="my-4"></v-divider>

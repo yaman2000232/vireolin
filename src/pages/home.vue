@@ -1125,11 +1125,13 @@ export default {
   },
 
   getServiceImage(service) {
-    if (service.images && service.images.length > 0) {
-      return service.images[0].url
-    }
-    return servicesG
-  },
+  if (service.images && service.images.length > 0) {
+    return service.images[0].url
+  }
+  // صورة افتراضية من النت إذا ما في صور
+  return "https://via.placeholder.com/400x220?text=No+Image"
+},
+
 
   async addService() {
     this.addingService = true
@@ -1243,7 +1245,7 @@ export default {
       const data = await res.json()
 
       // الاستجابة عندك عبارة عن مصفوفة داخل مصفوفة
-      this.selectedService = data.data[0][0]
+      this.selectedService = data.data[0]
     } catch (err) {
       console.error('Error fetching service details:', err)
     }

@@ -75,14 +75,46 @@
     </div>
 
     <!-- Login Button -->
+   <!-- إذا المستخدم غير مسجّل دخول → Login -->
+<v-btn
+  v-if="!authStore.token"
+  color="primary"
+  class="text-white font-weight-bold d-none d-md-flex"
+  prepend-icon="mdi-login"
+  to="/login"
+>
+  Login
+</v-btn>
+
+<!-- إذا المستخدم مسجّل دخول → أيقونة الحساب -->
+<v-menu v-else>
+  <template #activator="{ props }">
     <v-btn
-      color="primary"
-      class="text-white font-weight-bold d-none d-md-flex"
-      prepend-icon="mdi-login"
-      to="/login"
+      icon
+      v-bind="props"
+      class="d-none d-md-flex"
     >
-      Login
+      <v-icon size="30">mdi-account-circle</v-icon>
     </v-btn>
+  </template>
+
+  <v-list>
+    <v-list-item to="/change-password">
+      <v-icon start>mdi-key-change</v-icon>
+      Change Password
+    </v-list-item>
+    <v-list-item to="/update-profile">
+      <v-icon start>mdi-account-edit</v-icon>
+      Update Account
+    </v-list-item>
+
+    <v-list-item @click="logout">
+      <v-icon start>mdi-logout</v-icon>
+      Logout
+    </v-list-item>
+  </v-list>
+</v-menu>
+
 
     <!-- Mobile Menu -->
     <v-menu v-model="menu" offset-y transition="slide-y-transition">
@@ -112,9 +144,41 @@
           </v-list-item>
         </template>
 
-        <v-list-item to="/login" @click="menu = false">
-          <v-icon start>mdi-login</v-icon> Login
-        </v-list-item>
+       <!-- إذا المستخدم غير مسجّل دخول → Login -->
+<v-list-item
+  v-if="!authStore.token"
+  to="/login"
+  @click="menu = false"
+>
+  <v-icon start>mdi-login</v-icon>
+  Login
+</v-list-item>
+
+<!-- إذا المستخدم مسجّل دخول → قائمة الحساب -->
+<v-list-group
+  v-else
+  prepend-icon="mdi-account-circle"
+  value="true"
+>
+  <template #activator>
+    <v-list-item-title>Account</v-list-item-title>
+  </template>
+
+  <v-list-item to="/change-password" @click="menu = false">
+    <v-icon start>mdi-key-change</v-icon>
+    Change Password
+  </v-list-item>
+  <v-list-item to="/update-profile" @click="menu = false">
+    <v-icon start>mdi-account-edit</v-icon>
+    Update Account
+  </v-list-item>
+
+  <v-list-item @click="logout">
+    <v-icon start>mdi-logout</v-icon>
+    Logout
+  </v-list-item>
+</v-list-group>
+
       </v-list>
     </v-menu>
   </v-app-bar>
@@ -141,7 +205,12 @@ export default {
   methods: {
     handleScroll() {
       this.isScrolled = window.scrollY > 0
-    }
+    },
+    logout() {
+      this.authStore.logout();   // ← استدعاء دالة الستور
+       this.menu = false;
+      this.$router.push("/login"); // ← إعادة توجيه
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll, { passive: true })

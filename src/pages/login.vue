@@ -51,12 +51,7 @@
               </v-btn>
 
               <!-- Change Password -->
-              <div class="text-center mt-3">
-                <v-btn variant="text" color="secondary" to="/change-password">
-                  <v-icon start size="18">mdi-key-change</v-icon>
-                  Change Password
-                </v-btn>
-              </div>
+             
 
               <!-- Forgot Password -->
               <div class="text-center mt-2">
