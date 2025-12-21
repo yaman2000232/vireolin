@@ -1245,7 +1245,7 @@ export default {
       const data = await res.json()
 
       // الاستجابة عندك عبارة عن مصفوفة داخل مصفوفة
-      this.selectedService = data.data[0]
+      this.selectedService = data.data[0][0]
     } catch (err) {
       console.error('Error fetching service details:', err)
     }

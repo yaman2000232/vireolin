@@ -104,7 +104,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/vireolin/'), 
+  history: createWebHistory(), 
   routes,
 })
 
