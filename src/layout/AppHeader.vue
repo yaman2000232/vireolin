@@ -155,30 +155,28 @@
 </v-list-item>
 
 <!-- إذا المستخدم مسجّل دخول → قائمة الحساب -->
-<v-list-group
-  v-else
-  prepend-icon="mdi-account-circle"
-  value="true"
->
-  <template #activator>
-    <v-list-item-title>Account</v-list-item-title>
+<v-menu offset-y transition="slide-y-transition" v-if="authStore.token" class="d-md-none">
+  <template #activator="{ props }">
+    <v-btn icon v-bind="props">
+      <v-icon size="30">mdi-account-circle</v-icon>
+    </v-btn>
   </template>
 
-  <v-list-item to="/change-password" @click="menu = false">
-    <v-icon start>mdi-key-change</v-icon>
-    Change Password
-  </v-list-item>
-  <v-list-item to="/update-profile" @click="menu = false">
-    <v-icon start>mdi-account-edit</v-icon>
-    Update Account
-  </v-list-item>
-
-  <v-list-item @click="logout">
-    <v-icon start>mdi-logout</v-icon>
-    Logout
-  </v-list-item>
-</v-list-group>
-
+  <v-list>
+    <v-list-item to="/change-password" @click="menu = false">
+      <v-icon start>mdi-key-change</v-icon>
+      Change Password
+    </v-list-item>
+    <v-list-item to="/update-profile" @click="menu = false">
+      <v-icon start>mdi-account-edit</v-icon>
+      Update Account
+    </v-list-item>
+    <v-list-item @click="logout">
+      <v-icon start>mdi-logout</v-icon>
+      Logout
+    </v-list-item>
+  </v-list>
+</v-menu>
       </v-list>
     </v-menu>
   </v-app-bar>

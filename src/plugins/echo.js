@@ -8,7 +8,7 @@ const echo = new Echo({
   key: "382a1f3a6e935277e22d",
   cluster: "us2",
   forceTLS: true,
-  authEndpoint: "http://localhost:8000/vireolin/broadcasting/auth",
+  authEndpoint: "https://api.vireolin.de/vireolin/broadcasting/auth",
   auth: {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("accessToken"),

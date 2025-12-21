@@ -9,7 +9,7 @@ window.Echo = new Echo({
     cluster: "us2",
     forceTLS: true,
 
-     authEndpoint: 'http://localhost:8000/vireolin/broadcasting/auth' ,
+  authEndpoint: "https://api.vireolin.de/vireolin/broadcasting/auth",
 
     auth: {
         headers: {
