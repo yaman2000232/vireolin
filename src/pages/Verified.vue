@@ -99,36 +99,63 @@ export default {
   },
 
   methods: {
-    async verifyEmailFromLink() {
-      const authStore = useAuthStore();
+    // async verifyEmailFromLink() {
+    //   const authStore = useAuthStore();
 
-      const userId = this.$route.params.user_id;
-      const token = this.$route.params.token;
-      const expires = this.$route.query.expires;
-      const signature = this.$route.query.signature;
+    //   const userId = this.$route.params.user_id;
+    //   const token = this.$route.params.token;
+    //   const expires = this.$route.query.expires;
+    //   const signature = this.$route.query.signature;
 
-      try {
-        const data = await authStore.verifyEmail(userId, token, expires, signature);
+    //   try {
+    //     const data = await authStore.verifyEmail(userId, token, expires, signature);
+    //     this.success = true;
+    //     this.message = data.message || "Email verified successfully.";
+
+    //     this.snackbarMessage = this.message;
+    //     this.snackbarColor = "success";
+    //     this.snackbar = true;
+
+    //   } catch (error) {
+    //     this.success = false;
+    //     this.message = "The verification link is invalid or has expired.";
+
+    //     this.snackbarMessage = this.message;
+    //     this.snackbarColor = "error";
+    //     this.snackbar = true;
+
+    //     console.error(error);
+    //   } finally {
+    //     this.loading = false;
+    //   }
+    // },
+
+      verifyEmailFromLink() {
+      // ** التعديل هنا **
+      // نقرأ الحالة مباشرة من الـ query param المرسل من السيرفر
+      const status = this.$route.query.status;
+
+      if (status === 'success' || status === 'already') {
         this.success = true;
-        this.message = data.message || "Email verified successfully.";
+        this.message = status === 'success' 
+          ? "Email verified successfully!" 
+          : "Email is already verified.";
 
         this.snackbarMessage = this.message;
         this.snackbarColor = "success";
         this.snackbar = true;
-
-      } catch (error) {
+        this.loading = false;
+      } else {
         this.success = false;
         this.message = "The verification link is invalid or has expired.";
 
         this.snackbarMessage = this.message;
         this.snackbarColor = "error";
         this.snackbar = true;
-
-        console.error(error);
-      } finally {
         this.loading = false;
       }
     },
+
 
     async resendEmail() {
       const authStore = useAuthStore();
