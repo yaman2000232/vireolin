@@ -698,12 +698,16 @@
 
       <!-- Content -->
       <v-col cols="12" md="6">
-        <h2 class="text-h5 text-primary font-weight-bold mb-4">
-          {{ selectedService?.title }}
-        </h2>
-        <p class="text-body-1 text-grey-darken mb-6 font-italic">
-          {{ selectedService?.description }}
-        </p>
+       <!-- Title -->
+<h2 class="text-h5 text-primary font-weight-bold mb-4">
+  {{ selectedService?.title || 'Browse more about our services on the Services page' }}
+</h2>
+
+<!-- Description -->
+<p class="text-body-1 text-grey-darken mb-6 font-italic">
+  {{ selectedService?.description || 'Request services or send issues and inquiries via the Contact button' }}
+</p>
+
 
         <!-- Bookings -->
         <div v-if="authStore.role === 'admin' && selectedService?.service_bookings?.length" class="mb-6 pa-4 rounded-lg bg-surface">
@@ -1234,7 +1238,7 @@ export default {
       if (!token) throw new Error('No access token found')
       token = token.replace(/^'+|'+$/g, '').trim()
 
-      const res = await fetch(`http://api.vireolin.de/api/serviceTypes/${id}`, {
+      const res = await fetch(`https://api.vireolin.de/api/serviceTypes/${id}`, {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${token}`
