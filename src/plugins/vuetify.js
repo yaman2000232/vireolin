@@ -25,9 +25,9 @@ export default createVuetify({
         dark: false,
         colors: {
           pink:'#eee3aaff',
-          background: '#FFFFFF',      // خلفية عامة
+         background: '#F1F1F1',     // خلفية عامة
           surface: '#F5F5F5',         // خلفية البطاقات
-          primary: '#E3A72F',         // برتقالي (orange-darken-2)
+          primary: '#cf9115ff',         // برتقالي (orange-darken-2)
           secondary: '#545252ff',       // رمادي
           error: '#E53935',           // أحمر
           info: '#2196F3',            // أزرق

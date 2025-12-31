@@ -46,7 +46,7 @@
   data-aos-delay="500">
   <v-form
   v-model="valid"
-  class="bg-surface border-lg pa-8 border-warning rounded-xl"
+  class="bg-surface border-lg pa-8 border-primary rounded-xl"
 >
   <!-- العنوان -->
   <p class="text-center mb-8 text-h4 font-weight-bold text-primary">
@@ -223,7 +223,7 @@
     </v-col>
 
     <!-- Syria Coming Soon -->
-    <v-col cols="12">
+    <!-- <v-col cols="12">
       <v-card class="pa-4 mb-4 rounded-lg hover-scale" color="surface">
         <div class="d-flex align-center">
           <v-icon color="primary" class="mr-3">mdi-map-marker-outline</v-icon>
@@ -237,7 +237,7 @@
           </div>
         </div>
       </v-card>
-    </v-col>
+    </v-col> -->
   </v-row>
 
    <v-card class="pa-4 rounded-lg" color="surface">

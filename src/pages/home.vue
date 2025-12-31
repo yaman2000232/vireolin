@@ -40,15 +40,15 @@
   data-aos-duration="1000"
   data-aos-delay="200"
 >
-  Professional Maintenance & Service Management
+ Engineering perfiction & Service Management
 </div>
 
 
-    <div class="text-subtitle-1 mb-8 text-grey-lighten-2"
+    <div class="text-subtitle-1 mb-8 text-grey"
      data-aos="fade-up"
   data-aos-duration="1000"
   data-aos-delay="600">
-      We provide complete maintenance and service follow-up with technical precision and organized workflow.
+      <b>Engineering for us: the art of managing resources safely and economically,and providing creative solutions.</b>
     </div>
 
     <div class="d-flex flex-row justify-center
@@ -171,8 +171,9 @@
       </div>
 
       <div class="text-body-1 text-secondary mb-6">
-        We deliver professional maintenance and service solutions tailored to residential and commercial needs — 
-        from routine inspections to urgent repairs, with a focus on reliability, efficiency, and long-term care.
+       We offer complete project impelemetion,consulting and Modernization with innovative technologiesand sustainable solutions .
+       The offive specialize in Comprehensive technical planning, Maintenance, development,Implementation,TechnologyTrasfer and supervision of Industrial
+       ,medical, commercial and building systems.
       </div>
 
       <div
@@ -321,7 +322,7 @@
     </v-card-actions>
   </v-card>
 </v-dialog>
-<div>{{ servicesStore.pagination.total_pages }}</div>
+<!-- <div>{{ servicesStore.pagination.total_pages }}</div> -->
 
 <v-pagination
  v-if="servicesStore.pagination.total_pages > 1"
@@ -688,12 +689,19 @@
     <v-row>
       <!-- Image -->
       <v-col cols="12" md="6">
-        <v-img
-          v-if="selectedService?.images?.length"
-          :src="selectedService.images[0].url"
-          height="300"
-          cover
-        ></v-img>
+       <v-carousel
+  v-if="selectedService?.images?.length"
+  hide-delimiters
+  height="300"
+>
+  <v-carousel-item
+    v-for="img in selectedService.images"
+    :key="img.id"
+  >
+    <v-img :src="img.url" cover></v-img>
+  </v-carousel-item>
+</v-carousel>
+
       </v-col>
 
       <!-- Content -->
@@ -1249,7 +1257,7 @@ export default {
       const data = await res.json()
 
       // الاستجابة عندك عبارة عن مصفوفة داخل مصفوفة
-      this.selectedService = data.data[0][0]
+      this.selectedService = data.data[0]
     } catch (err) {
       console.error('Error fetching service details:', err)
     }

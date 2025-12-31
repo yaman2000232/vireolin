@@ -29,10 +29,9 @@
             </div>
 
             <div class="text-body-1 text-secondary mb-6">
-              We deliver professional maintenance and service solutions tailored
-              to residential and commercial needs — from routine inspections to
-              urgent repairs, with a focus on reliability, efficiency, and
-              long-term care.
+             We offer complete project impelemetion,consulting and Modernization with innovative technologiesand sustainable solutions .
+       The offive specialize in Comprehensive technical planning, Maintenance, development,Implementation,TechnologyTrasfer and supervision of Industrial
+       ,medical, commercial and building systems.
             </div>
 
             <div
@@ -59,13 +58,25 @@
             data-aos="fade-right"
   data-aos-duration="1000"
   data-aos-delay="300">
-            <v-img
-              class="hover-scale"
-              :src="service.images[0]?.url"
-              alt="Service Image"
-              height="400"
-              cover
-            ></v-img>
+           <v-carousel
+        v-if="service.images?.length"
+        height="400"
+        show-arrows="always"
+      >
+        <v-carousel-item
+          v-for="img in service.images"
+          :key="img.id"
+        >
+          <v-img
+            class="hover-scale"
+            :src="img.url"
+            alt="Service Image"
+            height="400"
+            cover
+          ></v-img>
+        </v-carousel-item>
+      </v-carousel>
+
           </v-col>
 
           <!-- تفاصيل الخدمة -->

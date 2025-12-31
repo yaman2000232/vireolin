@@ -8,7 +8,7 @@
           <h3 class="text-h5 font-weight-bold mb-4 text-primary"><b>Our Locations</b> </h3>
          
           <p class="text-secondary"><v-icon left>mdi-map-marker</v-icon> Germany - Hampurg: Vierlander Damm71,20539</p>
-          <p class="text-secondary"><v-icon left>mdi-phone</v-icon> 009718838615</p>
+          <p class="text-secondary"><v-icon left>mdi-phone</v-icon> +4915563382403</p>
           <p class="text-secondary"><v-icon left>mdi-map-marker</v-icon> Syria - Damascus</p>
           <p class="text-secondary"><v-icon left>mdi-phone</v-icon> +963934767535</p>
         </v-col>
@@ -54,7 +54,7 @@
         <v-col cols="12" md="6">
          <a href="https://www.vireolin.de" target="_blank" class="text-primary">
   <v-icon left>mdi-web</v-icon>
-  www.Vireolin.de
+  www.vireolin.de
 </a>
 
         </v-col>

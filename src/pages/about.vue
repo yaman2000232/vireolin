@@ -56,7 +56,7 @@
               We deliver <strong>advanced technologies</strong> tailored to modern infrastructure needs.
             </p>
             <p class="text-body-1 mb-5" data-aos="fade-up" data-aos-delay="300">
-              Vireolin is currently based in <strong>Germany 🇩🇪</strong>, expanding soon into <strong>Syria 🇸🇾</strong>.
+              Vireolin is currently based in <strong>Germany 🇩🇪</strong>
             </p>
           </div>
         </v-col>
@@ -169,12 +169,12 @@
         Our Locations
       </h2>
 
-      <p class="text-h6 mb-8 text-warning" 
+      <!-- <p class="text-h6 mb-8 text-warning" 
          data-aos="fade-up" 
          data-aos-delay="200" 
          data-aos-duration="1000">
         From Germany 🇩🇪 to Syria 🇸🇾 soon
-      </p>
+      </p> -->
 
       <v-row justify="center" align="stretch" class="mt-6">
         <!-- Card 1 -->
@@ -190,7 +190,7 @@
         </v-col>
 
         <!-- Card 2 -->
-        <v-col cols="12" md="5">
+        <!-- <v-col cols="12" md="5">
           <v-card class="pa-10 text-center hover-scale" elevation="4" color="orange-lighten-4"
             data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
             <v-icon size="64" color="primary" class="mb-4">mdi-earth</v-icon>
@@ -199,7 +199,7 @@
               Our next step is expanding into Syria, bringing our expertise and smart solutions to new markets.
             </p>
           </v-card>
-        </v-col>
+        </v-col> -->
       </v-row>
     </v-container>
   </div>
