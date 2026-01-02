@@ -29,11 +29,15 @@ import vuetify from './plugins/vuetify'
 
 import echo from "./plugins/echo";
 
+import i18n from './plugins/i18n'
+
 // import {echo} from "./bootstrap";
 
 
 
 const app = createApp(App)
+
+app.use(i18n)
 
 // استخدم Pinia
 app.use(createPinia())

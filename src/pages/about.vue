@@ -2,7 +2,7 @@
 
 
 <template>
-   <v-skeleton-loader
+  <v-skeleton-loader
     v-if="servicesStore.loading"
     type="card, article, actions"
     class="mx-auto"
@@ -17,7 +17,7 @@
         data-aos="fade-down"
         data-aos-duration="800"
       >
-        <v-icon left class="mr-2">mdi-information-outline</v-icon> About Us
+        <v-icon left class="mr-2">mdi-information-outline</v-icon> {{ $t('about.chipAbout') }}
       </v-chip>
 
       <h1 
@@ -25,7 +25,7 @@
         data-aos="fade-up"
         data-aos-duration="1000"
       >
-        Vireolin Services – Maintenance & Development
+        {{ $t('about.mainTitle') }}
       </h1>
 
       <div
@@ -44,32 +44,31 @@
             data-aos="fade-down"
             data-aos-duration="800"
           >
-            <p>Our Story</p>
+            <p>{{ $t('about.ourStoryTitle') }}</p>
           </v-chip>
 
           <div class="vireolin-intro px-4 py-6">
-            <h2 class="text-h4 font-weight-bold mb-6 text-primary" data-aos="fade-up">Vireolin Services</h2>
+            <h2 class="text-h4 font-weight-bold mb-6 text-primary" data-aos="fade-up">{{ $t('about.ourStoryHeading') }}</h2>
             <p class="text-body-1 mb-5" data-aos="fade-up" data-aos-delay="100">
-              <strong>At Vireolin</strong>, we specialize in smart maintenance solutions that keep systems running smoothly and efficiently.
+              {{ $t('about.ourStoryPara1') }}
             </p>
             <p class="text-body-1 mb-5" data-aos="fade-up" data-aos-delay="200">
-              We deliver <strong>advanced technologies</strong> tailored to modern infrastructure needs.
+              {{ $t('about.ourStoryPara2') }}
             </p>
             <p class="text-body-1 mb-5" data-aos="fade-up" data-aos-delay="300">
-              Vireolin is currently based in <strong>Germany 🇩🇪</strong>
+              {{ $t('about.ourStoryPara3') }}
             </p>
           </div>
         </v-col>
 
         <v-col cols="12" md="7" class="d-flex align-center justify-center">
           <v-row align="stretch">
-            <!-- Cards with fade-right sequential -->
             <v-col cols="12" sm="6">
               <v-card elevation="2" class="pa-4 text-center h-100 hover-scale elevation-2"
                 data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                 <v-icon size="48" color="primary">mdi-calendar-star</v-icon>
                 <v-card-text class="text-h5 font-weight-bold">10+</v-card-text>
-                <p class="text-subtitle-1">Years of Experience</p>
+                <p class="text-subtitle-1">{{ $t('about.stats.experience') }}</p>
               </v-card>
             </v-col>
 
@@ -78,7 +77,7 @@
                 data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
                 <v-icon size="48" color="primary">mdi-star-circle</v-icon>
                 <v-card-text class="text-h5 font-weight-bold">95%</v-card-text>
-                <p class="text-subtitle-1">Customer Satisfaction</p>
+                <p class="text-subtitle-1">{{ $t('about.stats.satisfaction') }}</p>
               </v-card>
             </v-col>
 
@@ -87,7 +86,7 @@
                 data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
                 <v-icon size="48" color="primary">mdi-briefcase-check</v-icon>
                 <v-card-text class="text-h5 font-weight-bold">250+</v-card-text>
-                <p class="text-subtitle-1">Completed Projects</p>
+                <p class="text-subtitle-1">{{ $t('about.stats.projects') }}</p>
               </v-card>
             </v-col>
 
@@ -96,7 +95,7 @@
                 data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
                 <v-icon size="48" color="primary">mdi-account-group</v-icon>
                 <v-card-text class="text-h5 font-weight-bold">20+</v-card-text>
-                <p class="text-subtitle-1">Team Members</p>
+                <p class="text-subtitle-1">{{ $t('about.stats.team') }}</p>
               </v-card>
             </v-col>
           </v-row>
@@ -107,9 +106,9 @@
     <!-- Values & Vision -->
     <v-container fluid>
       <div class="text-center mt-5">
-        <p class="text-h3 text-primary font-weight-bold mb-5" data-aos="fade-up">Our Values & Vision</p>
+        <p class="text-h3 text-primary font-weight-bold mb-5" data-aos="fade-up">{{ $t('about.valuesVisionTitle') }}</p>
         <p class="text-text text-h6 mb-9" data-aos="fade-up" data-aos-delay="200">
-          We believe in excellence and innovation in everything we do
+          {{ $t('about.valuesVisionDesc') }}
         </p>
       </div>
 
@@ -118,9 +117,9 @@
           <v-card class="pa-6 text-center fixed-card h-100" elevation="2"
             data-aos="fade-right" data-aos-delay="100">
             <v-icon size="48" color="primary" class="mb-3">mdi-diamond-stone</v-icon>
-            <p class="text-h6 font-weight-bold mb-2">Our Values</p>
+            <p class="text-h6 font-weight-bold mb-2">{{ $t('about.cards.values.title') }}</p>
             <p class="text-body-2 text-primary card-text">
-              Luxury and sustainability, uncompromised quality, global standards.
+              {{ $t('about.cards.values.text') }}
             </p>
           </v-card>
         </v-col>
@@ -129,9 +128,9 @@
           <v-card class="pa-6 text-center fixed-card h-100" elevation="2"
             data-aos="fade-right" data-aos-delay="200">
             <v-icon size="48" color="primary" class="mb-3">mdi-eye</v-icon>
-            <p class="text-h6 font-weight-bold mb-2">Our Vision</p>
+            <p class="text-h6 font-weight-bold mb-2">{{ $t('about.cards.vision.title') }}</p>
             <p class="text-body-2 text-primary card-text">
-              Contribute to rebuilding Syria, lead in development, inspire progress.
+              {{ $t('about.cards.vision.text') }}
             </p>
           </v-card>
         </v-col>
@@ -140,9 +139,9 @@
           <v-card class="pa-6 text-center fixed-card h-100" elevation="2"
             data-aos="fade-right" data-aos-delay="300">
             <v-icon size="48" color="primary" class="mb-3">mdi-target</v-icon>
-            <p class="text-h6 font-weight-bold mb-2">Our Mission</p>
+            <p class="text-h6 font-weight-bold mb-2">{{ $t('about.cards.mission.title') }}</p>
             <p class="text-body-2 text-primary card-text">
-              Deliver innovative solutions, highest quality standards, sustainable growth.
+              {{ $t('about.cards.mission.text') }}
             </p>
           </v-card>
         </v-col>
@@ -151,9 +150,9 @@
           <v-card class="pa-6 text-center fixed-card h-100" elevation="2"
             data-aos="fade-right" data-aos-delay="400">
             <v-icon size="48" color="primary" class="mb-3">mdi-office-building</v-icon>
-            <p class="text-h6 font-weight-bold mb-2">Real Estate Development</p>
+            <p class="text-h6 font-weight-bold mb-2">{{ $t('about.cards.realEstate.title') }}</p>
             <p class="text-body-2 text-primary card-text">
-              Comprehensive projects, luxury and quality, global standards.
+              {{ $t('about.cards.realEstate.text') }}
             </p>
           </v-card>
         </v-col>
@@ -161,49 +160,29 @@
     </v-container>
 
     <!-- Locations -->
-       <!-- Locations -->
     <v-container fluid class="py-12 text-center" color="orange-lighten-5">
       <h2 class="text-h3 font-weight-bold mb-2 text-primary" 
           data-aos="fade-up" 
           data-aos-duration="1000">
-        Our Locations
+        {{ $t('about.locationsTitle') }}
       </h2>
 
-      <!-- <p class="text-h6 mb-8 text-warning" 
-         data-aos="fade-up" 
-         data-aos-delay="200" 
-         data-aos-duration="1000">
-        From Germany 🇩🇪 to Syria 🇸🇾 soon
-      </p> -->
-
       <v-row justify="center" align="stretch" class="mt-6">
-        <!-- Card 1 -->
         <v-col cols="12" md="5">
           <v-card class="pa-10 text-center hover-scale" elevation="4" color="orange-lighten-4"
             data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
             <v-icon size="64" color="primary" class="mb-4">mdi-city</v-icon>
-            <h3 class="text-h5 font-weight-bold mb-2">Germany – Hamburg</h3>
+            <h3 class="text-h5 font-weight-bold mb-2">{{ $t('about.location1Title') }}</h3>
             <p class="text-body-1">
-              Our current headquarters where we started delivering innovative services and technologies.
+              {{ $t('about.location1Desc') }}
             </p>
           </v-card>
         </v-col>
-
-        <!-- Card 2 -->
-        <!-- <v-col cols="12" md="5">
-          <v-card class="pa-10 text-center hover-scale" elevation="4" color="orange-lighten-4"
-            data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-            <v-icon size="64" color="primary" class="mb-4">mdi-earth</v-icon>
-            <h3 class="text-h5 font-weight-bold mb-2">Coming Soon – Syria</h3>
-            <p class="text-body-1">
-              Our next step is expanding into Syria, bringing our expertise and smart solutions to new markets.
-            </p>
-          </v-card>
-        </v-col> -->
       </v-row>
     </v-container>
   </div>
 </template>
+
 
 <script>
 import { useServicesStore } from '@/store/servicesData'

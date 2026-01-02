@@ -1,234 +1,209 @@
 <template>
   <v-container>
-   <div class="d-flex align-center mb-4">
-  <v-select
-    v-model="selectedFilter"
-    :items="filterOptions"
-    label="Filter messages"
-    variant="outlined"
-    density="comfortable"
-    class="flex-grow-1 mt-10"
-    :disabled="contactStore.loading"
-    :footer-props="{
-    'items-per-page-options': [10, 25, 50]
-  }"
-    @update:modelValue="applyFilter"
-  />
-</div>
+    <div class="d-flex align-center mb-4">
+      <v-select
+        v-model="selectedFilter"
+        :items="filterOptions"
+        :label="$t('ourMessages.filter')"
+        variant="outlined"
+        density="comfortable"
+        class="flex-grow-1 mt-10"
+        :disabled="contactStore.loading"
+        :footer-props="{
+          'items-per-page-options': [10, 25, 50]
+        }"
+        @update:modelValue="applyFilter"
+      />
+    </div>
 
+    <h2 class="text-h5 font-weight-bold mb-4">📩 {{ $t('ourMessages.title') }}</h2>
 
-
-    <h2 class="text-h5 font-weight-bold mb-4">📩  Members Messages</h2>
-
- <v-data-table
-  :headers="headers"
-  :items="contactStore.messages"
-  :loading="contactStore.loading"
-  v-model:page="contactStore.pagination.page"
-   :items-per-page="contactStore.pagination.perPage"
-  :server-items-length="contactStore.pagination.total"
-  class="elevation-2 rounded-lg"
-  density="comfortable"
-  hover
-  :footer-props="{ 'items-per-page-options': [10, 25, 50] }"
-  @update:page="onPageUpdate"
-  @update:items-per-page="onPerPageUpdate"
->
-  <!-- الاسم -->
-  <template v-slot:item.user_name="{ item }">
-    <v-chip color="blue lighten-2" text-color="white" class="ma-1" size="small">
-      <v-icon start small>mdi-account</v-icon>
-      {{ item.user_name }}
-    </v-chip>
-  </template>
-
-  <!-- الإيميل -->
-  <template v-slot:item.email="{ item }">
-    <v-chip color="text " text-color="white" class="ma-1" size="small">
-      <v-icon start small>mdi-email</v-icon>
-      {{ item.email }}
-    </v-chip>
-  </template>
-
-  <!-- الرقم -->
-  <template v-slot:item.phone_number="{ item }">
-    <v-chip color="teal lighten-2" text-color="white" class="ma-1" size="small">
-      <v-icon start small>mdi-phone</v-icon>
-      {{ item.phone_number }}
-    </v-chip>
-  </template>
-
-  <!-- حالة القراءة -->
-  <template v-slot:item.is_read="{ item }">
-    <v-chip
-      :color="item.is_read ? 'green' : 'red'"
-      text-color="white"
-      class="ma-1"
-      size="small"
+    <v-data-table
+      :headers="headers"
+      :items="contactStore.messages"
+      :loading="contactStore.loading"
+      v-model:page="contactStore.pagination.page"
+      :items-per-page="contactStore.pagination.perPage"
+      :server-items-length="contactStore.pagination.total"
+      class="elevation-2 rounded-lg"
+      density="comfortable"
+      hover
+      :footer-props="{ 'items-per-page-options': [10, 25, 50] }"
+      @update:page="onPageUpdate"
+      @update:items-per-page="onPerPageUpdate"
     >
-      <v-icon start small>
-        {{ item.is_read ? 'mdi-check-circle' : 'mdi-email-alert' }}
-      </v-icon>
-      {{ item.is_read ? 'Read' : 'Unread' }}
-    </v-chip>
-  </template>
-
-  <!-- الأكشنز -->
-  <template v-slot:item.actions="{ item }">
-    <v-tooltip text="View Details" location="top">
-      <template v-slot:activator="{ props }">
-        <v-icon
-          v-bind="props"
-          color="primary"
-          class="cursor-pointer mr-2"
-          @click="openDialog(item.id)"
-        >
-          mdi-eye
-        </v-icon>
+      <!-- Name -->
+      <template v-slot:item.user_name="{ item }">
+        <v-chip color="blue lighten-2" text-color="white" class="ma-1" size="small">
+          <v-icon start small>mdi-account</v-icon>
+          {{ item.user_name }}
+        </v-chip>
       </template>
-    </v-tooltip>
 
-    <v-tooltip text="Delete Message" location="top">
-      <template v-slot:activator="{ props }">
-        <v-icon
-          v-bind="props"
-          color="red"
-          class="cursor-pointer"
-          @click="openDeleteDialog(item)"
-        >
-          mdi-delete
-        </v-icon>
+      <!-- Email -->
+      <template v-slot:item.email="{ item }">
+        <v-chip color="text" text-color="white" class="ma-1" size="small">
+          <v-icon start small>mdi-email</v-icon>
+          {{ item.email }}
+        </v-chip>
       </template>
-    </v-tooltip>
-  </template>
-</v-data-table>
 
+      <!-- Phone -->
+      <template v-slot:item.phone_number="{ item }">
+        <v-chip color="teal lighten-2" text-color="white" class="ma-1" size="small">
+          <v-icon start small>mdi-phone</v-icon>
+          {{ item.phone_number }}
+        </v-chip>
+      </template>
 
+      <!-- Read Status -->
+      <template v-slot:item.is_read="{ item }">
+        <v-chip
+          :color="item.is_read ? 'green' : 'red'"
+          text-color="white"
+          class="ma-1"
+          size="small"
+        >
+          <v-icon start small>
+            {{ item.is_read ? 'mdi-check-circle' : 'mdi-email-alert' }}
+          </v-icon>
+          {{ item.is_read ? $t('ourMessages.read') : $t('ourMessages.unread') }}
+        </v-chip>
+      </template>
 
+      <!-- Actions -->
+      <template v-slot:item.actions="{ item }">
+        <v-tooltip :text="$t('ourMessages.viewDetails')" location="top">
+          <template v-slot:activator="{ props }">
+            <v-icon
+              v-bind="props"
+              color="primary"
+              class="cursor-pointer mr-2"
+              @click="openDialog(item.id)"
+            >
+              mdi-eye
+            </v-icon>
+          </template>
+        </v-tooltip>
 
-     <div v-if="contactStore.loading" class="text-center py-6">
-  <v-progress-circular indeterminate color="primary"></v-progress-circular>
-  <p class="mt-2">Loading messages...</p>
-</div>
+        <v-tooltip :text="$t('ourMessages.deleteMessage')" location="top">
+          <template v-slot:activator="{ props }">
+            <v-icon
+              v-bind="props"
+              color="red"
+              class="cursor-pointer"
+              @click="openDeleteDialog(item)"
+            >
+              mdi-delete
+            </v-icon>
+          </template>
+        </v-tooltip>
+      </template>
+    </v-data-table>
 
-<!-- خطأ -->
-<v-alert
-  v-else-if="contactStore.errorMessage"
-  type="error"
-  variant="tonal"
-  class="mb-4"
->
-  {{ contactStore.errorMessage }}
-</v-alert>
+    <!-- Loading -->
+    <div v-if="contactStore.loading" class="text-center py-6">
+      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+      <p class="mt-2">{{ $t('ourMessages.loading') }}</p>
+    </div>
 
-<!-- بدون بيانات -->
-<!-- <div v-else-if="!selectedMessage" class="text-center py-6 text-grey">
-  <v-icon size="40" color="grey">mdi-information-outline</v-icon>
-  <p>No message details available.</p>
-</div> -->
+    <!-- Error -->
+    <v-alert v-else-if="contactStore.errorMessage" type="error" variant="tonal" class="mb-4">
+      {{ contactStore.errorMessage }}
+    </v-alert>
 
-<!-- تفاصيل الرسالة -->
-<div v-else>
- <v-dialog v-model="dialog" max-width="600px" transition="dialog-bottom-transition">
-  <v-card class="rounded-lg elevation-3">
-    <!-- العنوان -->
-    <v-card-title class="text-h6 font-weight-bold d-flex align-center">
-      <v-icon start color="primary">mdi-email</v-icon>
-      Message Details
-    </v-card-title>
+    <!-- Message Details Dialog -->
+    <div v-else>
+      <v-dialog v-model="dialog" max-width="600px" transition="dialog-bottom-transition">
+        <v-card class="rounded-lg elevation-3">
+          <v-card-title class="text-h6 font-weight-bold d-flex align-center">
+            <v-icon start color="primary">mdi-email</v-icon>
+            {{ $t('ourMessages.dialog.title') }}
+          </v-card-title>
 
-    <!-- المحتوى -->
-    <v-card-text class="text-body-1">
-      <v-list density="compact">
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="primary">mdi-identifier</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title><strong>ID:</strong> {{ contactStore.selectedMessage.id }}</v-list-item-title>
-        </v-list-item>
+          <v-card-text class="text-body-1">
+            <v-list density="compact">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="primary">mdi-identifier</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  <strong>{{ $t('ourMessages.dialog.id') }}:</strong> {{ contactStore.selectedMessage.id }}
+                </v-list-item-title>
+              </v-list-item>
 
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="secondary">mdi-message-text</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title><strong>Message:</strong> {{ contactStore.selectedMessage.message }}</v-list-item-title>
-        </v-list-item>
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="secondary">mdi-message-text</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  <strong>{{ $t('ourMessages.dialog.message') }}:</strong> {{ contactStore.selectedMessage.message }}
+                </v-list-item-title>
+              </v-list-item>
 
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="success">mdi-calendar-plus</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title><strong>Created At:</strong> {{ new Date(contactStore.selectedMessage.created_at).toLocaleString() }}</v-list-item-title>
-        </v-list-item>
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="success">mdi-calendar-plus</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  <strong>{{ $t('ourMessages.dialog.createdAt') }}:</strong>
+                  {{ new Date(contactStore.selectedMessage.created_at).toLocaleString() }}
+                </v-list-item-title>
+              </v-list-item>
 
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="warning">mdi-calendar-edit</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title><strong>Updated At:</strong>    {{ new Date(contactStore.selectedMessage.updated_at).toLocaleString() }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-card-text>
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="warning">mdi-calendar-edit</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  <strong>{{ $t('ourMessages.dialog.updatedAt') }}:</strong>
+                  {{ new Date(contactStore.selectedMessage.updated_at).toLocaleString() }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-card-text>
 
-    <!-- الأزرار -->
-    <v-card-actions class="justify-end">
-      <v-btn color="grey" variant="tonal" @click="dialog = false">
-        <v-icon start>mdi-close</v-icon>
-        Close
-      </v-btn>
-    </v-card-actions>
-  </v-card>
-</v-dialog>
+          <v-card-actions class="justify-end">
+            <v-btn color="grey" variant="tonal" @click="dialog = false">
+              <v-icon start>mdi-close</v-icon>
+              {{ $t('ourMessages.dialog.close') }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
 
-</div>
+    <!-- Delete Dialog -->
+    <v-dialog v-model="showDeleteDialog" max-width="500">
+      <v-card>
+        <v-card-title class="text-h5 font-weight-bold">
+          <v-icon start color="red">mdi-delete</v-icon>
+          {{ $t('ourMessages.deleteDialog.title') }}
+        </v-card-title>
 
-      
+        <v-card-text class="text-body-1">
+          {{ $t('ourMessages.deleteDialog.message') }}
+          <br>
+          <span class="text-caption text-red">{{ $t('ourMessages.deleteDialog.warning') }}</span>
+        </v-card-text>
+
+        <v-card-actions class="justify-end">
+          <v-btn text color="grey" @click="closeDeleteDialog">{{ $t('ourMessages.deleteDialog.no') }}</v-btn>
+          <v-btn color="red" :loading="loadingDelete" @click="confirmDelete">
+            {{ $t('ourMessages.deleteDialog.yes') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <!-- Snackbar -->
+    <v-snackbar v-model="showSnackbar" timeout="3000" :color="snackbarColor" location="bottom right">
+      <v-icon start>mdi-information</v-icon>
+      {{ snackbarMessage }}
+    </v-snackbar>
   </v-container>
-
-  <v-dialog v-model="showDeleteDialog" max-width="500">
-  <v-card>
-    <v-card-title class="text-h5 font-weight-bold">
-      <v-icon start color="red">mdi-delete</v-icon>
-      Delete Booking
-    </v-card-title>
-
-    <v-card-text class="text-body-1">
-      Are you sure you want to permanently delete this booking? 
-      <br>
-      <span class="text-caption text-red">This action cannot be undone.</span>
-    </v-card-text>
-
-    <v-card-actions class="justify-end">
-      <v-btn text color="grey" @click="closeDeleteDialog">
-        No
-      </v-btn>
-      <v-btn
-        color="red"
-        :loading="loadingDelete"
-        @click="confirmDelete"
-      >
-        Yes, Delete
-      </v-btn>
-    </v-card-actions>
-  </v-card>
-</v-dialog>
-
-
-<!-- snackbar -->
-
-<v-snackbar
-  v-model="showSnackbar"
-  timeout="3000"
-  :color="snackbarColor"
-  location="bottom right"
->
-  <v-icon start>mdi-information</v-icon>
-  {{ snackbarMessage }}
-</v-snackbar>
-
-
-  
 </template>
+
 
 <script>
 import { useContactStore } from '@/store/contact'

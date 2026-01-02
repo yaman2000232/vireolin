@@ -7,9 +7,7 @@
 
           <!-- Title + Go to Update Profile -->
           <v-card-title class="d-flex justify-space-between align-center">
-            <span class="text-h5 font-weight-bold">Create Account</span>
-
-           
+            <span class="text-h5 font-weight-bold">{{ $t('register.title') }}</span>
           </v-card-title>
 
           <v-divider class="my-4"></v-divider>
@@ -17,67 +15,67 @@
           <v-card-text>
             <v-form ref="form" v-model="isValid" @submit.prevent="handleRegister">
 
+              <v-text-field
+                v-model="name"
+                :label="$t('register.fields.name')"
+                prepend-inner-icon="mdi-account"
+                :rules="[rules.required]"
+                variant="outlined"
+                class="mb-3"
+                required
+                :error-messages="fieldErrors?.name"
+              />
 
-  <v-text-field
-    v-model="name"
-    label="Organization Name"
-    prepend-inner-icon="mdi-account"
-    :rules="[rules.required]"
-    variant="outlined"
-    class="mb-3"
-    required
-    :error-messages="fieldErrors?.name"
-  />
+              <v-text-field
+                v-model="email"
+                :label="$t('register.fields.email')"
+                prepend-inner-icon="mdi-email"
+                type="email"
+                :rules="[rules.required, rules.email]"
+                variant="outlined"
+                class="mb-3"
+                required
+                :error-messages="fieldErrors?.email"
+              />
 
-  <v-text-field
-    v-model="email"
-    label="Email"
-    prepend-inner-icon="mdi-email"
-    type="email"
-    :rules="[rules.required, rules.email]"
-    variant="outlined"
-    class="mb-3"
-    required
-    :error-messages="fieldErrors?.email"
-  />
+              <v-text-field
+                v-model="phone_number"
+                :label="$t('register.fields.phone')"
+                prepend-inner-icon="mdi-phone"
+                type="tel"
+                :rules="[rules.required]"
+                variant="outlined"
+                class="mb-3"
+                required
+                :error-messages="fieldErrors?.phone_number"
+              />
 
-  <v-text-field
-    v-model="phone_number"
-    label="Phone Number"
-    prepend-inner-icon="mdi-phone"
-    type="tel"
-    :rules="[rules.required]"
-    variant="outlined"
-    class="mb-3"
-    required
-    :error-messages="fieldErrors?.phone_number"
-  />
+              <v-text-field
+                v-model="password"
+                :type="showPassword ? 'text' : 'password'"
+                :label="$t('register.fields.password')"
+                prepend-inner-icon="mdi-lock"
+                :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+                @click:append-inner="showPassword = !showPassword"
+                variant="outlined"
+                class="mb-3"
+                required
+                :error-messages="fieldErrors?.password"
+              />
 
-  <v-text-field
-    v-model="password"
-    :type="showPassword ? 'text' : 'password'"
-    label="Password"
-    prepend-inner-icon="mdi-lock"
-    :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-    @click:append-inner="showPassword = !showPassword"
-    variant="outlined"
-    class="mb-3"
-    required
-    :error-messages="fieldErrors?.password"
-  />
+              <v-text-field
+                v-model="password_confirmation"
+                :type="showPassword1 ? 'text' : 'password'"
+                :label="$t('register.fields.password_confirmation')"
+                prepend-inner-icon="mdi-lock"
+                :append-inner-icon="showPassword1 ? 'mdi-eye-off' : 'mdi-eye'"
+                @click:append-inner="showPassword1 = !showPassword1"
+                variant="outlined"
+                class="mb-4"
+                required
+                :error-messages="fieldErrors?.password_confirmation"
+              />
 
-  <v-text-field
-    v-model="password_confirmation"
-    :type="showPassword1 ? 'text' : 'password'"
-    label="Confirm Password"
-    prepend-inner-icon="mdi-lock"
-    :append-inner-icon="showPassword1 ? 'mdi-eye-off' : 'mdi-eye'"
-    @click:append-inner="showPassword1 = !showPassword1"
-    variant="outlined"
-    class="mb-4"
-    required
-    :error-messages="fieldErrors?.password_confirmation"
-  />
               <v-btn
                 type="submit"
                 block
@@ -93,12 +91,13 @@
                   color="white"
                   class="mr-2"
                 />
-                Register
+                {{ $t('register.registerButton') }}
               </v-btn>
 
               <div class="text-center mt-4">
                 <v-btn variant="text" @click="goToLogin">
-                  Already have an account? <b class="text-primary ms-1">Login</b>
+                  {{ $t('register.alreadyAccount') }}
+                  <b class="text-primary ms-1">{{ $t('register.login') }}</b>
                 </v-btn>
               </div>
 
@@ -108,7 +107,7 @@
           <v-snackbar v-model="snackbar.show" :color="snackbar.color" timeout="4000" location="top">
             {{ snackbar.text }}
             <template #actions>
-              <v-btn text @click="snackbar.show = false">Close</v-btn>
+              <v-btn text @click="snackbar.show = false">{{ $t('register.snackbar.close') }}</v-btn>
             </template>
           </v-snackbar>
 
@@ -118,7 +117,6 @@
     </v-row>
   </v-container>
 </template>
-
 
 <script>
 import { useAuthStore } from "@/store/auth";

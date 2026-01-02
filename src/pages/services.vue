@@ -18,21 +18,17 @@
             class="d-flex flex-column justify-center align-center pa-8 text-center"
             color="grey-lighten-4"
           >
-            <div
-              class="px-4 py-2 rounded-pill bg-surface text-primary text-subtitle-2 font-weight-medium mb-4"
-            >
-              Our Distinguished Services
-            </div>
+           <div class="px-4 py-2 rounded-pill bg-surface text-primary text-subtitle-2 font-weight-medium mb-4 elevation-2">
+        {{ $t('home.services.subtitle') }}
+      </div>
 
-            <div class="text-h2 font-weight-bold text-primary mb-4">
-              Our Services
-            </div>
+      <div class="text-h2 font-weight-bold text-primary mb-4">
+        {{ $t('home.services.title') }}
+      </div>
 
-            <div class="text-body-1 text-secondary mb-6">
-             We offer complete project impelemetion,consulting and Modernization with innovative technologiesand sustainable solutions .
-       The offive specialize in Comprehensive technical planning, Maintenance, development,Implementation,TechnologyTrasfer and supervision of Industrial
-       ,medical, commercial and building systems.
-            </div>
+      <div class="text-body-1 text-secondary mb-6">
+        {{ $t('home.services.description') }}
+      </div>
 
             <div
               style="
@@ -92,19 +88,22 @@
             </p>
 
             <!-- مثال على تفاصيل إضافية -->
-            <div class="mb-6 pa-4 rounded-lg bg-surface">
-              <h3 class="text-subtitle-1 font-weight-bold text-primary mb-4">
-                Our Features
-              </h3>
-              <div class="d-flex align-center mb-2">
-                <v-icon color="green-darken-2" class="mr-2">mdi-check-circle</v-icon>
-                <span>24/7 Emergency Support</span>
-              </div>
-              <div class="d-flex align-center mb-2">
-                <v-icon color="green-darken-2" class="mr-2">mdi-check-circle</v-icon>
-                <span>Certified Engineers</span>
-              </div>
-            </div>
+           <div class="mb-6 pa-4 rounded-lg bg-surface">
+  <h3 class="text-subtitle-1 font-weight-bold text-primary mb-4">
+    {{ $t('home.features.title') }}
+  </h3>
+
+  <div class="d-flex align-center mb-2">
+    <v-icon color="green-darken-2" class="mr-2">mdi-check-circle</v-icon>
+    <span>{{ $t('home.features.items.0') }}</span>
+  </div>
+
+  <div class="d-flex align-center mb-2">
+    <v-icon color="green-darken-2" class="mr-2">mdi-check-circle</v-icon>
+    <span>{{ $t('home.features.items.1') }}</span>
+  </div>
+</div>
+
           </v-col>
 
           <!-- Divider بين كل خدمة -->
@@ -123,43 +122,43 @@
 
       <!-- Training Section -->
       <v-container fluid class="py-10 ">
-        <v-row justify="center">
-          <v-col cols="12" md="8" class="text-center" 
-           data-aos="zoom-out"
-            data-aos-duration="1000"
-            data-aos-delay="200">
-            <!-- Title -->
-            <h2 class="text-h4 text-primary font-weight-bold mb-6">
-              Our Office Provides High-Quality Training & Qualification
-            </h2>
+      <v-row justify="center">
+  <v-col cols="12" md="8" class="text-center" 
+         data-aos="zoom-out"
+         data-aos-duration="1000"
+         data-aos-delay="200">
+    <!-- Title -->
+    <h2 class="text-h4 text-primary font-weight-bold mb-6">
+      {{ $t('home.training.title') }}
+    </h2>
 
-            <!-- Image placeholder -->
-            <v-img
-              :src="training"
-              alt="Training & Development"
-              height="400"
-              class="mb-6 hover-scale"
-              cover
-            ></v-img>
+    <!-- Image -->
+    <v-img
+      :src="training"
+      alt="Training & Development"
+      height="400"
+      class="mb-6 hover-scale"
+      cover
+    ></v-img>
 
-            <!-- Description -->
-            <p class="text-body-1 text-grey-darken mb-6 font-italic">
-              We deliver professional training and qualification programs designed to enhance technical skills,
-              improve safety standards, and ensure long-term excellence for both individuals and organizations.
-            </p>
+    <!-- Description -->
+    <p class="text-body-1 text-grey-darken mb-6 font-italic">
+      {{ $t('home.training.description') }}
+    </p>
 
-            <!-- Decorative line -->
-            <div
-              style="
-                height: 4px;
-                width: 80px;
-                border-radius: 2px;
-                background: linear-gradient(to right, #FFCC80, #EF7444);
-                margin: 0 auto;
-              "
-            ></div>
-          </v-col>
-        </v-row>
+    <!-- Decorative line -->
+    <div
+      style="
+        height: 4px;
+        width: 80px;
+        border-radius: 2px;
+        background: linear-gradient(to right, #FFCC80, #EF7444);
+        margin: 0 auto;
+      "
+    ></div>
+  </v-col>
+</v-row>
+
       </v-container>
     </v-container>
   </div>

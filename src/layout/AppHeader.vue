@@ -18,20 +18,21 @@
     </v-toolbar-title>
 
     <!-- Desktop Links -->
-    <div class="d-none d-md-flex justify-center align-center links-center">
-      <v-btn variant="plain" :ripple="false" to="/" text>
-        <span class="nav-link">Home</span>
-      </v-btn>
-      <v-btn variant="plain" :ripple="false" to="/services" text>
-        <span class="nav-link">Services</span>
-      </v-btn>
-      <v-btn variant="plain" :ripple="false" to="/contact" text>
-        <span class="nav-link">Contact</span>
-      </v-btn>
-      <v-btn variant="plain" :ripple="false" to="/about" text>
-        <span class="nav-link">About Us</span>
-      </v-btn>
-    </div>
+   <div class="d-none d-md-flex justify-center align-center links-center">
+  <v-btn variant="plain" :ripple="false" to="/" text>
+    <span class="nav-link">{{ $t('nav.home') }}</span>
+  </v-btn>
+  <v-btn variant="plain" :ripple="false" to="/services" text>
+    <span class="nav-link">{{ $t('nav.services') }}</span>
+  </v-btn>
+  <v-btn variant="plain" :ripple="false" to="/contact" text>
+    <span class="nav-link">{{ $t('nav.contact') }}</span>
+  </v-btn>
+  <v-btn variant="plain" :ripple="false" to="/about" text>
+    <span class="nav-link">{{ $t('nav.about') }}</span>
+  </v-btn>
+</div>
+
 
     <!-- Theme switch -->
     <v-btn
@@ -47,32 +48,46 @@
       </v-icon>
     </v-btn>
 
-    <!-- Role-based buttons -->
-    <div class="d-none d-md-flex" v-if="authStore.role === 'customer'">
-      <v-btn
-        color="primary"
-        variant="text"
-        size="small"
-        class="font-weight-bold text-capitalize"
-        to="/myrequest"
-      >
-        <v-icon start size="18">mdi-format-list-bulleted</v-icon>
-        My Requests
-      </v-btn>
-    </div>
+     <!-- Language Switcher -->
+    <v-select
+      v-model="currentLocale"
+      :items="locales"
+      item-title="label"
+      item-value="code"
+      dense
+      outlined
+      hide-details
+      style="max-width: 120px"
+      @update:modelValue="changeLanguage"
+    />
 
-    <div class="d-none d-md-flex" v-if="authStore.role === 'admin'">
-      <v-btn
-        color="primary"
-        variant="text"
-        size="small"
-        class="font-weight-bold text-capitalize"
-        to="/ourrequest"
-      >
-        <v-icon start size="18">mdi-format-list-bulleted</v-icon>
-        Manage Requests
-      </v-btn>
-    </div>
+    <!-- Role-based buttons -->
+  <div class="d-none d-md-flex" v-if="authStore.role === 'customer'">
+  <v-btn
+    color="primary"
+    variant="text"
+    size="small"
+    class="font-weight-bold text-capitalize"
+    to="/myrequest"
+  >
+    <v-icon start size="18">mdi-format-list-bulleted</v-icon>
+    {{ $t('buttons.myRequests') }}
+  </v-btn>
+</div>
+
+<div class="d-none d-md-flex" v-if="authStore.role === 'admin'">
+  <v-btn
+    color="primary"
+    variant="text"
+    size="small"
+    class="font-weight-bold text-capitalize"
+    to="/ourrequest"
+  >
+    <v-icon start size="18">mdi-format-list-bulleted</v-icon>
+    {{ $t('buttons.manageRequests') }}
+  </v-btn>
+</div>
+
 
     <!-- Login Button -->
    <!-- إذا المستخدم غير مسجّل دخول → Login -->
@@ -83,8 +98,9 @@
   prepend-icon="mdi-login"
   to="/login"
 >
-  Login
+  {{ $t('buttons.login') }}
 </v-btn>
+
 
 <!-- إذا المستخدم مسجّل دخول → أيقونة الحساب -->
 <v-menu v-else>
@@ -101,84 +117,85 @@
   <v-list>
     <v-list-item to="/change-password">
       <v-icon start>mdi-key-change</v-icon>
-      Change Password
+      {{ $t('account.changePassword') }}
     </v-list-item>
+    
     <v-list-item to="/update-profile">
       <v-icon start>mdi-account-edit</v-icon>
-      Update Account
+      {{ $t('account.updateAccount') }}
     </v-list-item>
 
     <v-list-item @click="logout">
       <v-icon start>mdi-logout</v-icon>
-      Logout
+      {{ $t('account.logout') }}
     </v-list-item>
   </v-list>
 </v-menu>
 
-
-    <!-- Mobile Menu -->
-    <v-menu v-model="menu" offset-y transition="slide-y-transition">
-      <template #activator="{ props }">
-        <v-btn icon v-bind="props" class="d-md-none overflow-hidden">
-          <v-icon>mdi-menu</v-icon>
-        </v-btn>
-      </template>
-
-      <v-list>
-        <v-list-item to="/" @click="menu = false">Home</v-list-item>
-        <v-list-item to="/services" @click="menu = false">Services</v-list-item>
-        <v-list-item to="/contact" @click="menu = false">Contact</v-list-item>
-        <v-list-item to="/about" @click="menu = false">About Us</v-list-item>
-
-        <template v-if="authStore.role === 'customer'">
-          <v-list-item to="/myrequest" @click="menu = false">
-            <v-icon start>mdi-format-list-bulleted</v-icon>
-            My Requests
-          </v-list-item>
-        </template>
-
-        <template v-if="authStore.role === 'admin'">
-          <v-list-item to="/ourrequest" @click="menu = false">
-            <v-icon start>mdi-format-list-bulleted</v-icon>
-            Manage Requests
-          </v-list-item>
-        </template>
-
-       <!-- إذا المستخدم غير مسجّل دخول → Login -->
-<v-list-item
-  v-if="!authStore.token"
-  to="/login"
-  @click="menu = false"
->
-  <v-icon start>mdi-login</v-icon>
-  Login
-</v-list-item>
-
-<!-- إذا المستخدم مسجّل دخول → قائمة الحساب -->
-<v-menu offset-y transition="slide-y-transition" v-if="authStore.token" class="d-md-none">
+  <!-- Mobile Menu -->
+<v-menu v-model="menu" offset-y transition="slide-y-transition">
   <template #activator="{ props }">
-    <v-btn icon v-bind="props">
-      <v-icon size="30">mdi-account-circle</v-icon>
+    <v-btn icon v-bind="props" class="d-md-none overflow-hidden">
+      <v-icon>mdi-menu</v-icon>
     </v-btn>
   </template>
 
   <v-list>
-    <v-list-item to="/change-password" @click="menu = false">
-      <v-icon start>mdi-key-change</v-icon>
-      Change Password
+    <v-list-item to="/" @click="menu = false">{{ $t('nav.home') }}</v-list-item>
+    <v-list-item to="/services" @click="menu = false">{{ $t('nav.services') }}</v-list-item>
+    <v-list-item to="/contact" @click="menu = false">{{ $t('nav.contact') }}</v-list-item>
+    <v-list-item to="/about" @click="menu = false">{{ $t('nav.about') }}</v-list-item>
+
+    <template v-if="authStore.role === 'customer'">
+      <v-list-item to="/myrequest" @click="menu = false">
+        <v-icon start>mdi-format-list-bulleted</v-icon>
+        {{ $t('buttons.myRequests') }}
+      </v-list-item>
+    </template>
+
+    <template v-if="authStore.role === 'admin'">
+      <v-list-item to="/ourrequest" @click="menu = false">
+        <v-icon start>mdi-format-list-bulleted</v-icon>
+        {{ $t('buttons.manageRequests') }}
+      </v-list-item>
+    </template>
+
+    <!-- إذا المستخدم غير مسجّل دخول → Login -->
+    <v-list-item
+      v-if="!authStore.token"
+      to="/login"
+      @click="menu = false"
+    >
+      <v-icon start>mdi-login</v-icon>
+      {{ $t('buttons.login') }}
     </v-list-item>
-    <v-list-item to="/update-profile" @click="menu = false">
-      <v-icon start>mdi-account-edit</v-icon>
-      Update Account
-    </v-list-item>
-    <v-list-item @click="logout">
-      <v-icon start>mdi-logout</v-icon>
-      Logout
-    </v-list-item>
-  </v-list>
-</v-menu>
+
+    <!-- إذا المستخدم مسجّل دخول → قائمة الحساب -->
+    <v-menu offset-y transition="slide-y-transition" v-if="authStore.token" class="d-md-none">
+      <template #activator="{ props }">
+        <v-btn icon v-bind="props">
+          <v-icon size="30">mdi-account-circle</v-icon>
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item to="/change-password" @click="menu = false">
+          <v-icon start>mdi-key-change</v-icon>
+          {{ $t('account.changePassword') }}
+        </v-list-item>
+        <v-list-item to="/update-profile" @click="menu = false">
+          <v-icon start>mdi-account-edit</v-icon>
+          {{ $t('account.updateAccount') }}
+        </v-list-item>
+        <v-list-item @click="logout">
+          <v-icon start>mdi-logout</v-icon>
+          {{ $t('account.logout') }}
+        </v-list-item>
       </v-list>
     </v-menu>
+  </v-list>
+</v-menu>
+
   </v-app-bar>
 </template>
 
@@ -190,6 +207,13 @@ export default {
   name: 'AppHeader',
   data() {
     return {
+
+         locales: [
+        { code: 'en', label: 'English' },
+        { code: 'ar', label: 'العربية' },
+        { code: 'de', label: 'Deutsch' }
+      ],
+      currentLocale: this.$i18n.locale, // يبدأ باللغة الحالية
       menu: false,
       isScrolled: false,
       vireolin
@@ -201,6 +225,17 @@ export default {
     }
   },
   methods: {
+ changeLanguage(newLocale) {
+      this.$i18n.locale = newLocale
+
+      // ضبط اتجاه النصوص حسب اللغة
+      if (newLocale === 'ar') {
+        document.dir = 'rtl'
+      } else {
+        document.dir = 'ltr'
+      }
+    },
+
     handleScroll() {
       this.isScrolled = window.scrollY > 0
     },

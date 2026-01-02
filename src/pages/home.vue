@@ -18,7 +18,7 @@
 
 
 
-     <v-sheet
+    <v-sheet
   class="d-flex flex-column justify-center align-center text-center hero-section position-relative mb-5 bg-animate"
   height="90vh"
   :style="{
@@ -34,27 +34,28 @@
   ></div>
 
   <div class="position-relative" style="z-index: 1;">
-<div 
-  class="text-h2 font-weight-bold mb-6 text-primary"
-  data-aos="fade-up"
-  data-aos-duration="1000"
-  data-aos-delay="200"
->
- Engineering perfiction & Service Management
-</div>
-
-
-    <div class="text-subtitle-1 mb-8 text-grey"
-     data-aos="fade-up"
-  data-aos-duration="1000"
-  data-aos-delay="600">
-      <b>Engineering for us: the art of managing resources safely and economically,and providing creative solutions.</b>
+    <div 
+      class="text-h2 font-weight-bold mb-6 text-primary"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-delay="200"
+    >
+      {{ $t('home.hero.title') }}
     </div>
 
-    <div class="d-flex flex-row justify-center
-    " data-aos="fade-up"
-  data-aos-duration="1000"
-  data-aos-delay="800">
+    <div class="text-subtitle-1 mb-8 text-grey"
+         data-aos="fade-up"
+         data-aos-duration="1000"
+         data-aos-delay="600"
+    >
+      <b>{{ $t('home.hero.subtitle') }}</b>
+    </div>
+
+    <div class="d-flex flex-row justify-center"
+         data-aos="fade-up"
+         data-aos-duration="1000"
+         data-aos-delay="800"
+    >
       <v-btn
         variant="outlined"
         color="primary"
@@ -62,20 +63,21 @@
         size="x-large"
         to="/about"
       >
-        Learn More
+        {{ $t('home.hero.learnMore') }}
       </v-btn>
 
       <v-btn
         color="primary"
         class="text-white font-weight-bold elevation-6 transition-fast-in-fast-out hover-scale"
         size="x-large"
-        to="contact"
+        to="/contact"
       >
-        Contact
+        {{ $t('home.hero.contact') }}
       </v-btn>
     </div>
   </div>
 </v-sheet>
+
 
 <v-container class="d-flex justify-center my-12">
   <v-sheet
@@ -92,53 +94,64 @@
 
 
 <v-container>
-  <v-row class="mt-5 mb-5" align="stretch" 
-  > 
-    <!-- Years of Experience -->
-    <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  data-aos="fade-right"
-  data-aos-duration="500"
-  data-aos-delay="200" color="surface"
-      >
-        <v-icon size="48" color="primary">mdi-calendar-star</v-icon>
-        <v-card-text class="text-h5 font-weight-bold text-primary">10+</v-card-text>
-        <p class="text-subtitle-1 text-secondary">Years of Experience</p>
-      </v-card>
-    </v-col>
+  <v-row class="mt-5 mb-5" align="stretch"> 
+  <!-- Years of Experience -->
+  <v-col md="3" sm="12">
+    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-delay="200"
+            color="surface"
+    >
+      <v-icon size="48" color="primary">mdi-calendar-star</v-icon>
+      <v-card-text class="text-h5 font-weight-bold text-primary">10+</v-card-text>
+      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.experience') }}</p>
+    </v-card>
+  </v-col>
 
-    <!-- Customer Satisfaction -->
-    <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  data-aos="fade-right"
-  data-aos-duration="500"
-  data-aos-delay="300" color="surface">
-        <v-icon size="48" color="primary">mdi-star-circle</v-icon>
-        <v-card-text class="text-h5 font-weight-bold text-primary">95%</v-card-text>
-        <p class="text-subtitle-1 text-secondary">Customer Satisfaction</p>
-      </v-card>
-    </v-col>
+  <!-- Customer Satisfaction -->
+  <v-col md="3" sm="12">
+    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-delay="300"
+            color="surface"
+    >
+      <v-icon size="48" color="primary">mdi-star-circle</v-icon>
+      <v-card-text class="text-h5 font-weight-bold text-primary">95%</v-card-text>
+      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.satisfaction') }}</p>
+    </v-card>
+  </v-col>
 
-    <!-- Completed Projects -->
-    <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  data-aos="fade-right"
-  data-aos-duration="500"
-  data-aos-delay="400" color="surface">
-        <v-icon size="48" color="primary">mdi-briefcase-check</v-icon>
-        <v-card-text class="text-h5 font-weight-bold text-primary">250+</v-card-text>
-        <p class="text-subtitle-1 text-secondary">Completed Projects</p>
-      </v-card>
-    </v-col>
+  <!-- Completed Projects -->
+  <v-col md="3" sm="12">
+    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-delay="400"
+            color="surface"
+    >
+      <v-icon size="48" color="primary">mdi-briefcase-check</v-icon>
+      <v-card-text class="text-h5 font-weight-bold text-primary">250+</v-card-text>
+      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.projects') }}</p>
+    </v-card>
+  </v-col>
 
-    <!-- Team Members -->
-    <v-col md="3" sm="12">
-      <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  data-aos="fade-right"
-  data-aos-duration="500"
-  data-aos-delay="500" color="surface">
-        <v-icon size="48" color="primary">mdi-account-group</v-icon>
-        <v-card-text class="text-h5 font-weight-bold text-primary">20+</v-card-text>
-        <p class="text-subtitle-1 text-secondary">Team Members</p>
-      </v-card>
-    </v-col>
-  </v-row>
+  <!-- Team Members -->
+  <v-col md="3" sm="12">
+    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-delay="500"
+            color="surface"
+    >
+      <v-icon size="48" color="primary">mdi-account-group</v-icon>
+      <v-card-text class="text-h5 font-weight-bold text-primary">20+</v-card-text>
+      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.team') }}</p>
+    </v-card>
+  </v-col>
+</v-row>
+
 </v-container>
 
  
@@ -158,22 +171,21 @@
 
 <v-container fluid class="mt-5 mb-8">
 <v-row justify="center"  data-aos="fade-up-right"
-  data-aos-duration="500"
-  data-aos-delay="200">
+       data-aos-duration="500"
+       data-aos-delay="200">
   <v-col cols="12" md="8">
-    <div class="d-flex flex-column justify-center align-center pa-8 text-center rounded-lg bg-surface ">
-      <div class="px-4 py-2 rounded-pill bg-surface text-primary text-subtitle-2 font-weight-medium mb-4 bg-surface elevation-2">
-        Our Distinguished Services
+    <div class="d-flex flex-column justify-center align-center pa-8 text-center rounded-lg bg-surface">
+      
+      <div class="px-4 py-2 rounded-pill bg-surface text-primary text-subtitle-2 font-weight-medium mb-4 elevation-2">
+        {{ $t('home.services.subtitle') }}
       </div>
 
       <div class="text-h2 font-weight-bold text-primary mb-4">
-        Our Services
+        {{ $t('home.services.title') }}
       </div>
 
       <div class="text-body-1 text-secondary mb-6">
-       We offer complete project impelemetion,consulting and Modernization with innovative technologiesand sustainable solutions .
-       The offive specialize in Comprehensive technical planning, Maintenance, development,Implementation,TechnologyTrasfer and supervision of Industrial
-       ,medical, commercial and building systems.
+        {{ $t('home.services.description') }}
       </div>
 
       <div
@@ -189,68 +201,63 @@
 </v-row>
 
 
-         <div class="d-flex justify-center mb-6 mt-6" v-if="authStore.role === 'customer'">
-        
- <v-btn
-  color="primary"
-  class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
-   data-aos="fade-up-left"
-  data-aos-duration="500"
-  data-aos-delay="300"
-  prepend-icon="mdi-plus-box-multiple"
-  variant="flat"
-  to="/myrequest"
-  
->
-  View My Request
-</v-btn>
 
+        <!-- للعميل -->
+<div class="d-flex justify-center mb-6 mt-6" v-if="authStore.role === 'customer'">
+  <v-btn
+    color="primary"
+    class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
+    data-aos="fade-up-left"
+    data-aos-duration="500"
+    data-aos-delay="300"
+    prepend-icon="mdi-plus-box-multiple"
+    variant="flat"
+    to="/myrequest"
+  >
+    {{ $t('home.roleActions.viewMyRequest') }}
+  </v-btn>
 </div>
 
+<!-- للمسؤول -->
+<div class="d-flex justify-center mb-6 mt-6 ga-6" v-if="authStore.role === 'admin'">
+  <!-- زر إضافة خدمة -->
+  <v-btn
+    color="primary"
+    class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
+    data-aos="fade-up-left"
+    data-aos-duration="500"
+    data-aos-delay="300"
+    prepend-icon="mdi-plus-box-multiple"
+    variant="flat"
+    @click="AddDialog = true"
+  >
+    {{ $t('home.roleActions.addService') }}
+  </v-btn>
 
-
-       <div class="d-flex justify-center mb-6 mt-6 ga-6" v-if="authStore.role === 'admin'">
-        
-<!-- زر إضافة خدمة -->
-<v-btn
-  color="primary"
-  class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
-  data-aos="fade-up-left"
-  data-aos-duration="500"
-  data-aos-delay="300"
-  prepend-icon="mdi-plus-box-multiple"
-  variant="flat"
-  @click="AddDialog = true"
->
-  Add a Service
-</v-btn>
-
-<!-- زر الذهاب إلى الطلبات -->
-<v-btn
-  color="primary"
-  class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
-  data-aos="fade-up-left"
-  data-aos-duration="500"
-  data-aos-delay="500"
-  prepend-icon="mdi-file-document-multiple"
-  variant="flat"
-  to="/ourrequest"
->
-  Go to Requests
-</v-btn>
-
-
+  <!-- زر الذهاب إلى الطلبات -->
+  <v-btn
+    color="primary"
+    class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
+    data-aos="fade-up-left"
+    data-aos-duration="500"
+    data-aos-delay="500"
+    prepend-icon="mdi-file-document-multiple"
+    variant="flat"
+    to="/ourrequest"
+  >
+    {{ $t('home.roleActions.goToRequests') }}
+  </v-btn>
 </div>
 
             
 
-           <v-dialog v-model="AddDialog" max-width="600">
+         <v-dialog v-model="AddDialog" max-width="600">
   <v-card class="pa-4">
 
     <!-- Title -->
     <v-card-title class="d-flex align-center justify-center">
       <v-icon color="orange-darken-2" size="28" class="me-2">mdi-plus-box-multiple</v-icon>
-      <span class="text-h5 font-weight-bold">Add New Service</span>
+      <span class="text-h5 font-weight-bold">{{ $t('home.addServiceDialog.title') }}</span>
     </v-card-title>
 
     <v-card-text>
@@ -260,7 +267,7 @@
           <v-col cols="12">
             <v-file-input
               v-model="newService.images"
-              label="Upload Service Images"
+              :label="$t('home.addServiceDialog.uploadImages')"
               prepend-inner-icon="mdi-image"
               variant="outlined"
               multiple
@@ -273,7 +280,7 @@
           <v-col cols="12">
             <v-text-field
               v-model="newService.title"
-              label="Title"
+              :label="$t('home.addServiceDialog.titleField')"
               prepend-inner-icon="mdi-format-title"
               variant="outlined"
               class="mb-4"
@@ -284,7 +291,7 @@
           <v-col cols="12">
             <v-textarea
               v-model="newService.description"
-              label="Description"
+              :label="$t('home.addServiceDialog.descriptionField')"
               prepend-inner-icon="mdi-text"
               variant="outlined"
               auto-grow
@@ -307,7 +314,7 @@
         @click="AddDialog = false"
         class="px-6"
       >
-        Close
+        {{ $t('home.addServiceDialog.close') }}
       </v-btn>
 
       <v-btn
@@ -317,11 +324,12 @@
         :loading="addingService"
         class="px-6"
       >
-        Add
+        {{ $t('home.addServiceDialog.add') }}
       </v-btn>
     </v-card-actions>
   </v-card>
 </v-dialog>
+
 <!-- <div>{{ servicesStore.pagination.total_pages }}</div> -->
 
 <v-pagination
@@ -401,7 +409,7 @@
           variant="flat"
           @click="openDialog(service.id)"
         >
-          Learn More
+         {{ $t('home.hero.learnMore') }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -413,13 +421,13 @@
 
  <!-- service request  -->
 
-  <v-dialog v-model="showDetailsDialog" max-width="700">
+<v-dialog v-model="showDetailsDialog" max-width="700">
   <v-card elevation="6" rounded="lg">
     
     <!-- عنوان الديالوج -->
     <v-card-title class="text-h6 font-weight-bold text-primary d-flex align-center">
       <v-icon color="primary" class="mr-2">mdi-file-document-outline</v-icon>
-      Booking Details
+      {{ $t('dialogs.bookingDetails.title') }}
     </v-card-title>
 
     <v-divider></v-divider>
@@ -429,7 +437,7 @@
       <!-- تحميل -->
       <div v-if="ourRequestStore.loading" class="text-center py-6">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
-        <p class="mt-2">Loading booking details...</p>
+        <p class="mt-2">{{ $t('dialogs.bookingDetails.loading') }}</p>
       </div>
 
       <!-- خطأ -->
@@ -445,25 +453,25 @@
       <!-- بدون بيانات -->
       <div v-else-if="!ourRequestStore.selectedBooking" class="text-center py-6 text-grey">
         <v-icon size="40" color="grey">mdi-information-outline</v-icon>
-        <p>No booking details available.</p>
+        <p>{{ $t('dialogs.bookingDetails.noData') }}</p>
       </div>
 
       <!-- المحتوى -->
       <div v-else>
         <!-- 🟦 قسم معلومات الحجز -->
         <h3 class="text-subtitle-1 font-weight-bold text-primary mb-2">
-          Booking Information
+          {{ $t('dialogs.bookingDetails.bookingInfo') }}
         </h3>
         <v-sheet class="pa-4 mb-6 rounded-lg" color="grey-lighten-4">
           <v-row>
             <v-col cols="6">
-              <p><strong>ID:</strong> {{ ourRequestStore.selectedBooking.id }}</p>
-              <p><strong>Service ID:</strong> {{ ourRequestStore.selectedBooking.service_id }}</p>
+              <p><strong>{{ $t('dialogs.bookingDetails.fields.id') }}:</strong> {{ ourRequestStore.selectedBooking.id }}</p>
+              <p><strong>{{ $t('dialogs.bookingDetails.fields.serviceId') }}:</strong> {{ ourRequestStore.selectedBooking.service_id }}</p>
             </v-col>
             <v-col cols="6">
-              <p><strong>User ID:</strong> {{ ourRequestStore.selectedBooking.user_id }}</p>
+              <p><strong>{{ $t('dialogs.bookingDetails.fields.userId') }}:</strong> {{ ourRequestStore.selectedBooking.user_id }}</p>
               <p>
-                <strong>Status:</strong>
+                <strong>{{ $t('dialogs.bookingDetails.fields.status') }}:</strong>
                 <v-chip
                   :color="getStatusColor(ourRequestStore.selectedBooking.status)"
                   text-color="white"
@@ -475,29 +483,29 @@
               </p>
             </v-col>
             <v-col cols="12">
-              <p><strong>Message:</strong> {{ ourRequestStore.selectedBooking.message }}</p>
+              <p><strong>{{ $t('dialogs.bookingDetails.fields.message') }}:</strong> {{ ourRequestStore.selectedBooking.message }}</p>
             </v-col>
           </v-row>
         </v-sheet>
 
         <!-- 🟦 قسم معلومات الخدمة -->
         <h3 class="text-subtitle-1 font-weight-bold text-primary mb-2">
-          Service Information
+          {{ $t('dialogs.bookingDetails.serviceInfo') }}
         </h3>
         <v-sheet class="pa-4 mb-6 rounded-lg" color="grey-lighten-4">
-          <p><strong>Service Title:</strong> {{ ourRequestStore.selectedBooking.service_type.title }}</p>
-          <p><strong>Description:</strong> {{ ourRequestStore.selectedBooking.service_type.description }}</p>
+          <p><strong>{{ $t('dialogs.bookingDetails.fields.serviceTitle') }}:</strong> {{ ourRequestStore.selectedBooking.service_type.title }}</p>
+          <p><strong>{{ $t('dialogs.bookingDetails.fields.description') }}:</strong> {{ ourRequestStore.selectedBooking.service_type.description }}</p>
         </v-sheet>
 
         <!-- 🟦 قسم معلومات المستخدم -->
         <h3 class="text-subtitle-1 font-weight-bold text-primary mb-2">
-          User Information
+          {{ $t('dialogs.bookingDetails.userInfo') }}
         </h3>
         <v-sheet class="pa-4 rounded-lg" color="grey-lighten-4">
-          <p><strong>Name:</strong> {{ ourRequestStore.selectedBooking.user.name }}</p>
-          <p><strong>Email:</strong> {{ ourRequestStore.selectedBooking.user.email }}</p>
-          <p><strong>Phone:</strong> {{ ourRequestStore.selectedBooking.user.phone_number }}</p>
-          <p><strong>Email Verified At:</strong> {{ ourRequestStore.selectedBooking.user.email_verified_at }}</p>
+          <p><strong>{{ $t('dialogs.bookingDetails.fields.name') }}:</strong> {{ ourRequestStore.selectedBooking.user.name }}</p>
+          <p><strong>{{ $t('dialogs.bookingDetails.fields.email') }}:</strong> {{ ourRequestStore.selectedBooking.user.email }}</p>
+          <p><strong>{{ $t('dialogs.bookingDetails.fields.phone') }}:</strong> {{ ourRequestStore.selectedBooking.user.phone_number }}</p>
+          <p><strong>{{ $t('dialogs.bookingDetails.fields.emailVerifiedAt') }}:</strong> {{ ourRequestStore.selectedBooking.user.email_verified_at }}</p>
         </v-sheet>
       </div>
 
@@ -509,7 +517,7 @@
       <v-spacer></v-spacer>
       <v-btn color="primary" variant="flat" @click="showDetailsDialog = false">
         <v-icon left>mdi-close</v-icon>
-        Close
+        {{ $t('dialogs.bookingDetails.close') }}
       </v-btn>
     </v-card-actions>
 
@@ -517,19 +525,21 @@
 </v-dialog>
 
 
-  <!-- Edit Dialog -->
-<v-dialog v-model="confirmDialogEdit" max-width="700">
+
+ <v-dialog v-model="confirmDialogEdit" max-width="700">
   <v-card class="pa-4">
 
     <!-- Title -->
     <v-card-title class="d-flex justify-center align-center">
       <v-icon color="grey-darken-2" size="28" class="me-2">mdi-pencil</v-icon>
-      <span class="text-h5 font-weight-bold">Edit Service</span>
+      <span class="text-h5 font-weight-bold">{{ $t('dialogs.editService.title') }}</span>
     </v-card-title>
 
     <v-card-text>
       <!-- عرض الصور الحالية -->
-      <div class="text-subtitle-1 font-weight-bold mb-2">Current Photos</div>
+      <div class="text-subtitle-1 font-weight-bold mb-2">
+        {{ $t('dialogs.editService.currentPhotos') }}
+      </div>
       <v-row>
         <v-col
           v-for="(img, index) in editService.images"
@@ -552,7 +562,7 @@
             variant="outlined"
             @click="markPhotoForDeletion(img)"
           >
-            Delete
+            {{ $t('dialogs.editService.delete') }}
           </v-btn>
         </v-col>
       </v-row>
@@ -560,7 +570,7 @@
       <!-- رفع صور جديدة -->
       <v-file-input
         v-model="editService.new_photos"
-        label="Upload New Photos"
+        :label="$t('dialogs.editService.uploadNewPhotos')"
         prepend-inner-icon="mdi-image-plus"
         variant="outlined"
         multiple
@@ -571,7 +581,7 @@
       <!-- Title field -->
       <v-text-field
         v-model="editService.title"
-        label="Title"
+        :label="$t('dialogs.editService.titleField')"
         prepend-inner-icon="mdi-format-title"
         variant="outlined"
         class="mb-4"
@@ -580,7 +590,7 @@
       <!-- Description field -->
       <v-textarea
         v-model="editService.description"
-        label="Description"
+        :label="$t('dialogs.editService.descriptionField')"
         prepend-inner-icon="mdi-text"
         variant="outlined"
         auto-grow
@@ -600,7 +610,7 @@
         @click="cancelEdit"
         class="px-6"
       >
-        Cancel
+        {{ $t('dialogs.editService.cancel') }}
       </v-btn>
 
       <v-btn
@@ -610,12 +620,11 @@
         :loading="savingEdit"
         class="px-6"
       >
-        Save
+        {{ $t('dialogs.editService.save') }}
       </v-btn>
     </v-card-actions>
   </v-card>
 </v-dialog>
-
 
 
 
@@ -778,61 +787,66 @@
 
 <div class="mt-5">
   <v-container>
-    <v-row>
-      <v-col cols="12" md="7"  data-aos="fade-right" data-aos-duration="700">
-        <div
-          class="px-4 py-2 mb-3 rounded-pill bg-surface text-primary text-subtitle-2 font-weight-medium mb-4 d-inline py-4"
-        >
-          Complate Group
-        </div>
+   <v-row>
+  <v-col cols="12" md="7" data-aos="fade-right" data-aos-duration="700">
+    <!-- Badge -->
+    <div
+      class="px-4 py-2 mb-3 rounded-pill bg-surface text-primary text-subtitle-2 font-weight-medium mb-4 d-inline py-4"
+    >
+      {{ $t('home.servicesSection.badge') }}
+    </div>
 
-        <p class="font-weight-bold text-h3 mt-5 text-primary"> 
-          Vireolin's Diverse Services
-        </p>
+    <!-- Title -->
+    <p class="font-weight-bold text-h3 mt-5 text-primary">
+      {{ $t('home.servicesSection.title') }}
+    </p>
 
-        <p class="mt-4 text-body-1 text-secondary">
-          Our services cover the entire journey — from the very first step of planning and design, through installation and maintenance, all the way to final delivery and long-term support. We provide end-to-end solutions that ensure quality, reliability, and efficiency at every stage.
-        </p>
+    <!-- Description -->
+    <p class="mt-4 text-body-1 text-secondary">
+      {{ $t('home.servicesSection.description') }}
+    </p>
 
-        <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg" color="surface">
-          <v-avatar size="40" class="ms-2" color="primary">
-            <v-icon size="20" color="white">mdi-check-circle</v-icon>
-          </v-avatar>
-          <div class="d-flex flex-column align-center justify-center">
-            <p class="text-h5">World-Class Quality</p>
-            <p class="text-secondary">International standards in execution.</p>
-          </div>
-        </v-card>
+    <!-- Feature Cards -->
+    <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg" color="surface">
+      <v-avatar size="40" class="ms-2" color="primary">
+        <v-icon size="20" color="white">mdi-check-circle</v-icon>
+      </v-avatar>
+      <div class="d-flex flex-column align-center justify-center">
+        <p class="text-h5">{{ $t('home.servicesSection.features.quality.title') }}</p>
+        <p class="text-secondary">{{ $t('home.servicesSection.features.quality.desc') }}</p>
+      </div>
+    </v-card>
 
-        <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg" color="surface">
-          <v-avatar size="40" class="ms-2" color="primary">
-            <v-icon size="20" color="white">mdi-check-circle</v-icon>
-          </v-avatar>
-          <div class="d-flex flex-column align-center justify-center">
-            <p class="text-h5">Comprehensive Warranty</p>
-            <p class="text-secondary">Warranty on all products and services.</p>
-          </div>
-        </v-card>
+    <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg" color="surface">
+      <v-avatar size="40" class="ms-2" color="primary">
+        <v-icon size="20" color="white">mdi-check-circle</v-icon>
+      </v-avatar>
+      <div class="d-flex flex-column align-center justify-center">
+        <p class="text-h5">{{ $t('home.servicesSection.features.warranty.title') }}</p>
+        <p class="text-secondary">{{ $t('home.servicesSection.features.warranty.desc') }}</p>
+      </div>
+    </v-card>
 
-        <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg" color="surface">
-          <v-avatar size="40" class="ms-2" color="primary">
-            <v-icon size="20" color="white">mdi-check-circle</v-icon>
-          </v-avatar>
-          <div class="d-flex flex-column align-center justify-center">
-            <p class="text-h5">Continuous Innovation</p>
-            <p class="text-secondary">Latest technologies and solutions.</p>
-          </div>
-        </v-card>
-      </v-col>
+    <v-card class="d-flex justify-start align-center mt-4 ga-3 py-2 elevation-4 rounded-lg" color="surface">
+      <v-avatar size="40" class="ms-2" color="primary">
+        <v-icon size="20" color="white">mdi-check-circle</v-icon>
+      </v-avatar>
+      <div class="d-flex flex-column align-center justify-center">
+        <p class="text-h5">{{ $t('home.servicesSection.features.innovation.title') }}</p>
+        <p class="text-secondary">{{ $t('home.servicesSection.features.innovation.desc') }}</p>
+      </div>
+    </v-card>
+  </v-col>
 
-      <v-col cols="12" md="5" class="d-flex align-center justify-center "  data-aos="fade-left"  data-aos-delay="200" data-aos-duration="700">
-        <v-img
-          :src="servicesG"
-          max-width="100%"
-          contain
-        ></v-img>
-      </v-col>
-    </v-row>
+  <v-col cols="12" md="5" class="d-flex align-center justify-center" data-aos="fade-left" data-aos-delay="200" data-aos-duration="700">
+    <v-img
+      :src="servicesG"
+      max-width="100%"
+      contain
+    ></v-img>
+  </v-col>
+</v-row>
+
   </v-container>
 </div>
 
@@ -851,9 +865,11 @@
 
 
 <v-container   >
-  <p class="font-weight-bold text-h3 mt-5 text-primary text-center mb-5 mt-5" data-aos="fade-up"  data-aos-delay="200">
-    Project Implementation Stages
-  </p>
+ <p class="font-weight-bold text-h3 mt-5 text-primary text-center mb-5 mt-5" 
+   data-aos="fade-up"  
+   data-aos-delay="200">
+  {{ $t('home.projectStages.title') }}
+</p>
 
 <v-carousel
   class="mt-5"
@@ -867,77 +883,91 @@
   transition="slide-x-transition"
   :transition-duration="2000" 
 >
+  <v-carousel-item>
+    <v-img :src="servicesH" height="300"></v-img>
+    <div class="d-flex flex-column align-center justify-center text-center">
+      <h2 class="text-h5 font-weight-bold mt-4 text-primary">
+        {{ $t('home.projectStages.items.systemIntegration.title') }}
+      </h2>
+      <p class="text-body-1 text-secondary">
+        {{ $t('home.projectStages.items.systemIntegration.desc') }}
+      </p>
+    </div>
+  </v-carousel-item>
 
-    <v-carousel-item>
-      <v-img :src="servicesH" height="300"></v-img>
-      <div class="d-flex flex-column align-center justify-center text-center">
-        <h2 class="text-h5 font-weight-bold mt-4 text-primary">System Integration</h2>
-        <p class="text-body-1 text-secondary">
-          Seamless integration of diverse systems to ensure unified performance and optimized workflows.
-        </p>
-      </div>
-    </v-carousel-item>
+  <v-carousel-item>
+    <v-img :src="servicesI" height="300"></v-img>
+    <div class="d-flex flex-column align-center justify-center text-center">
+      <h2 class="text-h5 font-weight-bold mt-4 text-primary">
+        {{ $t('home.projectStages.items.techAnalysis.title') }}
+      </h2>
+      <p class="text-body-1 text-secondary">
+        {{ $t('home.projectStages.items.techAnalysis.desc') }}
+      </p>
+    </div>
+  </v-carousel-item>
 
-    <v-carousel-item>
-      <v-img :src="servicesI" height="300"></v-img>
-      <div class="d-flex flex-column align-center justify-center text-center">
-        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Technical Analysis & Field Survey</h2>
-        <p class="text-body-1 text-secondary">
-          Accurate field surveys and technical assessments to build a strong foundation for project success.
-        </p>
-      </div>
-    </v-carousel-item>
+  <v-carousel-item>
+    <v-img :src="servicesJ" height="300"></v-img>
+    <div class="d-flex flex-column align-center justify-center text-center">
+      <h2 class="text-h5 font-weight-bold mt-4 text-primary">
+        {{ $t('home.projectStages.items.cadDesign.title') }}
+      </h2>
+      <p class="text-body-1 text-secondary">
+        {{ $t('home.projectStages.items.cadDesign.desc') }}
+      </p>
+    </div>
+  </v-carousel-item>
 
-    <v-carousel-item>
-      <v-img :src="servicesJ" height="300"></v-img>
-      <div class="d-flex flex-column align-center justify-center text-center">
-        <h2 class="text-h5 font-weight-bold mt-4 text-primary">CAD Design & Planning</h2>
-        <p class="text-body-1 text-secondary">
-          Detailed CAD-based designs and execution plans that transform concepts into precise realities.
-        </p>
-      </div>
-    </v-carousel-item>
+  <v-carousel-item>
+    <v-img :src="servicesK" height="300"></v-img>
+    <div class="d-flex flex-column align-center justify-center text-center">
+      <h2 class="text-h5 font-weight-bold mt-4 text-primary">
+        {{ $t('home.projectStages.items.management.title') }}
+      </h2>
+      <p class="text-body-1 text-secondary">
+        {{ $t('home.projectStages.items.management.desc') }}
+      </p>
+    </div>
+  </v-carousel-item>
 
-    <v-carousel-item>
-      <v-img :src="servicesK" height="300"></v-img>
-      <div class="d-flex flex-column align-center justify-center text-center">
-        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Management & Supervision</h2>
-        <p class="text-body-1 text-secondary">
-          Professional project management and supervision ensuring efficiency, safety, and timely delivery.
-        </p>
-      </div>
-    </v-carousel-item>
+  <v-carousel-item>
+    <v-img :src="servicesL" height="300"></v-img>
+    <div class="d-flex flex-column align-center justify-center text-center">
+      <h2 class="text-h5 font-weight-bold mt-4 text-primary">
+        {{ $t('home.projectStages.items.operation.title') }}
+      </h2>
+      <p class="text-body-1 text-secondary">
+        {{ $t('home.projectStages.items.operation.desc') }}
+      </p>
+    </div>
+  </v-carousel-item>
 
-    <v-carousel-item>
-      <v-img :src="servicesL" height="300"></v-img>
-      <div class="d-flex flex-column align-center justify-center text-center">
-        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Operation & Technical Acceptance</h2>
-        <p class="text-body-1 text-secondary">
-          Smooth commissioning and technical acceptance processes guaranteeing reliable system performance.
-        </p>
-      </div>
-    </v-carousel-item>
+  <v-carousel-item>
+    <v-img :src="servicesM" height="300"></v-img>
+    <div class="d-flex flex-column align-center justify-center text-center">
+      <h2 class="text-h5 font-weight-bold mt-4 text-primary">
+        {{ $t('home.projectStages.items.maintenance.title') }}
+      </h2>
+      <p class="text-body-1 text-secondary">
+        {{ $t('home.projectStages.items.maintenance.desc') }}
+      </p>
+    </div>
+  </v-carousel-item>
 
-    <v-carousel-item>
-      <v-img :src="servicesM" height="300"></v-img>
-      <div class="d-flex flex-column align-center justify-center text-center">
-        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Periodic Maintenance & Inspection</h2>
-        <p class="text-body-1 text-secondary">
-          Regular maintenance and inspections to extend system lifespan and prevent unexpected failures.
-        </p>
-      </div>
-    </v-carousel-item>
+  <v-carousel-item>
+    <v-img :src="servicesN" height="300"></v-img>
+    <div class="d-flex flex-column align-center justify-center text-center">
+      <h2 class="text-h5 font-weight-bold mt-4 text-primary">
+        {{ $t('home.projectStages.items.training.title') }}
+      </h2>
+      <p class="text-body-1 text-secondary">
+        {{ $t('home.projectStages.items.training.desc') }}
+      </p>
+    </div>
+  </v-carousel-item>
+</v-carousel>
 
-    <v-carousel-item>
-      <v-img :src="servicesN" height="300"></v-img>
-      <div class="d-flex flex-column align-center justify-center text-center">
-        <h2 class="text-h5 font-weight-bold mt-4 text-primary">Training & Qualification</h2>
-        <p class="text-body-1 text-secondary">
-          Comprehensive training programs to empower teams with the skills needed for sustainable success.
-        </p>
-      </div>
-    </v-carousel-item>
-  </v-carousel>
 </v-container>
 
 
@@ -945,21 +975,22 @@
 
   <!-- العنوان الفرعي -->
   <div class="px-4 py-2 mb-3 rounded-pill bg-surface text-primary text-subtitle-1 font-weight-medium mb-4 d-inline">
-    Start Your Project Now
-  </div>
+  {{ $t('home.cta.startProject') }}
+</div>
 
-  <!-- العنوان الرئيسي -->
-  <h1 class="text-h4 text-md-h2 font-weight-bold text-text mb-4">
-    Ready to Turn Your Vision into <span class="text-primary">Reality ?</span>
-  </h1>
+<!-- العنوان الرئيسي -->
+<h1 class="text-h4 text-md-h2 font-weight-bold text-text mb-4">
+  {{ $t('home.cta.mainTitle1') }}
+  <span class="text-primary">{{ $t('home.cta.mainTitle2') }}</span>
+</h1>
 
-  <!-- النص -->
-  <p class="text-body-2 text-md-h5 text-text mb-6">
-    Contact us now and start your project with <strong>Vireolin Group</strong>
-  </p>
+<!-- النص -->
+<p class="text-body-2 text-md-h5 text-text mb-6">
+  {{ $t('home.cta.description') }}
+</p>
 
-  <!-- الأزرار -->
-  <div class="d-flex flex-column flex-sm-row gap-4 justify-center">
+<!-- الأزرار -->
+<div class="d-flex flex-column flex-sm-row gap-4 justify-center">
   <v-btn
     variant="outlined"
     class="text-text font-weight-bold elevation-2 transition-fast-in-fast-out hover-ora hover-scale mb-4 mb-sm-0"
@@ -967,7 +998,7 @@
     rounded="lg"
     to="/services"
   >
-    View Our Projects
+    {{ $t('home.cta.btnViewProjects') }}
   </v-btn>
 
   <v-btn
@@ -977,9 +1008,10 @@
     rounded="lg"
     to="/contact"
   >
-    → Contact Us Now
+    {{ $t('home.cta.btnContactNow') }}
   </v-btn>
 </div>
+
 
 </v-container>
 

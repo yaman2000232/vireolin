@@ -3,12 +3,12 @@
     <v-row class="w-100" justify="center">
       <v-col cols="12" sm="10" md="6" lg="4">
 
-        <v-card elevation="12" class="pa-6 pa-sm-8  rounded-xl login-card">
+        <v-card elevation="12" class="pa-6 pa-sm-8 rounded-xl login-card">
 
           <!-- Title -->
           <v-card-title class="text-h5 text-center font-weight-bold text-primary">
             <v-icon start color="primary" class="me-2">mdi-login</v-icon>
-            Sign In
+            {{ $t('login.title') }}
           </v-card-title>
 
           <v-divider class="my-4"></v-divider>
@@ -19,7 +19,7 @@
               
               <v-text-field
                 v-model="email"
-                label="Email"
+                :label="$t('login.fields.email')"
                 prepend-inner-icon="mdi-email"
                 type="email"
                 required
@@ -30,7 +30,7 @@
               <v-text-field
                 v-model="password"
                 :type="showPassword ? 'text' : 'password'"
-                label="Password"
+                :label="$t('login.fields.password')"
                 prepend-inner-icon="mdi-lock"
                 :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
                 @click:append-inner="showPassword = !showPassword"
@@ -47,25 +47,22 @@
                 :disabled="loading"
                 size="large"
               >
-                Login
+                {{ $t('login.loginButton') }}
               </v-btn>
-
-              <!-- Change Password -->
-             
 
               <!-- Forgot Password -->
               <div class="text-center mt-2">
                 <v-btn variant="text" color="secondary" to="/forgot-password">
                   <v-icon start size="18">mdi-lock-reset</v-icon>
-                  Forgot Password?
+                  {{ $t('login.forgotPassword') }}
                 </v-btn>
               </div>
 
               <!-- Register -->
               <div class="text-center mt-4">
                 <v-btn variant="text" to="/register">
-                  Not registered?
-                  <b class="text-primary ms-1">Register</b>
+                  {{ $t('login.notRegistered') }}
+                  <b class="text-primary ms-1">{{ $t('login.register') }}</b>
                 </v-btn>
               </div>
 
@@ -83,7 +80,7 @@
         >
           {{ snackbar.message }}
           <template #action="{ attrs }">
-            <v-btn text v-bind="attrs" @click="snackbar.show = false">Close</v-btn>
+            <v-btn text v-bind="attrs" @click="snackbar.show = false">{{ $t('login.snackbar.close') }}</v-btn>
           </template>
         </v-snackbar>
 
