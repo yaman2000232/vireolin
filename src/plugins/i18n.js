@@ -5,7 +5,7 @@ import ar from '../locales/ar.js'
 import de from '../locales/de.js'
 
 const i18n = createI18n({
-  locale: 'en', // اللغة الأساسية
+ locale: localStorage.getItem('locale') || 'de',
   fallbackLocale: 'en',
   messages: {
     en,

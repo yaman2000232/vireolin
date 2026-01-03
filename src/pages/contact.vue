@@ -63,7 +63,7 @@
 
             <!-- Message -->
             <v-textarea
-              v-model="message"
+              v-model="booking_message"
               :label="$t('contact.messageLabel')"
               outlined
               rows="5"
@@ -155,7 +155,8 @@
                 />
 
                 <v-textarea
-                  v-model="message"
+                
+                  v-model="contact_message" 
                   :label="$t('contact.fields.message')"
                   prepend-inner-icon="mdi-message-text"
                   outlined
@@ -238,9 +239,9 @@ data() {
   return {
     valid: false,
     service_id: null,
-    phone: '',
-    email: '',
-    message: '',
+    // phone: '',
+    // email: '',
+    booking_message: '',
 
 
     // contact 
@@ -249,7 +250,7 @@ data() {
     user_name: '',
     email: '',
     phone_number: '',
-    message: '',
+    contact_message: '',
     loading: false,
     rules: {
       required: v => !!v || 'This field is required',
@@ -296,7 +297,7 @@ methods: {
   // 2) تحضير البيانات كـ FormData
   const formData = new FormData()
   formData.append("service_id", this.service_id)
-  formData.append("message", this.message || "")
+  formData.append("booking_message", this.booking_message || "")
   formData.append("device_fingerprint", this.deviceFingerprint)
 
   this.loading = true
@@ -310,7 +311,8 @@ methods: {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
-        Accept: "application/json"
+        Accept: "application/json",
+        'Accept-Language': localStorage.getItem('locale') || 'de',
         // ملاحظة: لا تضيف Content-Type مع FormData، المتصفح يحددها تلقائيًا
       },
       body: formData
@@ -349,7 +351,7 @@ methods: {
       user_name: this.user_name,
       email: this.email,
       phone_number: this.phone_number,
-      message: this.message
+      contact_message: this.contact_message
     }
 
     await this.contactStore.sendContactMessage(payload)
@@ -372,8 +374,8 @@ methods: {
 resetForm() {
   this.service_id = null
   this.phone = ""
-  this.email = ""
-  this.message = ""
+  // this.email = ""
+  this.booking_message = ""
   this.valid = false
 },
 

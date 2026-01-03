@@ -38,6 +38,7 @@ export const useOurRequestStore = defineStore('ourRequest', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
+          'Accept-Language': localStorage.getItem('locale') || 'de',
         Authorization: `Bearer ${token}`
       }
     })
@@ -76,6 +77,7 @@ this.pagination.total = payload.total
         method: 'GET',
         headers: {
           'Accept': 'application/json',
+            'Accept-Language': localStorage.getItem('locale') || 'de',
           'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
         },
       })
@@ -114,6 +116,7 @@ async updateBookingStatus(id, newStatus) {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
+          'Accept-Language': localStorage.getItem('locale') || 'de',
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -158,6 +161,7 @@ async fetchMyBookings() {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
+          'Accept-Language': localStorage.getItem('locale') || 'de',
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
       },
     })
@@ -199,6 +203,7 @@ async cancelBookingCustomer(id) {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
+          'Accept-Language': localStorage.getItem('locale') || 'de',
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
       },
     })
@@ -243,6 +248,7 @@ console.log('First element:', data.data[0])
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
+          'Accept-Language': localStorage.getItem('locale') || 'de',
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
       },
     })

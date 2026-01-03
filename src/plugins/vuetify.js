@@ -17,7 +17,7 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 export default createVuetify({
 
    locale: {
-    locale: 'en',       // اللغة الافتراضية
+    locale: localStorage.getItem('locale') || 'de',
     fallback: 'en',
     messages: {
       en,

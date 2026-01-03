@@ -18,7 +18,8 @@ export const useAuthStore = defineStore('auth', {
     method: 'POST',
     headers: { 
       'Accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept-Language': localStorage.getItem('locale') || 'de'
     },
     body: new URLSearchParams({ email, password })
   })
@@ -51,6 +52,7 @@ export const useAuthStore = defineStore('auth', {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/x-www-form-urlencoded",
+            'Accept-Language': localStorage.getItem('locale') || 'de'
           },
           body: new URLSearchParams({
             name,
@@ -93,6 +95,7 @@ export const useAuthStore = defineStore('auth', {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
+            'Accept-Language': localStorage.getItem('locale') || 'de',
           },
           body: JSON.stringify({
             token,
@@ -129,6 +132,7 @@ export const useAuthStore = defineStore('auth', {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
+            'Accept-Language': localStorage.getItem('locale') || 'de'
           },
           body: JSON.stringify({ email }), // 🔑 إرسال البريد كـ JSON
         });
@@ -171,6 +175,7 @@ export const useAuthStore = defineStore('auth', {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        'Accept-Language': localStorage.getItem('locale') || 'de',
         Authorization: `Bearer ${this.token}`,
       },
       body: JSON.stringify(payload),
@@ -214,6 +219,7 @@ async changePassword({ old_password, new_password, new_password_confirmation }) 
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        'Accept-Language': localStorage.getItem('locale') || 'de',
         Authorization: `Bearer ${this.token}`, // التوكن الحالي للمستخدم
       },
       body: JSON.stringify(payload),
@@ -247,6 +253,10 @@ async verifyEmail(userId, token, expires, signature) {
   try {
    const response = await fetch(`https://api.vireolin.de/api/email/verify/${userId}/${token}?expires=${expires}&signature=${signature}`, {
   method: 'GET',
+   headers: {
+        Accept: "application/json",
+        'Accept-Language': localStorage.getItem('locale') || 'de'
+      }
 });
 
     // نحاول تحويل الرد إلى JSON
@@ -275,6 +285,7 @@ async resendVerificationEmail() {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
+        'Accept-Language': localStorage.getItem('locale') || 'de',
         'Authorization': `Bearer ${this.token}`, // token من state
       },
     });

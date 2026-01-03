@@ -209,11 +209,11 @@ export default {
     return {
 
          locales: [
+           { code: 'de', label: 'Deutsch' },
         { code: 'en', label: 'English' },
         { code: 'ar', label: 'العربية' },
-        { code: 'de', label: 'Deutsch' }
       ],
-      currentLocale: this.$i18n.locale, // يبدأ باللغة الحالية
+      currentLocale: this.$i18n.locale || 'de',
       menu: false,
       isScrolled: false,
       vireolin
@@ -227,13 +227,8 @@ export default {
   methods: {
  changeLanguage(newLocale) {
       this.$i18n.locale = newLocale
-
-      // ضبط اتجاه النصوص حسب اللغة
-      if (newLocale === 'ar') {
-        document.dir = 'rtl'
-      } else {
-        document.dir = 'ltr'
-      }
+      localStorage.setItem('locale', newLocale)
+      document.dir = newLocale === 'ar' ? 'rtl' : 'ltr'
     },
 
     handleScroll() {

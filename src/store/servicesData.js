@@ -45,7 +45,9 @@ export const useServicesStore = defineStore('service', {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
-        Accept: "application/json"
+        Accept: "application/json",
+          'Accept-Language': localStorage.getItem('locale') || 'de',
+
       }
     })
 
@@ -111,7 +113,9 @@ async createServiceFromApi(newService) {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
-        Accept: 'application/json'
+        Accept: 'application/json',
+          'Accept-Language': localStorage.getItem('locale') || 'de',
+
       },
       body: formData
     })
@@ -219,7 +223,9 @@ async updateServiceFromApi(serviceId, updatedData) {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
-        Accept: 'application/json'
+        Accept: 'application/json',
+          'Accept-Language': localStorage.getItem('locale') || 'de',
+
       },
       body: formData
     })
@@ -335,7 +341,9 @@ async deleteItem(id) {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
-        Accept: 'application/json'
+        Accept: 'application/json',
+          'Accept-Language': localStorage.getItem('locale') || 'de',
+
       }
     })
 

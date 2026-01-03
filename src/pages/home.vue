@@ -35,7 +35,7 @@
 
   <div class="position-relative" style="z-index: 1;">
     <div 
-      class="text-h2 font-weight-bold mb-6 text-primary"
+      class="text-h4 font-weight-bold mb-6 text-primary"
       data-aos="fade-up"
       data-aos-duration="1000"
       data-aos-delay="200"
@@ -1281,6 +1281,8 @@ export default {
       const res = await fetch(`https://api.vireolin.de/api/serviceTypes/${id}`, {
         headers: {
           Accept: 'application/json',
+        'Accept-Language': localStorage.getItem('locale') || 'de',
+
           Authorization: `Bearer ${token}`
         }
       })
