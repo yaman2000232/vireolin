@@ -276,29 +276,75 @@
             />
           </v-col>
 
-          <!-- Title -->
-          <v-col cols="12">
-            <v-text-field
-              v-model="newService.title"
-              :label="$t('home.addServiceDialog.titleField')"
-              prepend-inner-icon="mdi-format-title"
-              variant="outlined"
-              class="mb-4"
-            />
-          </v-col>
+         <!-- Arabic Title & Description -->
+<v-col cols="12">
+  <v-text-field
+    v-model="newService.title_ar"
+    :label="$t('home.addServiceDialog.titleField') + ' (AR)'"
+    prepend-inner-icon="mdi-format-title"
+    variant="outlined"
+    class="mb-2"
+  />
+</v-col>
 
-          <!-- Description -->
-          <v-col cols="12">
-            <v-textarea
-              v-model="newService.description"
-              :label="$t('home.addServiceDialog.descriptionField')"
-              prepend-inner-icon="mdi-text"
-              variant="outlined"
-              auto-grow
-              rows="4"
-              class="mb-2"
-            />
-          </v-col>
+<v-col cols="12">
+  <v-textarea
+    v-model="newService.description_ar"
+    :label="$t('home.addServiceDialog.descriptionField') + ' (AR)'"
+    prepend-inner-icon="mdi-text"
+    variant="outlined"
+    auto-grow
+    rows="3"
+    class="mb-4"
+  />
+</v-col>
+
+<!-- English Title & Description -->
+<v-col cols="12">
+  <v-text-field
+    v-model="newService.title_en"
+    :label="$t('home.addServiceDialog.titleField') + ' (EN)'"
+    prepend-inner-icon="mdi-format-title"
+    variant="outlined"
+    class="mb-2"
+  />
+</v-col>
+
+<v-col cols="12">
+  <v-textarea
+    v-model="newService.description_en"
+    :label="$t('home.addServiceDialog.descriptionField') + ' (EN)'"
+    prepend-inner-icon="mdi-text"
+    variant="outlined"
+    auto-grow
+    rows="3"
+    class="mb-4"
+  />
+</v-col>
+
+<!-- German Title & Description -->
+<v-col cols="12">
+  <v-text-field
+    v-model="newService.title_de"
+    :label="$t('home.addServiceDialog.titleField') + ' (DE)'"
+    prepend-inner-icon="mdi-format-title"
+    variant="outlined"
+    class="mb-2"
+  />
+</v-col>
+
+<v-col cols="12">
+  <v-textarea
+    v-model="newService.description_de"
+    :label="$t('home.addServiceDialog.descriptionField') + ' (DE)'"
+    prepend-inner-icon="mdi-text"
+    variant="outlined"
+    auto-grow
+    rows="3"
+    class="mb-4"
+  />
+</v-col>
+
         </v-row>
       </v-container>
     </v-card-text>
@@ -578,25 +624,66 @@
         class="mt-4 mb-4"
       />
 
-      <!-- Title field -->
-      <v-text-field
-        v-model="editService.title"
-        :label="$t('dialogs.editService.titleField')"
-        prepend-inner-icon="mdi-format-title"
-        variant="outlined"
-        class="mb-4"
-      />
+      <!-- Title AR -->
+<v-text-field
+  v-model="editService.title_ar"
+  :label="$t('dialogs.editService.titleFieldAr')"
+  prepend-inner-icon="mdi-format-title"
+  variant="outlined"
+  class="mb-4"
+/>
 
-      <!-- Description field -->
-      <v-textarea
-        v-model="editService.description"
-        :label="$t('dialogs.editService.descriptionField')"
-        prepend-inner-icon="mdi-text"
-        variant="outlined"
-        auto-grow
-        rows="4"
-        class="mb-2"
-      />
+<!-- Title EN -->
+<v-text-field
+  v-model="editService.title_en"
+  :label="$t('dialogs.editService.titleFieldEn')"
+  prepend-inner-icon="mdi-format-title"
+  variant="outlined"
+  class="mb-4"
+/>
+
+<!-- Title DE -->
+<v-text-field
+  v-model="editService.title_de"
+  :label="$t('dialogs.editService.titleFieldDe')"
+  prepend-inner-icon="mdi-format-title"
+  variant="outlined"
+  class="mb-4"
+/>
+
+<!-- Description AR -->
+<v-textarea
+  v-model="editService.description_ar"
+  :label="$t('dialogs.editService.descriptionFieldAr')"
+  prepend-inner-icon="mdi-text"
+  variant="outlined"
+  auto-grow
+  rows="4"
+  class="mb-2"
+/>
+
+<!-- Description EN -->
+<v-textarea
+  v-model="editService.description_en"
+  :label="$t('dialogs.editService.descriptionFieldEn')"
+  prepend-inner-icon="mdi-text"
+  variant="outlined"
+  auto-grow
+  rows="4"
+  class="mb-2"
+/>
+
+<!-- Description DE -->
+<v-textarea
+  v-model="editService.description_de"
+  :label="$t('dialogs.editService.descriptionFieldDe')"
+  prepend-inner-icon="mdi-text"
+  variant="outlined"
+  auto-grow
+  rows="4"
+  class="mb-2"
+/>
+
     </v-card-text>
 
     <v-divider class="my-4"></v-divider>
@@ -1082,21 +1169,31 @@ export default {
 
          AddDialog:false,
           addingService: false,
-           newService: {
-      title: '',
-      description: '',
-      images: [] 
-    },
+        newService: {
+  title_ar: '',
+  title_en: '',
+  title_de: '',
+  description_ar: '',
+  description_en: '',
+  description_de: '',
+  images: []  // تبقى كما هي للصور
+},
 
 
-           editService: {
-      id: null,
-      title: '',
-      description: '',
-      images: [],           // الصور الحالية
-      new_photos: [],       // الصور الجديدة
-      deleted_photos: []    // الصور اللي المستخدم اختار حذفها
-    },
+
+         editService: {
+  id: null,
+  title_ar: '',
+  title_en: '',
+  title_de: '',
+  description_ar: '',
+  description_en: '',
+  description_de: '',
+  images: [],        // الصور الحالية
+  new_photos: [],    // الصور الجديدة
+  deleted_photos: [] // الصور التي اختار المستخدم حذفها
+},
+
           snackbar: false,
     snackbarMessage: '',
     snackbarColor: 'success',
@@ -1180,11 +1277,16 @@ export default {
   async addService() {
     this.addingService = true
     try {
-      const newServiceObj = {
-        title: this.newService.title,
-        description: this.newService.description,
-        images: this.newService.images
-      }
+     const newServiceObj = {
+  title_ar: this.newService.title_ar,
+  title_en: this.newService.title_en,
+  title_de: this.newService.title_de,
+  description_ar: this.newService.description_ar,
+  description_en: this.newService.description_en,
+  description_de: this.newService.description_de,
+  images: this.newService.images
+}
+
 
       await this.servicesStore.createServiceFromApi(newServiceObj)
 
@@ -1192,7 +1294,16 @@ export default {
       this.snackbarColor = 'success'
       this.snackbar = true
 
-      this.newService = { title: '', description: '', images: [] }
+     this.newService = {
+  title_ar: '',
+  title_en: '',
+  title_de: '',
+  description_ar: '',
+  description_en: '',
+  description_de: '',
+  images: []
+}
+
       this.AddDialog = false
     } catch (error) {
       this.snackbarMessage = 'Failed to add service'
@@ -1207,8 +1318,12 @@ export default {
  openEditDialog(service) {
   this.editService = {
     id: service.id,
-    title: service.title,
-    description: service.description,
+    title_ar: service.title_ar || '',
+    title_en: service.title_en || '',
+    title_de: service.title_de || '',
+    description_ar: service.description_ar || '',
+    description_en: service.description_en || '',
+    description_de: service.description_de || '',
     images: [...service.images], // عرض الصور الحالية
     new_photos: [],
     deleted_photos: []
@@ -1218,17 +1333,23 @@ export default {
 
 
 
+
  cancelEdit() {
   this.confirmDialogEdit = false
   this.editService = {
     id: null,
-    title: '',
-    description: '',
+    title_ar: '',
+    title_en: '',
+    title_de: '',
+    description_ar: '',
+    description_en: '',
+    description_de: '',
     images: [],
     new_photos: [],
     deleted_photos: []
   }
 },
+
 
 
  markPhotoForDeletion(img) {
@@ -1250,8 +1371,12 @@ export default {
     const updated = await this.servicesStore.updateServiceFromApi(
       this.editService.id,
       {
-        title: this.editService.title,
-        description: this.editService.description,
+        title_ar: this.editService.title_ar,
+        title_en: this.editService.title_en,
+        title_de: this.editService.title_de,
+        description_ar: this.editService.description_ar,
+        description_en: this.editService.description_en,
+        description_de: this.editService.description_de,
         new_photos: this.editService.new_photos,
         deleted_photos: this.editService.deleted_photos
       }

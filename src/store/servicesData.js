@@ -96,8 +96,14 @@ async createServiceFromApi(newService) {
     const url = 'https://api.vireolin.de/api/serviceTypes'
 
     const formData = new FormData()
-    if (newService.title) formData.append('title', newService.title)
-    if (newService.description) formData.append('description', newService.description)
+    if (newService.title_ar) formData.append('title_ar', newService.title_ar)
+if (newService.title_en) formData.append('title_en', newService.title_en)
+if (newService.title_de) formData.append('title_de', newService.title_de)
+
+if (newService.description_ar) formData.append('description_ar', newService.description_ar)
+if (newService.description_en) formData.append('description_en', newService.description_en)
+if (newService.description_de) formData.append('description_de', newService.description_de)
+
 
     if (newService.image) {
       formData.append('images[]', newService.image)
@@ -146,8 +152,12 @@ normalizeCreatedService(createdResponse, fallbackDescription = '') {
 
   return {
     id: service.id,
-    title: service.title,
-    description: service.description ?? fallbackDescription,
+   title_ar: service.title_ar,
+  title_en: service.title_en,
+  title_de: service.title_de,
+  description_ar: service.description_ar ?? fallbackDescription,
+  description_en: service.description_en ?? fallbackDescription,
+  description_de: service.description_de ?? fallbackDescription,
     images: photos.map((img, idx) => ({
       id: idx + 1, // ما في id بالـ photo_info، منعمل index
       url: img.url,
@@ -191,8 +201,14 @@ async updateServiceFromApi(serviceId, updatedData) {
 
     const formData = new FormData()
     formData.append('_method', 'PUT')
-    if (updatedData.title) formData.append('title', updatedData.title)
-    if (updatedData.description) formData.append('description', updatedData.description)
+    if (updatedData.title_ar) formData.append('title-ar', updatedData.title_ar)
+if (updatedData.title_en) formData.append('title-en', updatedData.title_en)
+if (updatedData.title_de) formData.append('title-de', updatedData.title_de)
+
+if (updatedData.description_ar) formData.append('description-ar', updatedData.description_ar)
+if (updatedData.description_en) formData.append('description-en', updatedData.description_en)
+if (updatedData.description_de) formData.append('description-de', updatedData.description_de)
+
 
     // صور جديدة
     if (Array.isArray(updatedData.new_photos)) {
@@ -273,14 +289,19 @@ normalizeUpdatedService(updatedResponse) {
   // إذا السيرفر بيرجع الصور كاملة بعد التعديل
   if (service.images && service.images.length > 0) {
     console.log("🖼️ Using full images list from service:", service.images)
-    return {
-      id: service.id,
-      title: service.title,
-      description: service.description,
-      created_at: service.created_at,
-      updated_at: service.updated_at,
-      images: service.images
-    }
+   return {
+  id: service.id,
+  title_ar: service.title_ar || '',        // عنوان عربي
+  title_en: service.title_en || '',        // عنوان إنجليزي
+  title_de: service.title_de || '',        // عنوان ألماني
+  description_ar: service.description_ar || '',  // وصف عربي
+  description_en: service.description_en || '',  // وصف إنجليزي
+  description_de: service.description_de || '',  // وصف ألماني
+  created_at: service.created_at,
+  updated_at: service.updated_at,
+  images: service.images || []
+}
+
   }
 
   // إذا السيرفر ما بيرجع الصور كاملة → ندمج القديمة مع الجديدة
@@ -293,14 +314,19 @@ normalizeUpdatedService(updatedResponse) {
 
   console.log("🖼️ Normalized new images:", newImages)
 
-  return {
-    id: service.id,
-    title: service.title,
-    description: service.description,
-    created_at: service.created_at,
-    updated_at: service.updated_at,
-    images: newImages
-  }
+ return {
+  id: service.id,
+  title_ar: service.title_ar || '',
+  title_en: service.title_en || '',
+  title_de: service.title_de || '',
+  description_ar: service.description_ar || '',
+  description_en: service.description_en || '',
+  description_de: service.description_de || '',
+  created_at: service.created_at,
+  updated_at: service.updated_at,
+  images: newImages 
+}
+
 },
 
 // تحديث الخدمة داخل الـ store (state)
