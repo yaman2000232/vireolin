@@ -1406,7 +1406,7 @@ export default {
       const res = await fetch(`https://api.vireolin.de/api/serviceTypes/${id}`, {
         headers: {
           Accept: 'application/json',
-        'Accept-Language': localStorage.getItem('locale') || 'de',
+      'x-locale': localStorage.getItem('locale') || 'de',
 
           Authorization: `Bearer ${token}`
         }

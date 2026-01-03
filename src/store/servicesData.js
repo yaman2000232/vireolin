@@ -46,7 +46,7 @@ export const useServicesStore = defineStore('service', {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
-          'Accept-Language': localStorage.getItem('locale') || 'de',
+          'x-locale': localStorage.getItem('locale') || 'de',
 
       }
     })
@@ -120,7 +120,7 @@ if (newService.description_de) formData.append('description_de', newService.desc
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: 'application/json',
-          'Accept-Language': localStorage.getItem('locale') || 'de',
+          'x-locale': localStorage.getItem('locale') || 'de',
 
       },
       body: formData
@@ -201,13 +201,13 @@ async updateServiceFromApi(serviceId, updatedData) {
 
     const formData = new FormData()
     formData.append('_method', 'PUT')
-    if (updatedData.title_ar) formData.append('title-ar', updatedData.title_ar)
-if (updatedData.title_en) formData.append('title-en', updatedData.title_en)
-if (updatedData.title_de) formData.append('title-de', updatedData.title_de)
+    if (updatedData.title_ar) formData.append('title_ar', updatedData.title_ar)
+if (updatedData.title_en) formData.append('title_en', updatedData.title_en)
+if (updatedData.title_de) formData.append('title_de', updatedData.title_de)
 
-if (updatedData.description_ar) formData.append('description-ar', updatedData.description_ar)
-if (updatedData.description_en) formData.append('description-en', updatedData.description_en)
-if (updatedData.description_de) formData.append('description-de', updatedData.description_de)
+if (updatedData.description_ar) formData.append('description_ar', updatedData.description_ar)
+if (updatedData.description_en) formData.append('description_en', updatedData.description_en)
+if (updatedData.description_de) formData.append('description_de', updatedData.description_de)
 
 
     // صور جديدة
@@ -240,7 +240,7 @@ if (updatedData.description_de) formData.append('description-de', updatedData.de
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: 'application/json',
-          'Accept-Language': localStorage.getItem('locale') || 'de',
+          'x-locale': localStorage.getItem('locale') || 'de',
 
       },
       body: formData
@@ -368,7 +368,7 @@ async deleteItem(id) {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: 'application/json',
-          'Accept-Language': localStorage.getItem('locale') || 'de',
+          'x-locale': localStorage.getItem('locale') || 'de',
 
       }
     })

@@ -312,7 +312,7 @@ methods: {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
-        'Accept-Language': localStorage.getItem('locale') || 'de',
+        'x-locale': localStorage.getItem('locale') || 'de',
         // ملاحظة: لا تضيف Content-Type مع FormData، المتصفح يحددها تلقائيًا
       },
       body: formData
@@ -373,7 +373,7 @@ methods: {
 
 resetForm() {
   this.service_id = null
-  this.phone = ""
+  // this.phone = ""
   // this.email = ""
   this.booking_message = ""
   this.valid = false

@@ -29,7 +29,7 @@ export const useContactStore = defineStore('contact', {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-             'Accept-Language': localStorage.getItem('locale') || 'de',
+           'x-locale': localStorage.getItem('locale') || 'de',
           },
           body: JSON.stringify(payload)
         })
@@ -78,7 +78,7 @@ export const useContactStore = defineStore('contact', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
-         'Accept-Language': localStorage.getItem('locale') || 'de',
+         'x-locale': localStorage.getItem('locale') || 'de',
         Authorization: `Bearer ${token}`
       }
     })
@@ -131,7 +131,7 @@ this.pagination.total = payload.total
       method: 'GET',
       headers: {
         Accept: 'application/json',
-         'Accept-Language': localStorage.getItem('locale') || 'de',
+         'x-locale': localStorage.getItem('locale') || 'de',
         Authorization: `Bearer ${token}`
       }
     })
@@ -164,7 +164,7 @@ this.pagination.total = payload.total
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
-         'Accept-Language': localStorage.getItem('locale') || 'de',
+         'x-locale': localStorage.getItem('locale') || 'de',
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
       },
     })
