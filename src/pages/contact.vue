@@ -207,23 +207,24 @@
             </v-col>
           </v-row>
 
-          <v-card class="pa-4 rounded-lg" color="surface">
-            <h3 class="text-subtitle-1 font-weight-bold text-primary mb-4">
-              {{ $t('contact.map.title') }}
-            </h3>
+         <v-card class="pa-4 rounded-lg" color="surface">
+  <h3 class="text-subtitle-1 font-weight-bold text-primary mb-4">
+    {{ $t('contact.map.title') }}
+  </h3>
 
-            <v-responsive aspect-ratio="16/9">
-              <iframe
-                :src="contactMapUrl"
-                width="100%"
-                height="100%"
-                style="border:0;"
-                allowfullscreen
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </v-responsive>
-          </v-card>
+  <v-responsive aspect-ratio="16/9">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2396.408743468494!2d10.0375!3d53.4967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b18f9f0f0f0f0f%3A0x123456789abcdef!2sVierl%C3%A4nder%20Damm%2071%2C%2020539%20Hamburg%2C%20Germany!5e0!3m2!1sen!2sde!4v1700000000000!5m2!1sen!2sde"
+      width="100%"
+      height="100%"
+      style="border:0;"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </v-responsive>
+</v-card>
+
         </v-col>
       </v-row>
     </v-container>

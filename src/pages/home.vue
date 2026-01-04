@@ -18,68 +18,10 @@
 
 
 
-    <v-sheet
-  class="d-flex flex-column justify-center align-center text-center hero-section position-relative mb-5 bg-animate"
-  height="90vh"
-  :style="{
-    backgroundImage: `url(${heroImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
-  }"
->
-  <div
-    class="position-absolute top-0 left-0 right-0 bottom-0"
-    style="background-color: rgba(0,0,0,0.7);"
-  ></div>
-
-  <div class="position-relative" style="z-index: 1;">
-    <div 
-      class="text-h4 font-weight-bold mb-6 text-primary"
-      data-aos="fade-up"
-      data-aos-duration="1000"
-      data-aos-delay="200"
-    >
-      {{ $t('home.hero.title') }}
-    </div>
-
-    <div class="text-subtitle-1 mb-8 text-grey"
-         data-aos="fade-up"
-         data-aos-duration="1000"
-         data-aos-delay="600"
-    >
-      <b>{{ $t('home.hero.subtitle') }}</b>
-    </div>
-
-    <div class="d-flex flex-row justify-center"
-         data-aos="fade-up"
-         data-aos-duration="1000"
-         data-aos-delay="800"
-    >
-      <v-btn
-        variant="outlined"
-        color="primary"
-        class="mr-4 font-weight-bold elevation-2 transition-fast-in-fast-out hover-scale"
-        size="x-large"
-        to="/about"
-      >
-        {{ $t('home.hero.learnMore') }}
-      </v-btn>
-
-      <v-btn
-        color="primary"
-        class="text-white font-weight-bold elevation-6 transition-fast-in-fast-out hover-scale"
-        size="x-large"
-        to="/contact"
-      >
-        {{ $t('home.hero.contact') }}
-      </v-btn>
-    </div>
-  </div>
-</v-sheet>
+    
 
 
-<v-container class="d-flex justify-center my-12">
+<!-- <v-container class="d-flex justify-center my-12">
   <v-sheet
     height="6"
     width="320"
@@ -87,84 +29,12 @@
     elevation="4"
     color="primary"
   ></v-sheet>
-</v-container>
+</v-container> -->
 
 
 
 
 
-<v-container>
-  <v-row class="mt-5 mb-5" align="stretch"> 
-  <!-- Years of Experience -->
-  <v-col md="3" sm="12">
-    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
-            data-aos="fade-right"
-            data-aos-duration="500"
-            data-aos-delay="200"
-            color="surface"
-    >
-      <v-icon size="48" color="primary">mdi-calendar-star</v-icon>
-      <v-card-text class="text-h5 font-weight-bold text-primary">10+</v-card-text>
-      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.experience') }}</p>
-    </v-card>
-  </v-col>
-
-  <!-- Customer Satisfaction -->
-  <v-col md="3" sm="12">
-    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
-            data-aos="fade-right"
-            data-aos-duration="500"
-            data-aos-delay="300"
-            color="surface"
-    >
-      <v-icon size="48" color="primary">mdi-star-circle</v-icon>
-      <v-card-text class="text-h5 font-weight-bold text-primary">95%</v-card-text>
-      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.satisfaction') }}</p>
-    </v-card>
-  </v-col>
-
-  <!-- Completed Projects -->
-  <v-col md="3" sm="12">
-    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
-            data-aos="fade-right"
-            data-aos-duration="500"
-            data-aos-delay="400"
-            color="surface"
-    >
-      <v-icon size="48" color="primary">mdi-briefcase-check</v-icon>
-      <v-card-text class="text-h5 font-weight-bold text-primary">250+</v-card-text>
-      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.projects') }}</p>
-    </v-card>
-  </v-col>
-
-  <!-- Team Members -->
-  <v-col md="3" sm="12">
-    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
-            data-aos="fade-right"
-            data-aos-duration="500"
-            data-aos-delay="500"
-            color="surface"
-    >
-      <v-icon size="48" color="primary">mdi-account-group</v-icon>
-      <v-card-text class="text-h5 font-weight-bold text-primary">20+</v-card-text>
-      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.team') }}</p>
-    </v-card>
-  </v-col>
-</v-row>
-
-</v-container>
-
- 
-
-<v-container class="d-flex justify-center my-12">
-  <v-sheet
-    height="6"
-    width="320"
-    rounded="lg"
-    elevation="4"
-    color="primary"
-  ></v-sheet>
-</v-container>
 
 
 
@@ -857,6 +727,67 @@
 
 </v-container>
 
+
+<v-sheet
+  class="d-flex flex-column justify-center align-center text-center hero-section position-relative mb-5 bg-animate"
+  height="90vh"
+  :style="{
+    backgroundImage: `url(${heroImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }"
+>
+  <div
+    class="position-absolute top-0 left-0 right-0 bottom-0"
+    style="background-color: rgba(0,0,0,0.7);"
+  ></div>
+
+  <div class="position-relative" style="z-index: 1;">
+    <div 
+      class="text-h4 font-weight-bold mb-6 text-primary"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-delay="200"
+    >
+      {{ $t('home.hero.title') }}
+    </div>
+
+    <div class="text-subtitle-1 mb-8 text-grey"
+         data-aos="fade-up"
+         data-aos-duration="1000"
+         data-aos-delay="600"
+    >
+      <b>{{ $t('home.hero.subtitle') }}</b>
+    </div>
+
+    <div class="d-flex flex-row justify-center"
+         data-aos="fade-up"
+         data-aos-duration="1000"
+         data-aos-delay="800"
+    >
+      <v-btn
+        variant="outlined"
+        color="primary"
+        class="mr-4 font-weight-bold elevation-2 transition-fast-in-fast-out hover-scale"
+        size="x-large"
+        to="/about"
+      >
+        {{ $t('home.hero.learnMore') }}
+      </v-btn>
+
+      <v-btn
+        color="primary"
+        class="text-white font-weight-bold elevation-6 transition-fast-in-fast-out hover-scale"
+        size="x-large"
+        to="/contact"
+      >
+        {{ $t('home.hero.contact') }}
+      </v-btn>
+    </div>
+  </div>
+</v-sheet>
+
 <v-container class="d-flex justify-center my-12">
   <v-sheet
     height="6"
@@ -866,6 +797,76 @@
     style="background: linear-gradient(to right, #FFCC80, #FFB74D, #EF6C00);"
   ></v-sheet>
 </v-container>
+
+<v-container>
+  <v-row class="mt-5 mb-5" align="stretch"> 
+  <v-col md="3" sm="12">
+    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-delay="200"
+            color="surface"
+    >
+      <v-icon size="48" color="primary">mdi-calendar-star</v-icon>
+      <v-card-text class="text-h5 font-weight-bold text-primary">10+</v-card-text>
+      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.experience') }}</p>
+    </v-card>
+  </v-col>
+
+  <v-col md="3" sm="12">
+    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-delay="300"
+            color="surface"
+    >
+      <v-icon size="48" color="primary">mdi-star-circle</v-icon>
+      <v-card-text class="text-h5 font-weight-bold text-primary">95%</v-card-text>
+      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.satisfaction') }}</p>
+    </v-card>
+  </v-col>
+
+  <v-col md="3" sm="12">
+    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-delay="400"
+            color="surface"
+    >
+      <v-icon size="48" color="primary">mdi-briefcase-check</v-icon>
+      <v-card-text class="text-h5 font-weight-bold text-primary">250+</v-card-text>
+      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.projects') }}</p>
+    </v-card>
+  </v-col>
+
+  <v-col md="3" sm="12">
+    <v-card class="pa-6 text-center elevation-4 hover-scale h-100"  
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-delay="500"
+            color="surface"
+    >
+      <v-icon size="48" color="primary">mdi-account-group</v-icon>
+      <v-card-text class="text-h5 font-weight-bold text-primary">20+</v-card-text>
+      <p class="text-subtitle-1 text-secondary">{{ $t('home.cards.team') }}</p>
+    </v-card>
+  </v-col>
+</v-row>
+
+</v-container>
+
+  
+
+ <v-container class="d-flex justify-center my-12">
+  <v-sheet
+    height="6"
+    width="320"
+    rounded="lg"
+    elevation="4"
+    color="primary"
+  ></v-sheet>
+</v-container> 
+
 
 
 
@@ -1460,15 +1461,31 @@ export default {
 async mounted() {
   this.loadingHome = true
   try {
-    await this.servicesStore.listService(1)
+   
+
+    if (this.authStore.token) {
+      // ✅ إذا مسجّل دخول → استدعاء الدالة الأصلية
+      await this.servicesStore.listService(1)
+    } else {
+      // ✅ إذا مو مسجّل دخول → جلب الخدمات بدون token
+      const res = await fetch(`https://api.vireolin.de/api/serviceTypes?page=1`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          'x-locale': localStorage.getItem('locale') || 'de',
+        }
+      })
+
+      const data = await res.json()
+      this.servicesStore.services = Array.isArray(data.data) ? data.data : []
+      this.servicesStore.pagination = data.pagination || {}
+    }
   } catch (err) {
     console.error(err)
   } finally {
     this.loadingHome = false
   }
-
-  
-},
+}
 
 
 
