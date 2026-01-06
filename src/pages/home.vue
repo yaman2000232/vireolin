@@ -17,7 +17,6 @@
 
 
 
-
     
 
 
@@ -70,6 +69,19 @@
   </v-col>
 </v-row>
 
+
+<!-- للزائر (مو مسجّل دخول) -->
+<div class="d-flex justify-center mb-6 mt-6" v-if="!authStore.role">
+  <v-btn
+    color="primary"
+    class="text-white font-weight-bold px-6 py-3 rounded-lg elevation-2"
+    prepend-icon="mdi-plus-box-multiple"
+    variant="flat"
+    to="/myrequest"
+  >
+    {{ $t('home.roleActions.viewMyRequest') }}
+  </v-btn>
+</div>
 
 
         <!-- للعميل -->
